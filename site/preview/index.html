@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>三套设计方案 · 灵境奇幕</title>
+<style>
+:root{
+  color-scheme:light;
+  --bg:#FFFFFF;--bg-2:#F5F5F7;--ink:#0A0A0B;--ink-2:#4C4C52;--ink-3:#86868D;
+  --line:rgba(10,10,11,.09);--line-2:rgba(10,10,11,.16);
+  --blue:#0A84FF;--cyan:#01BBF3;
+  --grad:linear-gradient(110deg,#01BBF3,#0A84FF 28%,#6E7BF2 52%,#B66FDB 76%,#E8917A);
+  --spring:cubic-bezier(.22,1,.36,1);--out:cubic-bezier(.16,1,.3,1);
+  --gutter:clamp(20px,5vw,64px);--max:1200px;
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang SC","HarmonyOS Sans SC","Microsoft YaHei",sans-serif;
+  --num:"SF Pro Display","Helvetica Neue",-apple-system,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);
+  font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,p,ul,li{margin:0;padding:0}
+ul{list-style:none}
+.container{width:100%;max-width:var(--max);margin-inline:auto;padding-inline:var(--gutter)}
+header{padding-top:clamp(60px,11vh,110px);text-align:center}
+.logo{width:clamp(96px,13vw,140px);height:auto;margin:0 auto 30px;
+  filter:drop-shadow(0 18px 34px rgba(10,10,11,.20));animation:float 8s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(-7px)}50%{transform:translateY(7px)}}
+h1{font-size:clamp(32px,5.4vw,62px);font-weight:700;line-height:1.05;letter-spacing:-.045em}
+h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{margin:20px auto 0;max-width:620px;font-size:clamp(15px,1.35vw,17.5px);
+  line-height:1.85;color:var(--ink-2)}
+.note{margin:24px auto 0;max-width:680px;padding:16px 22px;border-radius:14px;background:var(--bg-2);
+  font-size:13.5px;line-height:1.8;color:var(--ink-2);text-align:left;border-left:3px solid var(--blue)}
+.note b{color:var(--ink)}
+
+.grid{margin-top:clamp(44px,7vw,80px);display:grid;gap:22px;padding-bottom:80px}
+.card{position:relative;display:grid;grid-template-columns:1fr 380px;gap:clamp(24px,4vw,48px);
+  align-items:center;padding:clamp(24px,3vw,40px);border:1px solid var(--line);border-radius:26px;
+  transition:transform .5s var(--spring),box-shadow .5s ease,border-color .4s ease}
+.card:hover{transform:translateY(-5px);border-color:var(--line-2);box-shadow:0 26px 60px rgba(10,10,11,.11)}
+.card__no{font-family:var(--num);font-size:12px;font-weight:700;letter-spacing:.2em;color:var(--ink-3)}
+.card h2{margin:10px 0 14px;font-size:clamp(24px,3vw,36px);font-weight:700;letter-spacing:-.035em;line-height:1.12}
+.card p{font-size:15px;line-height:1.85;color:var(--ink-2);max-width:460px}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:20px}
+.tags li{padding:5px 12px;border-radius:999px;background:var(--bg-2);font-size:12px;color:var(--ink-2)}
+.swatch{display:flex;gap:6px;margin-top:22px}
+.swatch i{width:26px;height:26px;border-radius:8px;border:1px solid var(--line)}
+.go{display:inline-flex;align-items:center;gap:7px;margin-top:24px;font-size:14px;font-weight:600;color:var(--blue)}
+.go svg{width:15px;height:15px;transition:transform .3s var(--spring)}
+.card:hover .go svg{transform:translateX(4px)}
+.preview{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:4/3;
+  border:1px solid var(--line);display:grid;place-items:center;padding:26px}
+.preview--a{background:radial-gradient(circle at 50% 40%,#14141C 0%,#050507 70%)}
+.preview--b{background:linear-gradient(160deg,#FFFFFF,#F0F0F3)}
+.preview--c{background:linear-gradient(120deg,#0B1030 0%,#1A0C2E 48%,#07070B 100%)}
+.preview img{width:74%;height:auto}
+.preview--b img{width:64%;padding:14px;border-radius:22%;
+  background:linear-gradient(160deg,#16161C,#07070A);
+  box-shadow:0 20px 44px rgba(10,10,11,.3),inset 0 1px 0 rgba(255,255,255,.14)}
+footer{border-top:1px solid var(--line);padding-block:30px 60px;font-size:12.5px;color:var(--ink-3)}
+footer .container{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+@media (max-width:900px){
+  .card{grid-template-columns:1fr}
+  .preview{order:-1;aspect-ratio:16/9}
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <img class="logo" src="../assets/logo/panomovo/mark.png" alt="灵境奇幕 Logo">
+    <h1>三套<em>视觉方案</em></h1>
+    <p class="lead">基于新 Logo 的色彩与形态，从三个方向重构首页。都做完了交互与动效，可以直接滚动体验，也可以点进单页细看。</p>
+    <p class="note">
+      <b>一个必须先说明的约束：</b>新 Logo 主体是白色 3D 形体，在白底上对比度只有 <b>1.2:1</b>，等于看不见；在深底上是 <b>16.5:1</b>。
+      所以方案 B 给 Logo 加了深色底衬（类似 App 图标），方案 A 和 C 直接用深色页面，让 Logo 待在它的原生环境里。
+    </p>
+  </header>
+
+  <div class="grid">
+    <article class="card">
+      <div>
+        <span class="card__no">方案 A</span>
+        <h2>暗场剧场</h2>
+        <p>顺 Logo 的天性。整页深色，Logo 的光就是页面的光源，四周有缓慢游走的环境光晕。气质偏影像、偏作品集，适合把 Demo 和师资当主角。</p>
+        <ul class="tags"><li>深色主调</li><li>环境光晕</li><li>玻璃拟态</li><li>Logo 鼠标视差</li><li>渐变文字流动</li></ul>
+        <div class="swatch">
+          <i style="background:#050507"></i><i style="background:#01BBF3"></i><i style="background:#0A84FF"></i>
+          <i style="background:#B66FDB"></i><i style="background:#E8917A"></i>
+        </div>
+        <a class="go" href="./v1/index.html">打开方案 A
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="preview preview--a"><img src="../assets/logo/panomovo/mark.png" alt=""></div>
+    </article>
+
+    <article class="card">
+      <div>
+        <span class="card__no">方案 B</span>
+        <h2>明室</h2>
+        <p>白底、大留白、单点蓝色强调，节奏接近 Apple 产品页。Logo 收进深色圆角方块里当品牌徽标，滚动时轻微抬升缩放，产生实体感。</p>
+        <ul class="tags"><li>白底主调</li><li>大留白</li><li>细线分割</li><li>深色 Logo 徽标</li><li>滚动实体感</li></ul>
+        <div class="swatch">
+          <i style="background:#FFFFFF"></i><i style="background:#F5F5F7"></i><i style="background:#0A0A0B"></i>
+          <i style="background:#0A84FF"></i>
+        </div>
+        <a class="go" href="./v2/index.html">打开方案 B
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="preview preview--b"><img src="../assets/logo/panomovo/mark.png" alt=""></div>
+    </article>
+
+    <article class="card">
+      <div>
+        <span class="card__no">方案 C</span>
+        <h2>光谱</h2>
+        <p>把 Logo 内部那道渐变折页放大成整页光带。编排偏杂志：大号章节编号、左侧固定索引、作品横向轨道。信息密度最高，最适合展示内容产能。</p>
+        <ul class="tags"><li>渐变成主角</li><li>杂志编排</li><li>侧边章节索引</li><li>横向作品轨</li><li>灰度转彩悬停</li></ul>
+        <div class="swatch">
+          <i style="background:#07070B"></i><i style="background:#01BBF3"></i><i style="background:#6E7BF2"></i>
+          <i style="background:#D263BE"></i><i style="background:#E8917A"></i>
+        </div>
+        <a class="go" href="./v3/index.html">打开方案 C
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="preview preview--c"><img src="../assets/logo/panomovo/mark.png" alt=""></div>
+    </article>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <span>灵境奇幕 · 三套首页设计方案</span>
+    <span>当前正式站仍为原版，方案确认后再替换</span>
+  </div>
+</footer>
+</body>
+</html>
