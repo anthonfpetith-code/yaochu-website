@@ -1,0 +1,70 @@
+{
+ "logo_mark_ratio": 1.187,
+ "photos": {
+  "chenhaonan": {
+   "src": "800x1200",
+   "ratio": 0.67
+  },
+  "chenjialong": {
+   "src": "1080x1350",
+   "ratio": 0.8
+  },
+  "chenqichang": {
+   "src": "800x1071",
+   "ratio": 0.75
+  },
+  "daisiyang": {
+   "src": "640x1211",
+   "ratio": 0.53
+  },
+  "geweibin": {
+   "src": "960x1440",
+   "ratio": 0.67
+  },
+  "lizizhang": {
+   "src": "640x960",
+   "ratio": 0.67
+  },
+  "shirunyu": {
+   "src": "640x854",
+   "ratio": 0.75
+  },
+  "wangliangzheng": {
+   "src": "760x950",
+   "ratio": 0.8
+  },
+  "wangyage": {
+   "src": "800x1000",
+   "ratio": 0.8
+  },
+  "xieqianxing": {
+   "src": "640x853",
+   "ratio": 0.75
+  },
+  "zhangqiwei": {
+   "src": "640x1137",
+   "ratio": 0.56
+  },
+  "zhouyukai": {
+   "src": "1200x1600",
+   "ratio": 0.75
+  },
+  "zhouzhenghong": {
+   "src": "640x848",
+   "ratio": 0.75
+  },
+  "zhujiangjiang": {
+   "src": "640x960",
+   "ratio": 0.67
+  }
+ },
+ "poster_map": {
+  "contract.jpg": "contract.jpg",
+  "dixian.jpg": "dixian.jpg",
+  "emperor.jpg": "emperor.jpg",
+  "jiange.jpg": "jiange.jpg",
+  "shengong.jpg": "shengong.jpg",
+  "tavern.jpg": "tavern.jpg",
+  "xiaomengsun.jpg": "xiaomengsun.jpg"
+ }
+}

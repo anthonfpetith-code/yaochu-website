@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>遥触灵境 · AI 驱动内容工业化</title>
+<meta name="description" content="遥触灵境（杭州）科技有限公司，中泽集团全资子公司。以自研 Sub-field Agent 与标准化 AIGC SOP，提供内容工业化生产、产教融合人才引擎与 AI 文旅数字化服务。">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/logo/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/logo/apple-touch-icon.png">
+<link rel="preload" as="image" href="assets/logo/mark.png">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/site.css">
+<script src="assets/js/site.js" defer></script>
+</head>
+<body>
+
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a class="brand" href="#top" aria-label="遥触灵境 首页">
+      <img class="brand__mark" src="assets/logo/mark.png" width="40" height="34" alt="">
+      <span class="brand__name">遥触灵境</span>
+    </a>
+    <nav class="nav__links" aria-label="主导航">
+      <a href="#about">关于</a>
+      <a href="#business">业务</a>
+      <a href="#cases">案例</a>
+      <a href="#faculty">师资</a>
+      <a href="#demos">Demo</a>
+      <a href="#partners">合作</a>
+    </nav>
+    <div class="nav__actions">
+      <a class="btn btn--green btn--sm" href="#contact">联系我们</a>
+      <button class="nav__toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false" aria-controls="sheet">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="导航菜单">
+  <button class="sheet__close" id="sheetClose" aria-label="关闭菜单">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+  </button>
+  <a href="#about" style="--i:0">关于</a>
+  <a href="#business" style="--i:1">业务</a>
+  <a href="#cases" style="--i:2">案例</a>
+  <a href="#faculty" style="--i:3">师资</a>
+  <a href="#demos" style="--i:4">Demo 作品</a>
+  <a href="#partners" style="--i:5">合作</a>
+  <a href="#contact" style="--i:6">联系我们</a>
+</div>
+
+<main id="top">
+
+  <!-- ============ Hero ============ -->
+  <section class="hero">
+    <div class="container hero__grid">
+      <div class="hero__copy">
+        <p class="eyebrow" data-reveal><span class="dot"></span>AIGC 全链路 · 数字内容 · 产教融合</p>
+        <h1 class="display hero__title" data-reveal="blur" style="--i:1">
+          AI 驱动<br><em>内容工业化</em>
+        </h1>
+        <p class="hero__sub" data-reveal style="--i:2">
+          遥触灵境以自研 Sub-field Agent 与标准化 SOP，把影视内容生产压缩成一条可复用的流水线，从一句脚本到一部能上线的作品
+        </p>
+        <div class="hero__cta" data-reveal style="--i:3">
+          <a class="btn btn--green" href="#demos">
+            看 Demo 作品
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+          <a class="btn btn--ghost" href="#business">三大业务</a>
+        </div>
+      </div>
+
+      <div class="hero__visual" data-reveal style="--i:2" aria-hidden="true">
+        <div class="orbit">
+          <span class="orbit__glow"></span>
+          <span class="orbit__ring"></span>
+          <span class="orbit__ring orbit__ring--2"></span>
+          <img class="orbit__mark" src="assets/logo/mark.png" width="304" height="256" alt="">
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <ul class="metrics" data-reveal style="--i:4">
+        <li class="metric">
+          <span class="metric__num"><b data-count="2">0</b><i>×</i></span>
+          <span class="metric__label">内容产出效率</span>
+          <span class="metric__note">相对同行</span>
+        </li>
+        <li class="metric">
+          <span class="metric__num"><i>−</i><b data-count="50">0</b><i>%</i></span>
+          <span class="metric__label">制作成本</span>
+          <span class="metric__note">相对传统制片</span>
+        </li>
+        <li class="metric">
+          <span class="metric__num"><b data-count="5">0</b><i>×</i></span>
+          <span class="metric__label">SOP 流程提速</span>
+          <span class="metric__note">标准化交付</span>
+        </li>
+        <li class="metric">
+          <span class="metric__num"><b data-count="4">0</b><i>类</i></span>
+          <span class="metric__label">内容品类覆盖</span>
+          <span class="metric__note">仿真人 / 3D / 2D / 动态漫</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 关于 ============ -->
+  <section class="section" id="about">
+    <div class="container about">
+      <div class="about__left" data-reveal>
+        <p class="eyebrow"><span class="dot"></span>关于我们</p>
+        <h2 class="h2 about__title">一家把 AIGC 做成<br>生产线的内容公司</h2>
+        <p class="body about__desc">
+          遥触灵境（杭州）科技有限公司，中泽集团全资子公司，2024 年成立。深耕 AIGC 领域的创新型科技文化企业，依托自研 Sub-field Agent 与标准化 AIGC 生产 SOP，在 AI 内容生成领域持续实现技术突破
+        </p>
+      </div>
+      <ol class="strategy">
+        <li data-reveal style="--i:0"><span>01</span><p>AI 驱动生产力革命，实现内容生产工业化自动化转型</p></li>
+        <li data-reveal style="--i:1"><span>02</span><p>构建产教融合人才引擎，培养数字创意实操人才</p></li>
+        <li data-reveal style="--i:2"><span>03</span><p>布局数字人元宇宙生态</p></li>
+        <li data-reveal style="--i:3"><span>04</span><p>赋能文旅产业升级及电商 AI 转型</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ 业务 ============ -->
+  <section class="section section--alt" id="business">
+    <div class="container">
+      <header class="sec-head" data-reveal>
+        <div class="sec-head__text">
+          <p class="eyebrow"><span class="dot"></span>三大核心业务</p>
+          <h2 class="h2">从生产到人才<br>再到产业落地</h2>
+        </div>
+        <a class="sec-head__link" href="#contact">
+          聊聊你的项目
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </header>
+
+      <div class="biz">
+        <article class="bcard" data-reveal style="--i:0">
+          <div class="bcard__top">
+            <span class="bcard__no">01</span>
+            <span class="bcard__ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 4v16M17 4v16M3 9h4M3 15h4M17 9h4M17 15h4"/></svg>
+            </span>
+          </div>
+          <h3 class="h3">AIGC 内容工业化生产</h3>
+          <p class="bcard__desc">依托自研 Sub-field Agent 与 AIGC 全链路技术，为品牌与平台提供从创意生成到成品交付的完整方案</p>
+          <ul class="bcard__points">
+            <li>AI 商业广告片</li><li>AI 动漫与动态漫</li><li>AI 短剧与漫剧</li><li>AI 大电影</li>
+          </ul>
+        </article>
+
+        <article class="bcard" data-reveal style="--i:1">
+          <div class="bcard__top">
+            <span class="bcard__no">02</span>
+            <span class="bcard__ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.4 2.7 3 6 3s6-1.6 6-3v-5"/></svg>
+            </span>
+          </div>
+          <h3 class="h3">产教融合人才引擎</h3>
+          <p class="bcard__desc">面向社会公众、就业重点群体与高等院校开设课程，以 OPC 一人公司模式孵化可独立承接商业项目的创作者</p>
+          <ul class="bcard__points">
+            <li>高校课程共建</li><li>企业 AI 培训</li><li>OPC 一人公司孵化</li><li>商业订单对接</li>
+          </ul>
+        </article>
+
+        <article class="bcard" data-reveal style="--i:2">
+          <div class="bcard__top">
+            <span class="bcard__no">03</span>
+            <span class="bcard__ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5 5-2Z"/></svg>
+            </span>
+          </div>
+          <h3 class="h3">AI + 文旅数字化</h3>
+          <p class="bcard__desc">以 AI 结合 AR / VR 复原历史场景，打造数字人导游与沉浸式文旅短剧，形成线上传播、线下体验的闭环</p>
+          <ul class="bcard__points">
+            <li>历史场景复原</li><li>数字人 IP 与导游</li><li>沉浸式文旅短剧</li><li>新媒体传播放大</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 流水线 ============ -->
+  <section class="dark">
+    <div class="container dark__grid">
+      <div data-reveal>
+        <p class="eyebrow eyebrow--dark"><span class="dot"></span>内容工业化</p>
+        <h2 class="h2">一条流水线<br>四个环节</h2>
+        <p class="dark__desc">把创作拆成可标准化、可复用的工序，模型换了流程照样跑，这才是内容能规模化交付的前提</p>
+      </div>
+      <ol class="steps">
+        <li class="step" data-reveal style="--i:0"><span class="step__no">STEP 01</span><span class="step__title">选题与脚本</span><span class="step__desc">题材、钩子、受众三角验证</span></li>
+        <li class="step" data-reveal style="--i:1"><span class="step__no">STEP 02</span><span class="step__title">分镜与资产</span><span class="step__desc">角色、场景前置资产标准化</span></li>
+        <li class="step" data-reveal style="--i:2"><span class="step__no">STEP 03</span><span class="step__title">批量生成</span><span class="step__desc">提示词模板驱动的镜头产出</span></li>
+        <li class="step" data-reveal style="--i:3"><span class="step__no">STEP 04</span><span class="step__title">剪辑与交付</span><span class="step__desc">按爆款标准验收上线</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ 案例 ============ -->
+  <section class="section" id="cases">
+    <div class="container">
+      <header class="sec-head" data-reveal>
+        <div class="sec-head__text">
+          <p class="eyebrow"><span class="dot"></span>案例与数据</p>
+          <h2 class="h2">用播放量说话</h2>
+          <p class="sec-head__desc">截至 2026 年 6 月，团队参与的漫剧与短剧在各平台累计播放达数十亿</p>
+        </div>
+      </header>
+
+      <div class="cases">
+        <article class="case case--typo" data-reveal style="--i:0">
+          <span class="case__big" aria-hidden="true">1987</span>
+          <div class="case__body">
+            <div class="case__metric"><b>5.3 亿</b><span>抖音播放</span></div>
+            <h3 class="case__title">1987，砖瓦厂食堂散伙</h3>
+            <p class="case__meta">红果热度 5693w · 漫剧 TOP2</p>
+          </div>
+        </article>
+
+        <article class="case" data-reveal style="--i:1">
+          <div class="case__media"><img src="assets/img/posters/xiaomengsun.jpg" alt="《小萌孙驾到》海报" loading="lazy"></div>
+          <div class="case__body">
+            <div class="case__metric"><b>1.4 亿</b><span>抖音播放</span></div>
+            <h3 class="case__title">小萌孙驾到</h3>
+            <p class="case__meta">红果热度 4607w</p>
+          </div>
+        </article>
+
+        <article class="case" data-reveal style="--i:2">
+          <div class="case__media"><img src="assets/img/posters/jiange.jpg" alt="《捡个家人是大佬》海报" loading="lazy"></div>
+          <div class="case__body">
+            <div class="case__metric"><b>4368 万</b><span>红果热度</span></div>
+            <h3 class="case__title">捡个家人是大佬</h3>
+            <p class="case__meta">平台爆款 · AIGC 全流程</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 师资 ============ -->
+  <section class="section section--alt" id="faculty">
+    <div class="container">
+      <header class="sec-head" data-reveal>
+        <div class="sec-head__text">
+          <p class="eyebrow"><span class="dot"></span>师资团队</p>
+          <h2 class="h2">14 位一线实战导师</h2>
+          <p class="sec-head__desc">覆盖平台操盘、工作流开发、短剧创作、企业培训与教学设计，课上的每个方法都来自真实项目</p>
+        </div>
+        <a class="sec-head__link" href="faculty/index.html">
+          查看完整履历
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </header>
+
+      <div class="faces">
+        <a class="face" href="faculty/wangyage/index.html" data-reveal style="--i:0"><img src="assets/img/faculty/wangyage.jpg" width="560" height="700" alt="王雅各" loading="lazy"><span class="face__tag"><b>王雅各</b><i>CEO</i></span></a>
+        <a class="face" href="faculty/wangliangzheng/index.html" data-reveal style="--i:1"><img src="assets/img/faculty/wangliangzheng.jpg" width="560" height="700" alt="王梁正" loading="lazy"><span class="face__tag"><b>王梁正</b><i>联合创始人</i></span></a>
+        <a class="face" href="faculty/chenqichang/index.html" data-reveal style="--i:2"><img src="assets/img/faculty/chenqichang.jpg" width="560" height="700" alt="陈琪昌" loading="lazy"><span class="face__tag"><b>陈琪昌</b><i>视频训练师</i></span></a>
+        <a class="face" href="faculty/geweibin/index.html" data-reveal style="--i:3"><img src="assets/img/faculty/geweibin.jpg" width="560" height="700" alt="葛蔚斌" loading="lazy"><span class="face__tag"><b>葛蔚斌</b><i>视频创作</i></span></a>
+        <a class="face" href="faculty/chenhaonan/index.html" data-reveal style="--i:4"><img src="assets/img/faculty/chenhaonan.jpg" width="560" height="700" alt="陈昊男" loading="lazy"><span class="face__tag"><b>陈昊男</b><i>短视频导师</i></span></a>
+        <a class="face" href="faculty/zhouyukai/index.html" data-reveal style="--i:5"><img src="assets/img/faculty/zhouyukai.jpg" width="560" height="700" alt="周于凯" loading="lazy"><span class="face__tag"><b>周于凯</b><i>视频创作</i></span></a>
+        <a class="face" href="faculty/chenjialong/index.html" data-reveal style="--i:6"><img src="assets/img/faculty/chenjialong.jpg" width="560" height="700" alt="陈家龙" loading="lazy"><span class="face__tag"><b>陈家龙</b><i>视频导师</i></span></a>
+        <a class="face" href="faculty/shirunyu/index.html" data-reveal style="--i:7"><img src="assets/img/faculty/shirunyu.jpg" width="560" height="700" alt="施润宇" loading="lazy"><span class="face__tag"><b>施润宇</b><i>实战应用</i></span></a>
+        <a class="face" href="faculty/zhouzhenghong/index.html" data-reveal style="--i:8"><img src="assets/img/faculty/zhouzhenghong.jpg" width="560" height="700" alt="周正鸿" loading="lazy"><span class="face__tag"><b>周正鸿</b><i>AI 教育</i></span></a>
+        <a class="face" href="faculty/xieqianxing/index.html" data-reveal style="--i:9"><img src="assets/img/faculty/xieqianxing.jpg" width="560" height="700" alt="谢千星" loading="lazy"><span class="face__tag"><b>谢千星</b><i>编程教学</i></span></a>
+        <a class="face" href="faculty/daisiyang/index.html" data-reveal style="--i:10"><img src="assets/img/faculty/daisiyang.jpg" width="560" height="700" alt="戴思阳" loading="lazy"><span class="face__tag"><b>戴思阳</b><i>AI 商业</i></span></a>
+        <a class="face" href="faculty/lizizhang/index.html" data-reveal style="--i:11"><img src="assets/img/faculty/lizizhang.jpg" width="560" height="700" alt="李自长" loading="lazy"><span class="face__tag"><b>李自长</b><i>编导编剧</i></span></a>
+        <a class="face" href="faculty/zhangqiwei/index.html" data-reveal style="--i:12"><img src="assets/img/faculty/zhangqiwei.jpg" width="560" height="700" alt="张启伟" loading="lazy"><span class="face__tag"><b>张启伟</b><i>抽卡助教</i></span></a>
+        <a class="face" href="faculty/zhujiangjiang/index.html" data-reveal style="--i:13"><img src="assets/img/faculty/zhujiangjiang.jpg" width="560" height="700" alt="朱江江" loading="lazy"><span class="face__tag"><b>朱江江</b><i>视频创作</i></span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Demo ============ -->
+  <section class="section" id="demos">
+    <div class="container">
+      <div class="demo" data-reveal>
+        <div class="demo__inner">
+          <div>
+            <p class="eyebrow eyebrow--dark"><span class="dot"></span>Demo Library</p>
+            <div class="demo__count"><b>14</b><span>部作品</span></div>
+            <div class="demo__grades">
+              <span class="grade"><i></i>S 级 · 5 部</span>
+              <span class="grade grade--a"><i></i>A 级 · 9 部</span>
+            </div>
+          </div>
+          <div>
+            <p class="demo__desc">覆盖游戏 CG、仿真人、3D 漫、海外剧与国内短剧，按分级归档，支持在线播放与下载</p>
+            <a class="btn btn--green" href="demos/index.html" style="margin-top:18px">
+              进入 Demo 库
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m8 5 11 7-11 7Z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 合作 ============ -->
+  <section id="partners">
+    <div class="container" style="margin-bottom:26px" data-reveal>
+      <p class="eyebrow"><span class="dot"></span>生态伙伴</p>
+    </div>
+    <div class="partners" data-reveal>
+      <div class="partners__track">
+        <span class="partners__item">中影年年</span><span class="partners__item">阿里云</span><span class="partners__item">中国三三集团</span><span class="partners__item">中泽空间</span><span class="partners__item">温州广电</span><span class="partners__item">清华南京凌华研究院</span><span class="partners__item">火山引擎</span><span class="partners__item">红果短剧</span><span class="partners__item">爱奇艺</span><span class="partners__item">优酷</span><span class="partners__item">腾讯视频</span><span class="partners__item">抖音</span>
+        <span class="partners__item" aria-hidden="true">中影年年</span><span class="partners__item" aria-hidden="true">阿里云</span><span class="partners__item" aria-hidden="true">中国三三集团</span><span class="partners__item" aria-hidden="true">中泽空间</span><span class="partners__item" aria-hidden="true">温州广电</span><span class="partners__item" aria-hidden="true">清华南京凌华研究院</span><span class="partners__item" aria-hidden="true">火山引擎</span><span class="partners__item" aria-hidden="true">红果短剧</span><span class="partners__item" aria-hidden="true">爱奇艺</span><span class="partners__item" aria-hidden="true">优酷</span><span class="partners__item" aria-hidden="true">腾讯视频</span><span class="partners__item" aria-hidden="true">抖音</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 联系 ============ -->
+  <section class="contact" id="contact">
+    <div class="container contact__grid">
+      <div data-reveal>
+        <p class="eyebrow"><span class="dot"></span>联系我们</p>
+        <h2 class="h2" style="margin-top:18px">聊聊你要做的内容</h2>
+        <p class="body" style="margin-top:16px;max-width:420px">
+          短剧、漫剧、广告片，或者想把 AI 引进团队，都可以直接联系我们
+        </p>
+      </div>
+
+      <ul class="contact__list" data-reveal style="--i:1">
+        <li class="contact__row">
+          <span class="contact__key">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2Z"/><circle cx="12" cy="10" r="3"/><path d="M7 21v-1a5 5 0 0 1 10 0v1"/></svg>
+            联系人
+          </span>
+          <span class="contact__val">王先生</span>
+        </li>
+        <li class="contact__row">
+          <span class="contact__key">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2Z"/></svg>
+            电话
+          </span>
+          <a class="contact__val" href="tel:18545257058">185 4525 7058</a>
+        </li>
+        <li class="contact__row">
+          <span class="contact__key">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+            邮箱
+          </span>
+          <a class="contact__val" href="mailto:15900805001@163.com">15900805001@163.com</a>
+        </li>
+        <li class="contact__row">
+          <span class="contact__key">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            地址
+          </span>
+          <span class="contact__val">浙江省杭州市西湖区灯彩街云谷中心 B1-813</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <img src="assets/logo/lockup-v.png" width="132" height="141" alt="遥触灵境 YCLJ" loading="lazy">
+        <p>遥触灵境（杭州）科技有限公司<br>中泽集团全资子公司</p>
+      </div>
+      <div class="footer__col">
+        <h4>了解</h4>
+        <a href="#about">关于我们</a>
+        <a href="#business">三大业务</a>
+        <a href="#cases">案例与数据</a>
+      </div>
+      <div class="footer__col">
+        <h4>内容</h4>
+        <a href="#faculty">师资团队</a>
+        <a href="demos/index.html">Demo 作品库</a>
+        <a href="#partners">生态伙伴</a>
+      </div>
+      <div class="footer__col">
+        <h4>联系</h4>
+        <a href="tel:18545257058">185 4525 7058</a>
+        <a href="mailto:15900805001@163.com">15900805001@163.com</a>
+        <a href="#contact">杭州市西湖区云谷中心</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 遥触灵境（杭州）科技有限公司</span>
+      <span>AIGC 全链路 · 数字内容 · 产教融合</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

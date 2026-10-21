@@ -1,0 +1,71 @@
+/* ============================================================
+   遥触灵境 设计 token
+   唯一的配色来源。品牌绿取自 Logo 实测值 #52AA2C，
+   白底文字绿为同色相压暗版 #2F6318（对比度 7.4:1，达 WCAG AA）。
+   ============================================================ */
+:root {
+  color-scheme: light;
+
+  /* 底色与文字 */
+  --bg: #FFFFFF;
+  --bg-alt: #F5F5F7;
+  --ink: #0D0D0D;
+  --ink-2: #4B4B50;
+  --ink-3: #86868B;
+  --line: rgba(13, 13, 13, 0.09);
+  --line-strong: rgba(13, 13, 13, 0.16);
+
+  /* 品牌绿 */
+  --green: #52AA2C;
+  --green-ink: #2F6318;
+  --green-soft: #EDF6EA;
+  --green-line: rgba(82, 170, 44, 0.30);
+
+  /* 深色分区 */
+  --dark: #0A0A0C;
+  --dark-2: #141417;
+  --dark-ink: #F5F5F7;
+  --dark-ink-2: #A1A1A6;
+  --dark-line: rgba(245, 245, 247, 0.12);
+  --dark-green: #7CCB4F;
+
+  /* 圆角与阴影 */
+  --r-s: 10px;
+  --r-m: 18px;
+  --r-l: 26px;
+  --r-xl: 34px;
+  --r-pill: 999px;
+  --shadow-1: 0 1px 2px rgba(13, 13, 13, 0.04), 0 10px 28px rgba(13, 13, 13, 0.06);
+  --shadow-2: 0 2px 8px rgba(13, 13, 13, 0.05), 0 26px 64px rgba(13, 13, 13, 0.11);
+
+  /* 运动曲线：进场用弹簧感，退出用快出 */
+  --spring: cubic-bezier(0.22, 1, 0.36, 1);
+  --out: cubic-bezier(0.16, 1, 0.3, 1);
+  --in: cubic-bezier(0.4, 0, 1, 1);
+
+  /* 布局 */
+  --container: 1240px;
+  --gutter: clamp(20px, 4vw, 48px);
+  --nav-h: 68px;
+
+  /* 字体 */
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display",
+    "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei", "Segoe UI", Roboto, sans-serif;
+  --font-num: "SF Pro Display", "Helvetica Neue", "PingFang SC", var(--font);
+}
+
+/* 原生跨页过渡：Chrome / Edge 支持，其余浏览器自动降级为普通跳转 */
+@view-transition {
+  navigation: auto;
+}
+
+::selection {
+  background: rgba(82, 170, 44, 0.22);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--green-ink);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
