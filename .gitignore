@@ -1,0 +1,9 @@
+# 旧版归档：保留在本地，不进入仓库
+archive/
+
+# 原始压缩包：与 archive/react-legacy 重复
+*.zip
+
+# 验收截图与临时脚本
+_check/
+_tmp/
