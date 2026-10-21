@@ -106,7 +106,9 @@ def push_pages():
                 print(f"  pages blobs {count}")
     sha = make_commit(entries, PAGES_MSG, None)
     if head("gh-pages"):
-        call("PATCH", f"/repos/{OWNER}/{REPO}/git/refs/heads/gh-pages", json={"sha": sha})
+        # 部署分支每次都是全新快照，强制覆盖
+        call("PATCH", f"/repos/{OWNER}/{REPO}/git/refs/heads/gh-pages",
+             json={"sha": sha, "force": True})
     else:
         call("POST", f"/repos/{OWNER}/{REPO}/git/refs",
              json={"ref": "refs/heads/gh-pages", "sha": sha})
