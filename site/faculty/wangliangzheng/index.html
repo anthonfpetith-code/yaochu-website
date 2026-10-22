@@ -2,80 +2,407 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>王梁正 · 遥触灵境（杭州）科技 · 联合创始人 · 遥触灵境</title>
-<meta name="description" content="深耕 AIGC 领域 4 年+，7 年互联网市场营销与业务拓展经验；从 0 到 1 搭建完整 AIGC 产品市场体系，在 B 端客户拓展与生态合作构建方面积累丰富实战经验，代表公司达成中南卡通、中泽空间等多项战略合作。">
-<meta name="theme-color" content="#FFFFFF">
-<link rel="icon" href="../../favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="../../assets/logo/favicon-32.png">
-<link rel="apple-touch-icon" href="../../assets/logo/apple-touch-icon.png">
-<link rel="stylesheet" href="../../assets/css/tokens.css">
-<link rel="stylesheet" href="../../assets/css/site.css">
-<link rel="stylesheet" href="../../assets/css/faculty.css">
-<script src="../../assets/js/site.js" defer></script>
-</head>
-<body class="">
-<div class="progress" id="progress" aria-hidden="true"></div>
-<header class="nav nav--solid" id="nav">
-  <div class="nav__inner">
-    <a class="brand" href="../../index.html" aria-label="遥触灵境 首页">
-      <img class="brand__mark" src="../../assets/logo/mark.png" width="40" height="34" alt="">
-      <span class="brand__name">遥触灵境</span>
-    </a>
-    <nav class="nav__links" aria-label="主导航"><a href="../../index.html#about">关于</a><a href="../../index.html#business">业务</a><a href="../../index.html#cases">案例</a><a href="../../faculty/index.html" aria-current="page">师资</a><a href="../../demos/index.html">Demo</a><a href="../../index.html#partners">合作</a></nav>
-    <div class="nav__actions">
-      <a class="btn btn--sm btn--green" href="../../index.html#contact">联系我们</a>
-      <button class="nav__toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false" aria-controls="sheet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
-    </div>
-  </div>
-</header>
-<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="导航菜单">
-  <button class="sheet__close" id="sheetClose" aria-label="关闭菜单"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
-  <a href="../../index.html#about" style="--i:0">关于</a><a href="../../index.html#business" style="--i:1">业务</a><a href="../../index.html#cases" style="--i:2">案例</a><a href="../../faculty/index.html" style="--i:3">师资</a><a href="../../demos/index.html" style="--i:4">Demo</a><a href="../../index.html#partners" style="--i:5">合作</a>
-</div><main>
-  <header class="person">
-    <div class="container">
-      <div class="breadcrumb" data-reveal><a href="../../index.html">首页</a><span>/</span><a href="../index.html">师资团队</a><span>/</span><span>王梁正</span></div>
-      <div class="person__grid" style="margin-top:26px">
-        <div>
-          <div class="person__tagline" data-reveal>遥触灵境（杭州）科技 · 联合创始人</div>
-          <h1 class="person__name" data-reveal="blur" style="--i:1">王梁正</h1>
-          <div class="person__roles" data-reveal style="--i:2"><p>遥触灵境（杭州）科技有限公司 · 联合创始人</p><p>AIGC 产品市场体系 0→1 构建者</p></div>
-          <div class="person__motto" data-reveal style="--i:3">以市场洞察驱动业务增长，以生态合作放大产品价值。</div>
-          <div class="chips" data-reveal style="--i:4"><span>7 年互联网营销</span><span>AIGC 市场体系 0→1</span><span>B 端生态合作</span></div>
-        </div>
-        <div class="person__photo" data-reveal style="--i:2">
-          <img src="../../assets/img/faculty/wangliangzheng.jpg" width="560" height="700" alt="王梁正">
-        </div>
-      </div>
-      <div class="pstats" data-reveal><div class="pstat"><b>7 年</b><span>互联网营销实战</span></div><div class="pstat"><b>4 年+</b><span>深耕 AIGC 领域</span></div><div class="pstat"><b>0-1</b><span>市场体系完整搭建</span></div></div>
-    </div>
-  </header>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>王梁正 · 遥触灵境联合创始人</title>
+<meta name="description" content="王梁正，遥触灵境（杭州）科技联合创始人。深耕 AIGC 领域 4 年+，7 年互联网市场营销与业务拓展经验，从 0 到 1 搭建完整 AIGC 产品市场体系，推动 AIGC 技术在商业领域的广泛应用与价值实现。">
+<style>
+  :root{
+    --bg:#F5F5F7;
+    --card:#FFFFFF;
+    --card-soft:#FFFFFF;
+    --ink:#1D1D1F;
+    --ink-dim:#6E6E73;
+    --ink-faint:#AEAEB2;
+    --line:rgba(0,0,0,.06);
+    --tint:#C77E42;
+    --tint-soft:rgba(199,126,66,.10);
+    --shadow-1:0 2px 8px rgba(0,0,0,.04),0 12px 32px rgba(0,0,0,.06);
+    --shadow-2:0 4px 12px rgba(0,0,0,.06),0 20px 48px rgba(0,0,0,.10);
+    --nav-bg:rgba(245,245,247,.72);
+    --sans:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","PingFang SC","HarmonyOS Sans SC","Microsoft YaHei",sans-serif;
+  }
+  html[data-theme="dark"]{
+    --bg:#1D1D1F;
+    --card:#2C2C2E;
+    --card-soft:#2C2C2E;
+    --ink:#F5F5F7;
+    --ink-dim:#A1A1A6;
+    --ink-faint:#636366;
+    --line:rgba(255,255,255,.08);
+    --tint:#D99A66;
+    --tint-soft:rgba(217,154,102,.14);
+    --shadow-1:0 2px 8px rgba(0,0,0,.24),0 12px 32px rgba(0,0,0,.32);
+    --shadow-2:0 4px 12px rgba(0,0,0,.28),0 20px 48px rgba(0,0,0,.40);
+    --nav-bg:rgba(29,29,31,.72);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.75;
+    overflow-x:hidden;transition:background .5s ease,color .5s ease}
+  ::selection{background:var(--tint-soft)}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 28px}
 
-  <div class="container" style="margin-top:clamp(24px,4vw,44px)">
-    <section class="psec" data-reveal><div class="psec__head">
-  <span class="psec__no">01</span>
-  <h2 class="psec__title">个人简介</h2>
-  <span class="psec__en">Profile</span>
-</div><div class="prose"><p>遥触灵境（杭州）科技联合创始人，深耕 AIGC 领域 4 年+，拥有 7 年互联网行业市场营销与业务拓展经验。专注于 AIGC 产品的市场化落地，具备从 0 到 1 搭建完整 AIGC 产品市场体系的实战能力。</p><p>在 B 端客户拓展与生态合作构建方面积累了丰富的实战经验，代表公司达成多项重要战略合作。以敏锐的市场洞察力和扎实的落地能力，推动 AIGC 技术在商业领域的广泛应用与价值实现。</p></div></section><section class="psec" data-reveal><div class="psec__head">
-  <span class="psec__no">02</span>
-  <h2 class="psec__title">核心能力</h2>
-  <span class="psec__en">Competencies</span>
-</div><div class="cardgrid"><article class="pcard"><div class="pcard__no">CAPABILITY · 01</div><h4>AIGC 产品市场体系建设</h4><p>从 0 到 1 搭建完整 AIGC 产品市场体系，涵盖市场定位、品牌策略、渠道搭建到商业化落地全流程，帮助产品快速建立市场认知与竞争优势。</p></article><article class="pcard"><div class="pcard__no">CAPABILITY · 02</div><h4>B 端客户拓展与生态合作</h4><p>深耕 B 端市场拓展，善于挖掘行业需求、建立企业合作，通过构建生态合作网络实现资源共享与价值共创，推动 AIGC 技术在多行业落地应用。</p></article><article class="pcard"><div class="pcard__no">CAPABILITY · 03</div><h4>市场营销与业务增长</h4><p>7 年互联网营销实战经验，精通市场策略制定、品牌传播与用户增长，善于将前沿技术与市场需求精准匹配，实现商业价值的持续增长。</p></article></div></section><section class="psec" data-reveal><div class="psec__head">
-  <span class="psec__no">03</span>
-  <h2 class="psec__title">战略合作</h2>
-  <span class="psec__en">Partnerships</span>
-</div><div class="cardgrid"><article class="pcard"><div class="pcard__no">战略合作代表 · 01</div><h4>中南卡通</h4><p>动漫 IP 合作——推动 AIGC 技术与成熟动漫 IP 的深度结合，共建内容生产新范式。</p></article><article class="pcard"><div class="pcard__no">战略合作代表 · 02</div><h4>中泽空间</h4><p>空间内容合作——拓展 AIGC 内容在空间场景的应用落地，实现技术赋能实体场景。</p></article></div></section>
-    <nav class="pager" aria-label="讲师翻页">
-      <a href="../wangyage/index.html"><span>上一位</span><b>王雅各 · 遥触灵境（杭州）科技 · 首席执行官</b></a>
-      <a href="../chenqichang/index.html"><span>下一位</span><b>陈琪昌 · AIGC 视频训练师</b></a>
-    </nav>
+  /* ===== 吸顶毛玻璃导航 ===== */
+  .nav{position:fixed;top:0;left:0;right:0;z-index:80;transition:background .4s ease,border-color .4s ease,backdrop-filter .4s ease}
+  .nav-inner{max-width:1060px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;gap:8px}
+  .nav-name{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:700;letter-spacing:-.01em;
+    opacity:0;transform:translateY(-6px);transition:opacity .35s ease,transform .35s ease}
+  .nav.scrolled{background:var(--nav-bg);backdrop-filter:blur(20px) saturate(1.8);-webkit-backdrop-filter:blur(20px) saturate(1.8);
+    border-bottom:1px solid var(--line)}
+  .nav.scrolled .nav-name{opacity:1;transform:translateY(0)}
+  .nav-name img{width:28px;height:28px;border-radius:9px;object-fit:cover;object-position:top center}
+  .nav-links{margin-left:auto;display:flex;gap:2px}
+  .nav-links a{font-size:13px;font-weight:500;color:var(--ink-dim);text-decoration:none;
+    padding:7px 14px;border-radius:999px;transition:color .25s ease,background .25s ease}
+  .nav-links a:hover{color:var(--ink);background:rgba(199,126,66,.10)}
+    /* 返回集合页按钮 */
+  .back-btn{display:inline-flex;align-items:center;font-size:13px;font-weight:600;color:var(--tint);
+    text-decoration:none;padding:7px 13px 7px 9px;border-radius:999px;
+    transition:background .25s ease,transform .25s ease}
+  .back-btn:hover{background:var(--tint-soft)}
+  .back-btn:active{transform:scale(.96)}
+  .back-btn .arr{font-size:16px;font-weight:700;margin-right:3px;line-height:1}
+.theme-btn{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);
+    background:var(--card);color:var(--ink);cursor:pointer;font-size:14px;
+    display:flex;align-items:center;justify-content:center;margin-left:6px;
+    transition:transform .3s ease,box-shadow .3s ease}
+  .theme-btn:hover{transform:scale(1.08);box-shadow:var(--shadow-1)}
+  .theme-btn:active{transform:scale(.94)}
+
+  /* ===== Hero ===== */
+  header.wrap{padding:clamp(110px,14vw,150px) 0 0}
+  .hero{display:grid;grid-template-columns:1fr 310px;gap:clamp(36px,6vw,72px);align-items:center}
+  .hero-tag{font-size:13px;font-weight:600;letter-spacing:.12em;color:var(--tint);
+    text-transform:uppercase;margin-bottom:14px}
+  h1{font-size:clamp(46px,8vw,70px);font-weight:700;letter-spacing:-.02em;line-height:1.06}
+  .roles{margin-top:16px;display:flex;flex-direction:column;gap:5px}
+  .role{font-size:clamp(14px,2.4vw,16.5px);color:var(--ink-dim)}
+  .role b{color:var(--ink);font-weight:600}
+  .motto{margin-top:24px;padding:18px 22px;border-radius:18px;background:var(--card);
+    box-shadow:var(--shadow-1);border-left:4px solid var(--tint)}
+  .motto p{font-size:clamp(15px,2.5vw,17px);line-height:1.8}
+  .motto p b{color:var(--tint);font-weight:700}
+
+  .photo-card{position:relative;justify-self:center}
+  .photo-card img{display:block;width:310px;max-width:100%;aspect-ratio:4/5;object-fit:cover;
+    border-radius:28px;box-shadow:var(--shadow-2)}
+  .photo-badge{position:absolute;bottom:14px;left:14px;right:14px;padding:10px 16px;border-radius:16px;
+    background:rgba(255,255,255,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    display:flex;align-items:center;justify-content:space-between}
+  .photo-badge .n{font-size:13px;font-weight:700;color:#1D1D1F;letter-spacing:.04em}
+  .photo-badge .r{font-size:10.5px;font-weight:600;color:var(--tint);letter-spacing:.14em}
+
+  /* 数据条 */
+  .stats-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:clamp(28px,4vw,40px)}
+  .sb-item{background:var(--card);border-radius:20px;box-shadow:var(--shadow-1);padding:20px 18px;
+    text-align:center;transition:transform .4s cubic-bezier(.22,1,.36,1),box-shadow .4s ease}
+  .sb-item:hover{transform:translateY(-3px);box-shadow:var(--shadow-2)}
+  .sb-num{display:block;font-size:clamp(24px,3.6vw,32px);font-weight:700;letter-spacing:-.02em;
+    font-variant-numeric:tabular-nums;color:var(--tint)}
+  .sb-label{font-size:12.5px;color:var(--ink-dim);margin-top:4px;display:block}
+
+  /* 跑马灯 */
+  .marquee{margin-top:clamp(30px,4vw,46px);border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    overflow:hidden;position:relative}
+  .mq-track{display:flex;width:max-content;animation:mq 30s linear infinite}
+  .mq-item{display:flex;align-items:center;gap:12px;padding:13px 24px;white-space:nowrap;
+    font-size:13px;font-weight:500;color:var(--ink-dim)}
+  .mq-item i{font-style:normal;color:var(--tint);font-size:10px}
+  @keyframes mq{to{transform:translateX(-50%)}}
+
+  /* ===== 通用 section ===== */
+  section{padding-top:clamp(52px,8vw,92px)}
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:clamp(22px,3.5vw,32px)}
+  .sec-tag{font-size:12px;font-weight:600;letter-spacing:.14em;color:var(--tint);text-transform:uppercase}
+  .sec-title{font-size:clamp(26px,4.2vw,36px);font-weight:700;letter-spacing:-.015em}
+  .sec-en{margin-left:auto;font-size:11px;font-weight:600;letter-spacing:.22em;color:var(--ink-faint);text-transform:uppercase}
+
+  /* 简介卡 */
+  .intro{background:var(--card);border-radius:28px;box-shadow:var(--shadow-1);padding:clamp(26px,4vw,40px);
+    display:flex;flex-direction:column;gap:14px}
+  .intro p{font-size:clamp(14.5px,2.2vw,16px);color:var(--ink-dim);line-height:1.9}
+  .intro p b{color:var(--ink);font-weight:600}
+  .intro p .hl{color:var(--tint);font-weight:600}
+
+  /* 执掌企业 */
+  .company{background:var(--card);border-radius:28px;box-shadow:var(--shadow-1);padding:clamp(26px,4vw,40px)}
+  .company h3{font-size:clamp(19px,3vw,24px);font-weight:700;letter-spacing:-.01em}
+  .company h3 .c-sub{font-size:12.5px;font-weight:600;color:var(--tint);margin-left:12px;letter-spacing:.04em}
+  .company > p{margin-top:12px;font-size:clamp(14px,2.1vw,15.5px);color:var(--ink-dim);line-height:1.9}
+  .company > p b{color:var(--ink);font-weight:600}
+  .cap-row{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px}
+  .cap{font-size:13px;font-weight:500;color:var(--ink-dim);padding:8px 17px;border-radius:999px;
+    background:var(--bg);border:1px solid var(--line)}
+  .cap b{color:var(--tint);font-weight:700}
+  .timeline{margin-top:26px;display:flex;flex-direction:column;gap:0}
+  .tl-item{display:grid;grid-template-columns:64px 1fr;gap:18px;position:relative;padding-bottom:22px}
+  .tl-item:last-child{padding-bottom:0}
+  .tl-item::before{content:"";position:absolute;left:calc(64px + 18px + 5px);top:14px;bottom:-4px;width:2px;
+    background:var(--line);border-radius:2px}
+  .tl-item:last-child::before{display:none}
+  .tl-year{font-size:17px;font-weight:700;color:var(--tint);font-variant-numeric:tabular-nums;
+    position:relative;z-index:1;padding-top:0}
+  .tl-dot{position:absolute;left:calc(64px + 18px - 1px);top:7px;width:14px;height:14px;border-radius:50%;
+    background:var(--card);border:3px solid var(--tint);z-index:1}
+  .tl-text{font-size:clamp(13.5px,2vw,15px);color:var(--ink-dim);line-height:1.8}
+  .tl-text b{color:var(--ink);font-weight:600}
+
+  /* ===== 作品轮播（3D tilt） ===== */
+  .carousel-hint{font-size:12.5px;color:var(--ink-faint);letter-spacing:.08em;margin-bottom:18px}
+  .rail{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;
+    padding:10px 6px 22px;cursor:grab;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .rail::-webkit-scrollbar{display:none}
+  .rail.dragging{cursor:grabbing;scroll-snap-type:none}
+  .wcard{flex:0 0 300px;scroll-snap-align:start;user-select:none;-webkit-user-drag:none;
+    transform-style:preserve-3d;perspective:900px}
+  .wcard .ph{position:relative;border-radius:22px;overflow:hidden;box-shadow:var(--shadow-1);
+    aspect-ratio:2/3;background:var(--card);transition:transform .18s ease-out,box-shadow .3s ease;
+    will-change:transform}
+  .wcard .ph:hover{box-shadow:var(--shadow-2)}
+  .wcard img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+  .rank{position:absolute;top:14px;left:14px;padding:5px 13px;border-radius:999px;
+    background:rgba(255,255,255,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    font-size:11px;font-weight:700;color:#1D1D1F;letter-spacing:.1em;z-index:2}
+  .heat{position:absolute;left:12px;right:12px;bottom:12px;padding:10px 14px;border-radius:14px;
+    background:rgba(0,0,0,.55);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:2}
+  .heat .h-num{font-size:16px;font-weight:700;color:#FFF;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+  .heat .h-label{font-size:10px;color:rgba(255,255,255,.75);letter-spacing:.08em}
+  .wcard .meta{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-top:14px}
+  .wcard .t{font-size:15px;font-weight:700;letter-spacing:-.01em}
+  .wcard .g{font-size:11.5px;font-weight:600;color:var(--tint);white-space:nowrap}
+  .wcard .tag{font-size:12px;color:var(--ink-faint);margin-top:3px}
+  /* 排版位海报 */
+  .typo-poster{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;
+    padding:18px;background:linear-gradient(160deg,#3B2E63 0%,#241B44 100%)}
+  html[data-theme="dark"] .typo-poster{background:linear-gradient(160deg,#45367280 0%,#241B44 100%),linear-gradient(160deg,#2E2440,#241B44)}
+  .typo-poster .big{position:absolute;right:-8px;bottom:-22px;font-size:150px;font-weight:800;
+    color:rgba(255,255,255,.08);line-height:1;pointer-events:none}
+  .typo-poster .top{display:flex;justify-content:space-between;align-items:center}
+  .typo-poster .top .no{font-size:11px;font-weight:700;letter-spacing:.18em;color:rgba(255,255,255,.85)}
+  .typo-poster .top .type{font-size:11px;font-weight:600;color:rgba(255,255,255,.7);
+    padding:4px 11px;border-radius:999px;border:1px solid rgba(255,255,255,.25)}
+  .typo-poster .name{position:relative;font-size:23px;font-weight:800;color:#FFF;letter-spacing:.06em;
+    text-shadow:0 2px 12px rgba(0,0,0,.35)}
+  .typo-poster .bottom{display:flex;justify-content:space-between;align-items:center}
+  .typo-poster .platform{font-size:11px;font-weight:600;color:rgba(255,255,255,.75);letter-spacing:.1em}
+  .typo-poster .deco{width:34px;height:1px;background:rgba(255,255,255,.35)}
+  .car-nav{display:flex;align-items:center;gap:14px;margin-top:6px}
+  .car-btn{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--card);
+    color:var(--ink);cursor:pointer;font-size:16px;box-shadow:var(--shadow-1);
+    transition:transform .3s ease,box-shadow .3s ease}
+  .car-btn:hover{transform:scale(1.06);box-shadow:var(--shadow-2)}
+  .car-btn:active{transform:scale(.95)}
+  .progress{flex:1;height:4px;border-radius:4px;background:var(--line);overflow:hidden}
+  .progress i{display:block;height:100%;width:25%;border-radius:4px;background:var(--tint);
+    transition:width .3s ease}
+  .car-hint{font-size:10.5px;font-weight:600;letter-spacing:.2em;color:var(--ink-faint)}
+
+  /* 产教融合 */
+  .edu-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:18px}
+  .edu-main{background:var(--card);border-radius:28px;box-shadow:var(--shadow-1);padding:clamp(24px,3.5vw,34px)}
+  .edu-main h3{font-size:clamp(18px,2.6vw,22px);font-weight:700;letter-spacing:-.01em}
+  .edu-main h3 span{font-size:11.5px;font-weight:600;color:var(--tint);margin-left:10px;
+    padding:4px 12px;border-radius:999px;background:var(--tint-soft)}
+  .edu-main > p{margin-top:12px;font-size:clamp(13.5px,2vw,15px);color:var(--ink-dim);line-height:1.85}
+  .edu-main > p b{color:var(--ink);font-weight:600}
+  .edu-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:20px}
+  .es{background:var(--bg);border-radius:16px;padding:14px 10px;text-align:center}
+  .es b{display:block;font-size:clamp(19px,2.6vw,24px);font-weight:700;color:var(--tint);
+    font-variant-numeric:tabular-nums}
+  .es span{font-size:11px;color:var(--ink-dim);margin-top:2px;display:block}
+  .edu-side{display:flex;flex-direction:column;gap:18px}
+  .edu-card{flex:1;background:var(--card);border-radius:28px;box-shadow:var(--shadow-1);padding:clamp(22px,3vw,30px);
+    transition:transform .4s cubic-bezier(.22,1,.36,1),box-shadow .4s ease}
+  .edu-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-2)}
+  .edu-card h4{font-size:16.5px;font-weight:700;letter-spacing:-.01em;display:flex;align-items:center;gap:9px}
+  .edu-card h4 i{font-style:normal;color:var(--tint);font-size:13px}
+  .edu-card p{margin-top:10px;font-size:clamp(13px,1.9vw,14.5px);color:var(--ink-dim);line-height:1.85}
+  .edu-card p b{color:var(--ink);font-weight:600}
+
+  /* 战略能力 */
+  .cap-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .cap-grid.tri{grid-template-columns:repeat(3,1fr)}
+  .cap-item{background:var(--card);border-radius:24px;box-shadow:var(--shadow-1);padding:clamp(22px,3.5vw,30px);
+    transition:transform .4s cubic-bezier(.22,1,.36,1),box-shadow .4s ease}
+  .cap-item:hover{transform:translateY(-4px);box-shadow:var(--shadow-2)}
+  .cap-item .n{font-size:11px;font-weight:700;letter-spacing:.18em;color:var(--tint);margin-bottom:10px}
+  .cap-item h4{font-size:clamp(16.5px,2.4vw,19px);font-weight:700;letter-spacing:-.01em}
+  .cap-item p{margin-top:9px;font-size:clamp(13px,1.9vw,14.5px);color:var(--ink-dim);line-height:1.85}
+
+  /* 页脚 */
+  footer{margin-top:clamp(56px,8vw,96px);background:var(--card);border-radius:32px 32px 0 0;
+    padding:clamp(40px,6vw,60px) 28px calc(clamp(36px,5vw,52px) + 20px);text-align:center}
+  .foot-mark{display:inline-flex;align-items:center;justify-content:center;width:58px;height:58px;
+    border-radius:19px;background:var(--tint-soft);font-size:23px;font-weight:800;color:var(--tint);margin-bottom:14px}
+  .foot-name{font-size:16px;font-weight:700;letter-spacing:.02em}
+  .foot-sub{font-size:12px;color:var(--ink-faint);letter-spacing:.1em;margin-top:5px}
+
+  /* 入场动画 */
+  .rise{opacity:0;transform:translateY(24px);transition:opacity .85s cubic-bezier(.22,1,.36,1),transform .85s cubic-bezier(.22,1,.36,1)}
+  .rise.in{opacity:1;transform:translateY(0)}
+  .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+  @media (max-width:880px){
+    .hero{grid-template-columns:1fr;gap:34px}
+    .photo-card{justify-self:start}
+    .stats-bar{grid-template-columns:1fr 1fr}
+    .edu-grid{grid-template-columns:1fr}
+    .cap-grid.tri{grid-template-columns:1fr}
+    .cap-grid{grid-template-columns:1fr}
+    .nav-links{display:none}
+  }
+  @media (max-width:640px){
+    .wcard{flex-basis:250px}
+    .edu-stats{grid-template-columns:repeat(2,1fr)}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="back-btn" href="../index.html" aria-label="返回师资目录首页"><span class="arr">‹</span>返回首页</a>
+    <div class="nav-name"><img src="photo.jpg" alt="王梁正">王梁正</div>
+    <div class="nav-links">
+      <a href="#profile">简介</a>
+      <a href="#competencies">能力</a>
+      <a href="#partners">合作</a>
+    </div>
+    <button class="theme-btn" id="themeBtn" aria-label="切换深浅色" title="切换深浅色">◐</button>
   </div>
+</nav>
+
+<header class="wrap">
+  <div class="hero">
+    <div>
+      <p class="hero-tag rise">AIGC MARKETING · 联合创始人</p>
+      <h1 class="rise d1">王梁正</h1>
+      <div class="roles rise d2">
+        <div class="role">遥触灵境（杭州）科技有限公司 · <b>联合创始人</b></div>
+        <div class="role">AIGC 产品市场体系 <b>0→1 构建者</b></div>
+      </div>
+      <div class="motto rise d3">
+        <p>以<b>市场洞察</b>驱动业务增长，以<b>生态合作</b>放大产品价值。</p>
+      </div>
+    </div>
+    <div class="photo-card rise d2">
+      <img src="photo.jpg" alt="王梁正">
+      <div class="photo-badge"><span class="n">王梁正</span><span class="r">WANG LIANGZHENG</span></div>
+    </div>
+  </div>
+
+  <div class="stats-bar rise d3">
+    <div class="sb-item"><span class="sb-num" data-count="7" data-suffix=" 年">7 年</span><span class="sb-label">互联网营销实战</span></div>
+    <div class="sb-item"><span class="sb-num" data-count="4" data-suffix=" 年+">4 年+</span><span class="sb-label">深耕 AIGC 领域</span></div>
+    <div class="sb-item"><span class="sb-num">0-1</span><span class="sb-label">市场体系完整搭建</span></div>
+  </div>
+
+  <div class="marquee" aria-hidden="true"><div class="mq-track" id="mqTrack"></div></div>
+</header>
+
+<main class="wrap">
+
+  <section id="profile">
+    <div class="sec-head rise"><span class="sec-tag">01 · Profile</span><h2 class="sec-title">个人简介</h2><span class="sec-en">Profile</span></div>
+    <div class="intro rise d1">
+      <p>遥触灵境（杭州）科技<b>联合创始人</b>，深耕 AIGC 领域 <b>4 年+</b>，拥有 <b>7 年互联网行业市场营销与业务拓展经验</b>。专注于 AIGC 产品的市场化落地，具备<span class="hl">从 0 到 1 搭建完整 AIGC 产品市场体系</span>的实战能力。</p>
+      <p>在 <b>B 端客户拓展与生态合作构建</b>方面积累了丰富的实战经验，代表公司达成多项重要战略合作。以敏锐的市场洞察力和扎实的落地能力，推动 AIGC 技术在商业领域的<b>广泛应用与价值实现</b>。</p>
+    </div>
+  </section>
+
+  <section id="competencies">
+    <div class="sec-head rise"><span class="sec-tag">02 · Competencies</span><h2 class="sec-title">核心能力</h2><span class="sec-en">Competencies</span></div>
+    <div class="cap-grid tri">
+      <div class="cap-item rise d1">
+        <div class="n">CAPABILITY · 01</div>
+        <h4>AIGC 产品市场体系建设</h4>
+        <p>从 0 到 1 搭建完整 AIGC 产品市场体系，涵盖市场定位、品牌策略、渠道搭建到商业化落地全流程，帮助产品快速建立市场认知与竞争优势。</p>
+      </div>
+      <div class="cap-item rise d1">
+        <div class="n">CAPABILITY · 02</div>
+        <h4>B 端客户拓展与生态合作</h4>
+        <p>深耕 B 端市场拓展，善于挖掘行业需求、建立企业合作，通过构建生态合作网络实现资源共享与价值共创，推动 AIGC 技术在多行业落地应用。</p>
+      </div>
+      <div class="cap-item rise d2">
+        <div class="n">CAPABILITY · 03</div>
+        <h4>市场营销与业务增长</h4>
+        <p>7 年互联网营销实战经验，精通市场策略制定、品牌传播与用户增长，善于将前沿技术与市场需求精准匹配，实现商业价值的持续增长。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="partners">
+    <div class="sec-head rise"><span class="sec-tag">03 · Partnerships</span><h2 class="sec-title">战略合作</h2><span class="sec-en">Partnerships</span></div>
+    <div class="cap-grid">
+      <div class="cap-item rise d1">
+        <div class="n">战略合作代表 · 01</div>
+        <h4>中南卡通</h4>
+        <p>动漫 IP 合作——推动 AIGC 技术与成熟动漫 IP 的深度结合，共建内容生产新范式。</p>
+      </div>
+      <div class="cap-item rise d2">
+        <div class="n">战略合作代表 · 02</div>
+        <h4>中泽空间</h4>
+        <p>空间内容合作——拓展 AIGC 内容在空间场景的应用落地，实现技术赋能实体场景。</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="rise">
+    <div class="foot-mark">王</div>
+    <div class="foot-name">王梁正 · WANG LIANGZHENG</div>
+    <div class="foot-sub">遥触灵境（杭州）科技有限公司 · 联合创始人</div>
+  </footer>
+
 </main>
-<footer class="foot-min">
-  <div class="container foot-min__inner">
-    <span>© 2026 遥触灵境（杭州）科技有限公司</span>
-    <span><a href="../../index.html">返回官网首页</a> · <a href="../../index.html#contact">联系我们</a></span>
-  </div>
-</footer></body>
+
+<script>
+/* ---- 主题切换 ---- */
+const themeBtn = document.getElementById("themeBtn");
+const savedTheme = localStorage.getItem("theme") || "light";
+document.documentElement.dataset.theme = savedTheme;
+themeBtn.textContent = savedTheme === "dark" ? "☀" : "◐";
+themeBtn.addEventListener("click", () => {
+  const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+  document.documentElement.dataset.theme = next;
+  localStorage.setItem("theme", next);
+  themeBtn.textContent = next === "dark" ? "☀" : "◐";
+});
+
+/* ---- 吸顶导航 ---- */
+const nav = document.getElementById("nav");
+window.addEventListener("scroll", () => {
+  nav.classList.toggle("scrolled", window.scrollY > 64);
+}, {passive:true});
+
+/* ---- 跑马灯 ---- */
+const MQ = ["7 年互联网市场营销实战","AIGC 产品市场体系 0→1 构建者","B 端客户拓展与生态合作","中南卡通 战略合作","中泽空间 战略合作","推动 AIGC 技术商业化落地","以市场洞察驱动业务增长"];
+const track = document.getElementById("mqTrack");
+const html = MQ.map(t => `<span class="mq-item"><i>◆</i>${t}</span>`).join("");
+track.innerHTML = html + html;
+
+/* ---- 数字滚动 ---- */
+function animateNum(el){
+  const target = parseInt(el.dataset.count, 10);
+  const suffix = el.dataset.suffix || "";
+  const dur = 1400, t0 = performance.now();
+  function tick(now){
+    const p = Math.min((now - t0) / dur, 1);
+    const eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.round(target * eased).toLocaleString() + suffix;
+    if(p < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+/* ---- 入场动画 ---- */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if(e.isIntersecting){
+    e.target.classList.add("in");
+    e.target.querySelectorAll?.("[data-count]").forEach(animateNum);
+    io.unobserve(e.target);
+  }
+}), {threshold:.12});
+document.querySelectorAll(".rise").forEach(el => io.observe(el));
+</script>
+</body>
 </html>

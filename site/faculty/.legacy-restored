@@ -1,0 +1,2 @@
+w:\Project\公司官网\site\faculty 为旧版还原状态，禁止 build_pages.py 覆盖。
+恢复新版请删除本标记后重新运行 python tools/build_pages.py

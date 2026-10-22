@@ -2,104 +2,547 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>王雅各 · 遥触灵境（杭州）科技 · 首席执行官 · 遥触灵境</title>
-<meta name="description" content="国内最早一批深耕短剧赛道的平台操盘手，10 年+互联网内容行业经验；主导头部平台短剧业务从 0 到 1，打造多个亿级播放量爆款；现带领遥触灵境深耕 AIGC 内容工业化与产教融合。">
-<meta name="theme-color" content="#FFFFFF">
-<link rel="icon" href="../../favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="../../assets/logo/favicon-32.png">
-<link rel="apple-touch-icon" href="../../assets/logo/apple-touch-icon.png">
-<link rel="stylesheet" href="../../assets/css/tokens.css">
-<link rel="stylesheet" href="../../assets/css/site.css">
-<link rel="stylesheet" href="../../assets/css/faculty.css">
-<script src="../../assets/js/site.js" defer></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>王雅各 · 遥触灵境 CEO</title>
+<meta name="description" content="王雅各，遥触灵境（杭州）科技有限公司首席执行官。国内最早一批深耕短剧赛道的平台操盘手，10 年+互联网内容行业实战经验，主导头部平台短剧业务从 0 到 1，打造多个亿级播放量爆款短剧。">
+<style>
+  :root{
+    --bg:#F5F5F7;
+    --card:#FFFFFF;
+    --card-soft:#FFFFFF;
+    --ink:#1D1D1F;
+    --ink-dim:#6E6E73;
+    --ink-faint:#AEAEB2;
+    --line:rgba(0,0,0,.06);
+    --tint:#7C5CFC;
+    --tint-soft:rgba(124,92,252,.10);
+    --shadow-1:0 2px 8px rgba(0,0,0,.04),0 12px 32px rgba(0,0,0,.06);
+    --shadow-2:0 4px 12px rgba(0,0,0,.06),0 20px 48px rgba(0,0,0,.10);
+    --nav-bg:rgba(245,245,247,.72);
+    --sans:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","PingFang SC","HarmonyOS Sans SC","Microsoft YaHei",sans-serif;
+  }
+  html[data-theme="dark"]{
+    --bg:#1D1D1F;
+    --card:#2C2C2E;
+    --card-soft:#2C2C2E;
+    --ink:#F5F5F7;
+    --ink-dim:#A1A1A6;
+    --ink-faint:#636366;
+    --line:rgba(255,255,255,.08);
+    --tint:#9D86F5;
+    --tint-soft:rgba(157,134,245,.14);
+    --shadow-1:0 2px 8px rgba(0,0,0,.24),0 12px 32px rgba(0,0,0,.32);
+    --shadow-2:0 4px 12px rgba(0,0,0,.28),0 20px 48px rgba(0,0,0,.40);
+    --nav-bg:rgba(29,29,31,.72);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.75;
+    overflow-x:hidden;transition:background .5s ease,color .5s ease}
+  ::selection{background:var(--tint-soft)}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 28px}
+
+  /* ===== 吸顶毛玻璃导航 ===== */
+  .nav{position:fixed;top:0;left:0;right:0;z-index:80;transition:background .4s ease,border-color .4s ease,backdrop-filter .4s ease}
+  .nav-inner{max-width:1060px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;gap:8px}
+  .nav-name{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:700;letter-spacing:-.01em;
+    opacity:0;transform:translateY(-6px);transition:opacity .35s ease,transform .35s ease}
+  .nav.scrolled{background:var(--nav-bg);backdrop-filter:blur(20px) saturate(1.8);-webkit-backdrop-filter:blur(20px) saturate(1.8);
+    border-bottom:1px solid var(--line)}
+  .nav.scrolled .nav-name{opacity:1;transform:translateY(0)}
+  .nav-name img{width:28px;height:28px;border-radius:9px;object-fit:cover;object-position:top center}
+  .nav-links{margin-left:auto;display:flex;gap:2px}
+  .nav-links a{font-size:13px;font-weight:500;color:var(--ink-dim);text-decoration:none;
+    padding:7px 14px;border-radius:999px;transition:color .25s ease,background .25s ease}
+  .nav-links a:hover{color:var(--ink);background:rgba(124,92,252,.10)}
+    /* 返回集合页按钮 */
+  .back-btn{display:inline-flex;align-items:center;font-size:13px;font-weight:600;color:var(--tint);
+    text-decoration:none;padding:7px 13px 7px 9px;border-radius:999px;
+    transition:background .25s ease,transform .25s ease}
+  .back-btn:hover{background:var(--tint-soft)}
+  .back-btn:active{transform:scale(.96)}
+  .back-btn .arr{font-size:16px;font-weight:700;margin-right:3px;line-height:1}
+.theme-btn{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);
+    background:var(--card);color:var(--ink);cursor:pointer;font-size:14px;
+    display:flex;align-items:center;justify-content:center;margin-left:6px;
+    transition:transform .3s ease,box-shadow .3s ease}
+  .theme-btn:hover{transform:scale(1.08);box-shadow:var(--shadow-1)}
+  .theme-btn:active{transform:scale(.94)}
+
+  /* ===== Hero ===== */
+  header.wrap{padding:clamp(110px,14vw,150px) 0 0}
+  .hero{display:grid;grid-template-columns:1fr 310px;gap:clamp(36px,6vw,72px);align-items:center}
+  .hero-tag{font-size:13px;font-weight:600;letter-spacing:.12em;color:var(--tint);
+    text-transform:uppercase;margin-bottom:14px}
+  h1{font-size:clamp(46px,8vw,70px);font-weight:700;letter-spacing:-.02em;line-height:1.06}
+  .roles{margin-top:16px;display:flex;flex-direction:column;gap:5px}
+  .role{font-size:clamp(14px,2.4vw,16.5px);color:var(--ink-dim)}
+  .role b{color:var(--ink);font-weight:600}
+  .motto{margin-top:24px;padding:18px 22px;border-radius:18px;background:var(--card);
+    box-shadow:var(--shadow-1);border-left:4px solid var(--tint)}
+  .motto p{font-size:clamp(15px,2.5vw,17px);line-height:1.8}
+  .motto p b{color:var(--tint);font-weight:700}
+
+  .photo-card{position:relative;justify-self:center}
+  .photo-card img{display:block;width:310px;max-width:100%;aspect-ratio:4/5;object-fit:cover;
+    border-radius:28px;box-shadow:var(--shadow-2)}
+  .photo-badge{position:absolute;bottom:14px;left:14px;right:14px;padding:10px 16px;border-radius:16px;
+    background:rgba(255,255,255,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    display:flex;align-items:center;justify-content:space-between}
+  .photo-badge .n{font-size:13px;font-weight:700;color:#1D1D1F;letter-spacing:.04em}
+  .photo-badge .r{font-size:10.5px;font-weight:600;color:var(--tint);letter-spacing:.14em}
+
+  /* 数据条 */
+  .stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:clamp(28px,4vw,40px)}
+  .sb-item{background:var(--card);border-radius:20px;box-shadow:var(--shadow-1);padding:20px 18px;
+    text-align:center;transition:transform .4s cubic-bezier(.22,1,.36,1),box-shadow .4s ease}
+  .sb-item:hover{transform:translateY(-3px);box-shadow:var(--shadow-2)}
+  .sb-num{display:block;font-size:clamp(24px,3.6vw,32px);font-weight:700;letter-spacing:-.02em;
+    font-variant-numeric:tabular-nums;color:var(--tint)}
+  .sb-label{font-size:12.5px;color:var(--ink-dim);margin-top:4px;display:block}
+
+  /* 跑马灯 */
+  .marquee{margin-top:clamp(30px,4vw,46px);border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    overflow:hidden;position:relative}
+  .mq-track{display:flex;width:max-content;animation:mq 30s linear infinite}
+  .mq-item{display:flex;align-items:center;gap:12px;padding:13px 24px;white-space:nowrap;
+    font-size:13px;font-weight:500;color:var(--ink-dim)}
+  .mq-item i{font-style:normal;color:var(--tint);font-size:10px}
+  @keyframes mq{to{transform:translateX(-50%)}}
+
+  /* ===== 通用 section ===== */
+  section{padding-top:clamp(52px,8vw,92px)}
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:clamp(22px,3.5vw,32px)}
+  .sec-tag{font-size:12px;font-weight:600;letter-spacing:.14em;color:var(--tint);text-transform:uppercase}
+  .sec-title{font-size:clamp(26px,4.2vw,36px);font-weight:700;letter-spacing:-.015em}
+  .sec-en{margin-left:auto;font-size:11px;font-weight:600;letter-spacing:.22em;color:var(--ink-faint);text-transform:uppercase}
+
+  /* 简介卡 */
+  .intro{background:var(--card);border-radius:28px;box-shadow:var(--shadow-1);padding:clamp(26px,4vw,40px);
+    display:flex;flex-direction:column;gap:14px}
+  .intro p{font-size:clamp(14.5px,2.2vw,16px);color:var(--ink-dim);line-height:1.9}
+  .intro p b{color:var(--ink);font-weight:600}
+  .intro p .hl{color:var(--tint);font-weight:600}
+
+  /* 执掌企业 */
+  .company{background:var(--card);border-radius:28px;box-shadow:var(--shadow-1);padding:clamp(26px,4vw,40px)}
+  .company h3{font-size:clamp(19px,3vw,24px);font-weight:700;letter-spacing:-.01em}
+  .company h3 .c-sub{font-size:12.5px;font-weight:600;color:var(--tint);margin-left:12px;letter-spacing:.04em}
+  .company > p{margin-top:12px;font-size:clamp(14px,2.1vw,15.5px);color:var(--ink-dim);line-height:1.9}
+  .company > p b{color:var(--ink);font-weight:600}
+  .cap-row{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px}
+  .cap{font-size:13px;font-weight:500;color:var(--ink-dim);padding:8px 17px;border-radius:999px;
+    background:var(--bg);border:1px solid var(--line)}
+  .cap b{color:var(--tint);font-weight:700}
+  .timeline{margin-top:26px;display:flex;flex-direction:column;gap:0}
+  .tl-item{display:grid;grid-template-columns:64px 1fr;gap:18px;position:relative;padding-bottom:22px}
+  .tl-item:last-child{padding-bottom:0}
+  .tl-item::before{content:"";position:absolute;left:calc(64px + 18px + 5px);top:14px;bottom:-4px;width:2px;
+    background:var(--line);border-radius:2px}
+  .tl-item:last-child::before{display:none}
+  .tl-year{font-size:17px;font-weight:700;color:var(--tint);font-variant-numeric:tabular-nums;
+    position:relative;z-index:1;padding-top:0}
+  .tl-dot{position:absolute;left:calc(64px + 18px - 1px);top:7px;width:14px;height:14px;border-radius:50%;
+    background:var(--card);border:3px solid var(--tint);z-index:1}
+  .tl-text{font-size:clamp(13.5px,2vw,15px);color:var(--ink-dim);line-height:1.8}
+  .tl-text b{color:var(--ink);font-weight:600}
+
+  /* ===== 作品轮播（3D tilt） ===== */
+  .carousel-hint{font-size:12.5px;color:var(--ink-faint);letter-spacing:.08em;margin-bottom:18px}
+  .rail{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;
+    padding:10px 6px 22px;cursor:grab;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .rail::-webkit-scrollbar{display:none}
+  .rail.dragging{cursor:grabbing;scroll-snap-type:none}
+  .wcard{flex:0 0 300px;scroll-snap-align:start;user-select:none;-webkit-user-drag:none;
+    transform-style:preserve-3d;perspective:900px}
+  .wcard .ph{position:relative;border-radius:22px;overflow:hidden;box-shadow:var(--shadow-1);
+    aspect-ratio:2/3;background:var(--card);transition:transform .18s ease-out,box-shadow .3s ease;
+    will-change:transform}
+  .wcard .ph:hover{box-shadow:var(--shadow-2)}
+  .wcard img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+  .rank{position:absolute;top:14px;left:14px;padding:5px 13px;border-radius:999px;
+    background:rgba(255,255,255,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    font-size:11px;font-weight:700;color:#1D1D1F;letter-spacing:.1em;z-index:2}
+  .heat{position:absolute;left:12px;right:12px;bottom:12px;padding:10px 14px;border-radius:14px;
+    background:rgba(0,0,0,.55);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:2}
+  .heat .h-num{font-size:16px;font-weight:700;color:#FFF;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+  .heat .h-label{font-size:10px;color:rgba(255,255,255,.75);letter-spacing:.08em}
+  .wcard .meta{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-top:14px}
+  .wcard .t{font-size:15px;font-weight:700;letter-spacing:-.01em}
+  .wcard .g{font-size:11.5px;font-weight:600;color:var(--tint);white-space:nowrap}
+  .wcard .tag{font-size:12px;color:var(--ink-faint);margin-top:3px}
+  /* 排版位海报 */
+  .typo-poster{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;
+    padding:18px;background:linear-gradient(160deg,#3B2E63 0%,#241B44 100%)}
+  html[data-theme="dark"] .typo-poster{background:linear-gradient(160deg,#45367280 0%,#241B44 100%),linear-gradient(160deg,#2E2440,#241B44)}
+  .typo-poster .big{position:absolute;right:-8px;bottom:-22px;font-size:150px;font-weight:800;
+    color:rgba(255,255,255,.08);line-height:1;pointer-events:none}
+  .typo-poster .top{display:flex;justify-content:space-between;align-items:center}
+  .typo-poster .top .no{font-size:11px;font-weight:700;letter-spacing:.18em;color:rgba(255,255,255,.85)}
+  .typo-poster .top .type{font-size:11px;font-weight:600;color:rgba(255,255,255,.7);
+    padding:4px 11px;border-radius:999px;border:1px solid rgba(255,255,255,.25)}
+  .typo-poster .name{position:relative;font-size:23px;font-weight:800;color:#FFF;letter-spacing:.06em;
+    text-shadow:0 2px 12px rgba(0,0,0,.35)}
+  .typo-poster .bottom{display:flex;justify-content:space-between;align-items:center}
+  .typo-poster .platform{font-size:11px;font-weight:600;color:rgba(255,255,255,.75);letter-spacing:.1em}
+  .typo-poster .deco{width:34px;height:1px;background:rgba(255,255,255,.35)}
+  .car-nav{display:flex;align-items:center;gap:14px;margin-top:6px}
+  .car-btn{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--card);
+    color:var(--ink);cursor:pointer;font-size:16px;box-shadow:var(--shadow-1);
+    transition:transform .3s ease,box-shadow .3s ease}
+  .car-btn:hover{transform:scale(1.06);box-shadow:var(--shadow-2)}
+  .car-btn:active{transform:scale(.95)}
+  .progress{flex:1;height:4px;border-radius:4px;background:var(--line);overflow:hidden}
+  .progress i{display:block;height:100%;width:25%;border-radius:4px;background:var(--tint);
+    transition:width .3s ease}
+  .car-hint{font-size:10.5px;font-weight:600;letter-spacing:.2em;color:var(--ink-faint)}
+
+  /* 产教融合 */
+  .edu-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:18px}
+  .edu-main{background:var(--card);border-radius:28px;box-shadow:var(--shadow-1);padding:clamp(24px,3.5vw,34px)}
+  .edu-main h3{font-size:clamp(18px,2.6vw,22px);font-weight:700;letter-spacing:-.01em}
+  .edu-main h3 span{font-size:11.5px;font-weight:600;color:var(--tint);margin-left:10px;
+    padding:4px 12px;border-radius:999px;background:var(--tint-soft)}
+  .edu-main > p{margin-top:12px;font-size:clamp(13.5px,2vw,15px);color:var(--ink-dim);line-height:1.85}
+  .edu-main > p b{color:var(--ink);font-weight:600}
+  .edu-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:20px}
+  .es{background:var(--bg);border-radius:16px;padding:14px 10px;text-align:center}
+  .es b{display:block;font-size:clamp(19px,2.6vw,24px);font-weight:700;color:var(--tint);
+    font-variant-numeric:tabular-nums}
+  .es span{font-size:11px;color:var(--ink-dim);margin-top:2px;display:block}
+  .edu-side{display:flex;flex-direction:column;gap:18px}
+  .edu-card{flex:1;background:var(--card);border-radius:28px;box-shadow:var(--shadow-1);padding:clamp(22px,3vw,30px);
+    transition:transform .4s cubic-bezier(.22,1,.36,1),box-shadow .4s ease}
+  .edu-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-2)}
+  .edu-card h4{font-size:16.5px;font-weight:700;letter-spacing:-.01em;display:flex;align-items:center;gap:9px}
+  .edu-card h4 i{font-style:normal;color:var(--tint);font-size:13px}
+  .edu-card p{margin-top:10px;font-size:clamp(13px,1.9vw,14.5px);color:var(--ink-dim);line-height:1.85}
+  .edu-card p b{color:var(--ink);font-weight:600}
+
+  /* 战略能力 */
+  .cap-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .cap-item{background:var(--card);border-radius:24px;box-shadow:var(--shadow-1);padding:clamp(22px,3.5vw,30px);
+    transition:transform .4s cubic-bezier(.22,1,.36,1),box-shadow .4s ease}
+  .cap-item:hover{transform:translateY(-4px);box-shadow:var(--shadow-2)}
+  .cap-item .n{font-size:11px;font-weight:700;letter-spacing:.18em;color:var(--tint);margin-bottom:10px}
+  .cap-item h4{font-size:clamp(16.5px,2.4vw,19px);font-weight:700;letter-spacing:-.01em}
+  .cap-item p{margin-top:9px;font-size:clamp(13px,1.9vw,14.5px);color:var(--ink-dim);line-height:1.85}
+
+  /* 页脚 */
+  footer{margin-top:clamp(56px,8vw,96px);background:var(--card);border-radius:32px 32px 0 0;
+    padding:clamp(40px,6vw,60px) 28px calc(clamp(36px,5vw,52px) + 20px);text-align:center}
+  .foot-mark{display:inline-flex;align-items:center;justify-content:center;width:58px;height:58px;
+    border-radius:19px;background:var(--tint-soft);font-size:23px;font-weight:800;color:var(--tint);margin-bottom:14px}
+  .foot-name{font-size:16px;font-weight:700;letter-spacing:.02em}
+  .foot-sub{font-size:12px;color:var(--ink-faint);letter-spacing:.1em;margin-top:5px}
+
+  /* 入场动画 */
+  .rise{opacity:0;transform:translateY(24px);transition:opacity .85s cubic-bezier(.22,1,.36,1),transform .85s cubic-bezier(.22,1,.36,1)}
+  .rise.in{opacity:1;transform:translateY(0)}
+
+  @media (max-width:880px){
+    .hero{grid-template-columns:1fr;gap:34px}
+    .photo-card{justify-self:start}
+    .stats-bar{grid-template-columns:1fr 1fr}
+    .edu-grid{grid-template-columns:1fr}
+    .cap-grid{grid-template-columns:1fr}
+    .nav-links{display:none}
+  }
+  @media (max-width:640px){
+    .wcard{flex-basis:250px}
+    .edu-stats{grid-template-columns:repeat(2,1fr)}
+  }
+</style>
 </head>
-<body class="">
-<div class="progress" id="progress" aria-hidden="true"></div>
-<header class="nav nav--solid" id="nav">
-  <div class="nav__inner">
-    <a class="brand" href="../../index.html" aria-label="遥触灵境 首页">
-      <img class="brand__mark" src="../../assets/logo/mark.png" width="40" height="34" alt="">
-      <span class="brand__name">遥触灵境</span>
-    </a>
-    <nav class="nav__links" aria-label="主导航"><a href="../../index.html#about">关于</a><a href="../../index.html#business">业务</a><a href="../../index.html#cases">案例</a><a href="../../faculty/index.html" aria-current="page">师资</a><a href="../../demos/index.html">Demo</a><a href="../../index.html#partners">合作</a></nav>
-    <div class="nav__actions">
-      <a class="btn btn--sm btn--green" href="../../index.html#contact">联系我们</a>
-      <button class="nav__toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false" aria-controls="sheet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="back-btn" href="../index.html" aria-label="返回师资目录首页"><span class="arr">‹</span>返回首页</a>
+    <div class="nav-name"><img src="photo.jpg" alt="王雅各">王雅各</div>
+    <div class="nav-links">
+      <a href="#profile">简介</a>
+      <a href="#company">执掌企业</a>
+      <a href="#works">作品矩阵</a>
+      <a href="#edu">产教融合</a>
+      <a href="#strategy">战略布局</a>
+    </div>
+    <button class="theme-btn" id="themeBtn" aria-label="切换深浅色" title="切换深浅色">◐</button>
+  </div>
+</nav>
+
+<header class="wrap">
+  <div class="hero">
+    <div>
+      <p class="hero-tag rise">Executive Profile · 短剧赛道平台操盘手</p>
+      <h1 class="rise d1">王雅各</h1>
+      <div class="roles rise d2">
+        <div class="role">遥触灵境（杭州）科技有限公司 · <b>首席执行官 CEO</b></div>
+        <div class="role">国内最早一批深耕短剧赛道的<b>平台操盘手</b></div>
+      </div>
+      <div class="motto rise d3">
+        <p>从内容生态参与者，到<b>产业生态构建者</b>——十年深耕，让内容生产成为一门可规模化的产业。</p>
+      </div>
+    </div>
+    <div class="photo-card rise d2">
+      <img src="photo.jpg" alt="王雅各">
+      <div class="photo-badge"><span class="n">王雅各</span><span class="r">WANG YAGE · CEO</span></div>
     </div>
   </div>
+
+  <div class="stats-bar rise d3">
+    <div class="sb-item"><span class="sb-num" data-count="10" data-suffix="+">10+</span><span class="sb-label">年行业实战经验</span></div>
+    <div class="sb-item"><span class="sb-num" data-count="50" data-suffix="+">50+</span><span class="sb-label">承制方深度合作</span></div>
+    <div class="sb-item"><span class="sb-num">亿级</span><span class="sb-label">多部爆款播放量</span></div>
+    <div class="sb-item"><span class="sb-num" data-count="1200" data-suffix="+">1200+</span><span class="sb-label">部公司年产能</span></div>
+  </div>
+
+  <div class="marquee" aria-hidden="true"><div class="mq-track" id="mqTrack"></div></div>
 </header>
-<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="导航菜单">
-  <button class="sheet__close" id="sheetClose" aria-label="关闭菜单"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
-  <a href="../../index.html#about" style="--i:0">关于</a><a href="../../index.html#business" style="--i:1">业务</a><a href="../../index.html#cases" style="--i:2">案例</a><a href="../../faculty/index.html" style="--i:3">师资</a><a href="../../demos/index.html" style="--i:4">Demo</a><a href="../../index.html#partners" style="--i:5">合作</a>
-</div><main>
-  <header class="person">
-    <div class="container">
-      <div class="breadcrumb" data-reveal><a href="../../index.html">首页</a><span>/</span><a href="../index.html">师资团队</a><span>/</span><span>王雅各</span></div>
-      <div class="person__grid" style="margin-top:26px">
-        <div>
-          <div class="person__tagline" data-reveal>遥触灵境（杭州）科技 · 首席执行官</div>
-          <h1 class="person__name" data-reveal="blur" style="--i:1">王雅各</h1>
-          <div class="person__roles" data-reveal style="--i:2"><p>遥触灵境（杭州）科技有限公司 · 首席执行官 CEO</p><p>国内最早一批深耕短剧赛道的平台操盘手</p></div>
-          <div class="person__motto" data-reveal style="--i:3">从内容生态参与者，到产业生态构建者——十年深耕，让内容生产成为一门可规模化的产业。</div>
-          <div class="chips" data-reveal style="--i:4"><span>10 年+ 平台操盘</span><span>亿级爆款短剧</span><span>年产能 1200+ 部</span></div>
+
+<main class="wrap">
+
+  <section id="profile">
+    <div class="sec-head rise"><span class="sec-tag">01 · Profile</span><h2 class="sec-title">个人简介</h2><span class="sec-en">Profile</span></div>
+    <div class="intro rise d1">
+      <p>国内最早一批深耕短剧赛道的<span class="hl">平台操盘手</span>，拥有超过 <b>10 年互联网内容行业实战经验</b>。曾主导某头部短视频平台短剧业务<b>从 0 到 1 的完整构建</b>，一手搭建了行业领先的内容生产与合作体系，与 <b>50 余家优质承制方</b>建立了长期稳定的深度伙伴关系。</p>
+      <p>凭借对用户需求的精准洞察和对内容趋势的敏锐把握，成功打造了<b>多个亿级播放量的爆款短剧</b>，积累了丰富的平台资源和行业人脉。</p>
+      <p>兼具出色的<span class="hl">战略规划与商务拓展能力</span>——从平台操盘手到科技文化企业创始人，完成从内容生态参与者到产业生态构建者的跨越，现带领遥触灵境深耕 <b>AIGC 内容工业化生产与产教融合</b>。</p>
+    </div>
+  </section>
+
+  <section id="company">
+    <div class="sec-head rise"><span class="sec-tag">02 · Company</span><h2 class="sec-title">执掌企业</h2><span class="sec-en">Company</span></div>
+    <div class="company rise d1">
+      <h3>遥触灵境（杭州）科技有限公司 <span class="c-sub">CEO · 2024 – 至今</span></h3>
+      <p>成立于 2024 年，深耕 AIGC 领域的创新型<b>科技文化企业</b>。凭借自主研发的 Agent 和标准化 AIGC 生产流程，在人工智能内容生成领域多次实现重大突破，持续位于业内领先位置。</p>
+      <p>以 <b>AI 驱动生产力革命</b>，构建产教融合人才引擎，布局数字人元宇宙生态。</p>
+      <div class="cap-row">
+        <span class="cap">年产能 <b>1200+ 部</b> · 交付保底 <b>100 部</b></span>
+        <span class="cap">AI 制片成本仅为传统拍摄 <b>12%</b></span>
+        <span class="cap">制作周期压缩至 <b>3–5 天</b></span>
+        <span class="cap">覆盖仿真人 / 3D / 2D / 动态漫四大品类</span>
+      </div>
+      <div class="timeline">
+        <div class="tl-item"><span class="tl-year">2021</span><span class="tl-dot"></span><div class="tl-text">国内首批自研 <b>UE+AX 影视制作流程优化系统</b>，奠定技术根基</div></div>
+        <div class="tl-item"><span class="tl-year">2022</span><span class="tl-dot"></span><div class="tl-text">深度布局<b>元宇宙与数字人领域</b>，成功运营多区域政府元宇宙直播基地</div></div>
+        <div class="tl-item"><span class="tl-year">2024</span><span class="tl-dot"></span><div class="tl-text">公司正式成立，创行业先河，建立基于 <b>Sub-field Agent 的 AIGC 标准化 SOP 流程</b></div></div>
+        <div class="tl-item"><span class="tl-year">2025</span><span class="tl-dot"></span><div class="tl-text">与<b>中影年年</b>签订 AI 制作框架保底协议，年产能突破 <b>100 部</b> AI 数字内容</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="works">
+    <div class="sec-head rise"><span class="sec-tag">03 · Hit Matrix</span><h2 class="sec-title">爆款漫剧矩阵</h2><span class="sec-en">Hit Matrix</span></div>
+    <p class="carousel-hint rise">数据截至 2026.06 · 红果短剧 / 拼多多双平台 · 卡片支持拖拽与 3D 触控</p>
+    <div class="rail rise d1" id="rail">
+      <article class="wcard">
+        <div class="ph tilt">
+          <span class="rank">NO.01</span>
+          <img src="poster-jiange.jpg" alt="捡个家人是大佬 海报" draggable="false">
+          <div class="heat"><div class="h-num">3707 万+</div><div class="h-label">红果当前热度</div></div>
         </div>
-        <div class="person__photo" data-reveal style="--i:2">
-          <img src="../../assets/img/faculty/wangyage.jpg" width="560" height="700" alt="王雅各">
+        <div class="meta"><span class="t">《捡个家人是大佬》</span><span class="g">古装萌宝</span></div>
+        <p class="tag">红果短剧 · 平台爆款</p>
+      </article>
+      <article class="wcard">
+        <div class="ph tilt">
+          <span class="rank">NO.02</span>
+          <img src="poster-emperor.jpg" alt="现代理工男穿越大晟当皇帝 海报" draggable="false">
+          <div class="heat"><div class="h-num">1448 万+</div><div class="h-label">红果当前热度</div></div>
+        </div>
+        <div class="meta"><span class="t">《现代理工男穿越大晟当皇帝》</span><span class="g">穿越宫廷</span></div>
+        <p class="tag">红果短剧 · 平台爆款</p>
+      </article>
+      <article class="wcard">
+        <div class="ph tilt">
+          <div class="typo-poster">
+            <div class="big">聊</div>
+            <div class="top"><span class="no">NO.03</span><span class="type">玄幻志怪</span></div>
+            <div class="name">聊斋志异之花姑子</div>
+            <div class="bottom"><span class="platform">红果短剧</span><span class="deco"></span></div>
+          </div>
+          <div class="heat"><div class="h-num">1212 万+</div><div class="h-label">红果当前热度</div></div>
+        </div>
+        <div class="meta"><span class="t">《聊斋志异之花姑子》</span><span class="g">玄幻志怪</span></div>
+        <p class="tag">红果短剧 · 平台爆款</p>
+      </article>
+      <article class="wcard">
+        <div class="ph tilt">
+          <div class="typo-poster">
+            <div class="big">邻</div>
+            <div class="top"><span class="no">NO.04</span><span class="type">都市现实</span></div>
+            <div class="name">王牌保镖归来恶邻止步</div>
+            <div class="bottom"><span class="platform">拼多多</span><span class="deco"></span></div>
+          </div>
+          <div class="heat"><div class="h-num">450.8 万+</div><div class="h-label">拼多多当前热度</div></div>
+        </div>
+        <div class="meta"><span class="t">《王牌保镖归来：恶邻止步》</span><span class="g">都市现实题材</span></div>
+        <p class="tag">拼多多 · 平台爆款</p>
+      </article>
+    </div>
+    <div class="car-nav rise d2">
+      <button class="car-btn" id="prevBtn" aria-label="上一部">←</button>
+      <button class="car-btn" id="nextBtn" aria-label="下一部">→</button>
+      <div class="progress"><i id="progBar"></i></div>
+      <span class="car-hint">DRAG / SCROLL</span>
+    </div>
+  </section>
+
+  <section id="edu">
+    <div class="sec-head rise"><span class="sec-tag">04 · Partnerships</span><h2 class="sec-title">产教融合与战略合作</h2><span class="sec-en">Partnerships</span></div>
+    <div class="edu-grid">
+      <div class="edu-main rise d1">
+        <h3>临海 AI 影视产业项目 <span>产教融合标杆</span></h3>
+        <p>联合人社部门与青创学院落地，首期 AI 影视培训班 51 名学员，<b>「结业即上岗、学成即创业」</b>——临海首个 AI 影视培训直签案例。</p>
+        <div class="edu-stats">
+          <div class="es"><b data-count="51">51</b><span>首期学员</span></div>
+          <div class="es"><b data-count="28">28</b><span>重点推介陪跑</span></div>
+          <div class="es"><b data-count="10" data-suffix="+">10+</b><span>现场签约入职</span></div>
+          <div class="es"><b data-count="8">8</b><span>学员成功创业</span></div>
         </div>
       </div>
-      <div class="pstats" data-reveal><div class="pstat"><b>10+</b><span>年行业实战经验</span></div><div class="pstat"><b>50+</b><span>承制方深度合作</span></div><div class="pstat"><b>亿级</b><span>多部爆款播放量</span></div><div class="pstat"><b>1200+</b><span>部公司年产能</span></div></div>
+      <div class="edu-side">
+        <div class="edu-card rise d1">
+          <h4><i>◆</i>浙江财经大学东方学院</h4>
+          <p>国内高校较早布局 AIGC 短片、AI 短剧教学研发；学子作品斩获首届 <b>IIFSA 国际 AI 短片电影大赛「AI 卓越创新奖」</b>（从全球 300 余部参赛作品中突围）。</p>
+        </div>
+        <div class="edu-card rise d2">
+          <h4><i>◆</i>温州广播电视传媒集团</h4>
+          <p>共建广电 <b>MCN 智能创作基地</b>，搭建 AI 协同生产流水线；引入爆款《番茄红了》（1.5 亿播放）成熟模式，具备 AIGC 短剧全链路实操经验。</p>
+        </div>
+      </div>
     </div>
-  </header>
+  </section>
 
-  <div class="container" style="margin-top:clamp(24px,4vw,44px)">
-    <section class="psec" data-reveal><div class="psec__head">
-  <span class="psec__no">01</span>
-  <h2 class="psec__title">个人简介</h2>
-  <span class="psec__en">Profile</span>
-</div><div class="prose"><p>国内最早一批深耕短剧赛道的平台操盘手，拥有超过 10 年互联网内容行业实战经验。曾主导某头部短视频平台短剧业务从 0 到 1 的完整构建，一手搭建了行业领先的内容生产与合作体系，与 50 余家优质承制方建立了长期稳定的深度伙伴关系。</p><p>凭借对用户需求的精准洞察和对内容趋势的敏锐把握，成功打造了多个亿级播放量的爆款短剧，积累了丰富的平台资源和行业人脉。</p><p>兼具出色的战略规划与商务拓展能力——从平台操盘手到科技文化企业创始人，完成从内容生态参与者到产业生态构建者的跨越，现带领遥触灵境深耕 AIGC 内容工业化生产与产教融合。</p></div></section><section class="psec" data-reveal><div class="psec__head">
-  <span class="psec__no">02</span>
-  <h2 class="psec__title">执掌企业</h2>
-  <span class="psec__en">Company</span>
-</div><div class="leadcard"><h3>遥触灵境（杭州）科技有限公司<span class="leadcard__sub">CEO · 2024 – 至今</span></h3><p>成立于 2024 年，深耕 AIGC 领域的创新型科技文化企业。凭借自主研发的 Agent 和标准化 AIGC 生产流程，在人工智能内容生成领域多次实现重大突破，持续位于业内领先位置。</p><p>以 AI 驱动生产力革命，构建产教融合人才引擎，布局数字人元宇宙生态。</p><div class="chips"><span>年产能 1200+ 部 · 交付保底 100 部</span><span>AI 制片成本仅为传统拍摄 12%</span><span>制作周期压缩至 3–5 天</span><span>覆盖仿真人 / 3D / 2D / 动态漫四大品类</span></div></div><div class="tl"><div class="tl__item"><span class="tl__year">2021</span><div class="tl__text">国内首批自研 UE+AX 影视制作流程优化系统，奠定技术根基</div></div><div class="tl__item"><span class="tl__year">2022</span><div class="tl__text">深度布局元宇宙与数字人领域，成功运营多区域政府元宇宙直播基地</div></div><div class="tl__item"><span class="tl__year">2024</span><div class="tl__text">公司正式成立，创行业先河，建立基于 Sub-field Agent 的 AIGC 标准化 SOP 流程</div></div><div class="tl__item"><span class="tl__year">2025</span><div class="tl__text">与中影年年签订 AI 制作框架保底协议，年产能突破 100 部 AI 数字内容</div></div></div></section><section class="psec" data-reveal><div class="psec__head">
-  <span class="psec__no">03</span>
-  <h2 class="psec__title">爆款漫剧矩阵</h2>
-  <span class="psec__en">Hit Matrix</span>
-</div><div class="rail"><div class="wcard"><div class="wcard__ph"><span class="wcard__rank">NO.01</span><img src="../../assets/img/posters/jiange.jpg" alt="捡个家人是大佬 海报" loading="lazy"><div class="wcard__heat"><b>3707 万+</b><span>红果当前热度</span></div></div><div class="wcard__meta"><div class="wcard__title">《捡个家人是大佬》</div>
-<div class="wcard__genre">古装萌宝</div>
-<div class="wcard__tag">红果短剧 · 平台爆款</div></div></div><div class="wcard"><div class="wcard__ph"><span class="wcard__rank">NO.02</span><img src="../../assets/img/posters/emperor.jpg" alt="现代理工男穿越大晟当皇帝 海报" loading="lazy"><div class="wcard__heat"><b>1448 万+</b><span>红果当前热度</span></div></div><div class="wcard__meta"><div class="wcard__title">《现代理工男穿越大晟当皇帝》</div>
-<div class="wcard__genre">穿越宫廷</div>
-<div class="wcard__tag">红果短剧 · 平台爆款</div></div></div><div class="wcard"><div class="wcard__ph"><div class="typo">
-  <span class="typo__no">NO.03</span>
-  <span class="typo__big">聊</span>
-  <div class="typo__meta"><b>聊斋志异之花姑子</b><i>玄幻志怪 · 红果短剧</i></div>
-</div><div class="wcard__heat"><b>1212 万+</b><span>红果当前热度</span></div></div><div class="wcard__meta"><div class="wcard__title">《聊斋志异之花姑子》</div>
-<div class="wcard__genre">玄幻志怪</div>
-<div class="wcard__tag">红果短剧 · 平台爆款</div></div></div><div class="wcard"><div class="wcard__ph"><div class="typo">
-  <span class="typo__no">NO.04</span>
-  <span class="typo__big">邻</span>
-  <div class="typo__meta"><b>王牌保镖归来恶邻止步</b><i>都市现实 · 拼多多</i></div>
-</div><div class="wcard__heat"><b>450.8 万+</b><span>拼多多当前热度</span></div></div><div class="wcard__meta"><div class="wcard__title">《王牌保镖归来：恶邻止步》</div>
-<div class="wcard__genre">都市现实题材</div>
-<div class="wcard__tag">拼多多 · 平台爆款</div></div></div></div></section><section class="psec" data-reveal><div class="psec__head">
-  <span class="psec__no">04</span>
-  <h2 class="psec__title">产教融合与战略合作</h2>
-  <span class="psec__en">Partnerships</span>
-</div><div class="leadcard"><h3>临海 AI 影视产业项目<span class="leadcard__sub">产教融合标杆</span></h3><p>联合人社部门与青创学院落地，首期 AI 影视培训班 51 名学员，「结业即上岗、学成即创业」——临海首个 AI 影视培训直签案例。</p><div class="leadcard__stats"><div><b>51</b><span>首期学员</span></div><div><b>28</b><span>重点推介陪跑</span></div><div><b>10+</b><span>现场签约入职</span></div><div><b>8</b><span>学员成功创业</span></div></div></div><div class="cardgrid"><article class="pcard"><h4>◆浙江财经大学东方学院</h4><p>国内高校较早布局 AIGC 短片、AI 短剧教学研发；学子作品斩获首届 IIFSA 国际 AI 短片电影大赛「AI 卓越创新奖」（从全球 300 余部参赛作品中突围）。</p></article><article class="pcard"><h4>◆温州广播电视传媒集团</h4><p>共建广电 MCN 智能创作基地，搭建 AI 协同生产流水线；引入爆款《番茄红了》（1.5 亿播放）成熟模式，具备 AIGC 短剧全链路实操经验。</p></article></div></section><section class="psec" data-reveal><div class="psec__head">
-  <span class="psec__no">05</span>
-  <h2 class="psec__title">战略能力与布局</h2>
-  <span class="psec__en">Strategy</span>
-</div><div class="cardgrid"><article class="pcard"><div class="pcard__no">STRATEGY · 01</div><h4>战略规划</h4><p>从头部平台短剧业务 0 到 1 构建，到 AIGC 科技文化企业创立，10 年内容行业完整战略视野。</p></article><article class="pcard"><div class="pcard__no">BD · 02</div><h4>商务拓展</h4><p>50 余家承制方深度合作网络，中影年年 AI 制作框架保底协议等产业级合作落地。</p></article><article class="pcard"><div class="pcard__no">INDUSTRIAL · 03</div><h4>内容工业化</h4><p>以 Sub-field Agent + 标准化 SOP 实现 AIGC 内容规模化生产，为品牌方与平台提供「创意生成 → 成品输出」的高效低成本解决方案。</p></article><article class="pcard"><div class="pcard__no">ECOSYSTEM · 04</div><h4>产教融合布局</h4><p>「技术—教育—产业」三角闭环：技术反哺教育，教育输送人才，产业反推升级；先育才、再孵企、后成链。</p></article></div></section>
-    <nav class="pager" aria-label="讲师翻页">
-      <a href="../zhujiangjiang/index.html"><span>上一位</span><b>朱江江 · AI 视频创作 · 资产 / 分镜 / 生成</b></a>
-      <a href="../wangliangzheng/index.html"><span>下一位</span><b>王梁正 · 遥触灵境（杭州）科技 · 联合创始人</b></a>
-    </nav>
-  </div>
+  <section id="strategy">
+    <div class="sec-head rise"><span class="sec-tag">05 · Strategy</span><h2 class="sec-title">战略能力与布局</h2><span class="sec-en">Strategy</span></div>
+    <div class="cap-grid">
+      <div class="cap-item rise d1">
+        <div class="n">STRATEGY · 01</div>
+        <h4>战略规划</h4>
+        <p>从头部平台短剧业务 0 到 1 构建，到 AIGC 科技文化企业创立，10 年内容行业完整战略视野。</p>
+      </div>
+      <div class="cap-item rise d1">
+        <div class="n">BD · 02</div>
+        <h4>商务拓展</h4>
+        <p>50 余家承制方深度合作网络，中影年年 AI 制作框架保底协议等产业级合作落地。</p>
+      </div>
+      <div class="cap-item rise d2">
+        <div class="n">INDUSTRIAL · 03</div>
+        <h4>内容工业化</h4>
+        <p>以 Sub-field Agent + 标准化 SOP 实现 AIGC 内容规模化生产，为品牌方与平台提供「创意生成 → 成品输出」的高效低成本解决方案。</p>
+      </div>
+      <div class="cap-item rise d2">
+        <div class="n">ECOSYSTEM · 04</div>
+        <h4>产教融合布局</h4>
+        <p>「技术—教育—产业」三角闭环：技术反哺教育，教育输送人才，产业反推升级；先育才、再孵企、后成链。</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="rise">
+    <div class="foot-mark">王</div>
+    <div class="foot-name">王雅各 · WANG YAGE</div>
+    <div class="foot-sub">遥触灵境（杭州）科技有限公司 · 首席执行官</div>
+  </footer>
+
 </main>
-<footer class="foot-min">
-  <div class="container foot-min__inner">
-    <span>© 2026 遥触灵境（杭州）科技有限公司</span>
-    <span><a href="../../index.html">返回官网首页</a> · <a href="../../index.html#contact">联系我们</a></span>
-  </div>
-</footer></body>
+
+<script>
+/* ---- 主题切换 ---- */
+const themeBtn = document.getElementById("themeBtn");
+const savedTheme = localStorage.getItem("theme") || "light";
+document.documentElement.dataset.theme = savedTheme;
+themeBtn.textContent = savedTheme === "dark" ? "☀" : "◐";
+themeBtn.addEventListener("click", () => {
+  const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+  document.documentElement.dataset.theme = next;
+  localStorage.setItem("theme", next);
+  themeBtn.textContent = next === "dark" ? "☀" : "◐";
+});
+
+/* ---- 吸顶导航 ---- */
+const nav = document.getElementById("nav");
+window.addEventListener("scroll", () => {
+  nav.classList.toggle("scrolled", window.scrollY > 64);
+}, {passive:true});
+
+/* ---- 跑马灯 ---- */
+const MQ = ["国内最早一批短剧平台操盘手","10 年+ 互联网内容行业经验","头部平台短剧业务 0→1 主导者","50 余家承制方深度合作网络","多个亿级播放量爆款短剧","年产能 1200+ 部 · 交付保底 100 部","中影年年 AI 制作框架保底协议","温州广电 MCN 智能创作基地共建"];
+const track = document.getElementById("mqTrack");
+const html = MQ.map(t => `<span class="mq-item"><i>◆</i>${t}</span>`).join("");
+track.innerHTML = html + html;
+
+/* ---- 数字滚动 ---- */
+function animateNum(el){
+  const target = parseInt(el.dataset.count, 10);
+  const suffix = el.dataset.suffix || "";
+  const dur = 1400, t0 = performance.now();
+  function tick(now){
+    const p = Math.min((now - t0) / dur, 1);
+    const eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.round(target * eased).toLocaleString() + suffix;
+    if(p < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+/* ---- 作品轮播：拖拽 + 按钮 + 进度 ---- */
+const rail = document.getElementById("rail");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+const progBar = document.getElementById("progBar");
+function cardStep(){ return rail.querySelector(".wcard").offsetWidth + 18; }
+nextBtn.addEventListener("click", () => rail.scrollBy({left: cardStep(), behavior:"smooth"}));
+prevBtn.addEventListener("click", () => rail.scrollBy({left: -cardStep(), behavior:"smooth"}));
+function updateProg(){
+  const max = rail.scrollWidth - rail.clientWidth;
+  progBar.style.width = (max > 0 ? 25 + (rail.scrollLeft / max) * 75 : 100) + "%";
+}
+rail.addEventListener("scroll", updateProg, {passive:true});
+window.addEventListener("resize", updateProg);
+updateProg();
+/* 拖拽 */
+let dragging = false, startX = 0, startScroll = 0, moved = false;
+rail.addEventListener("pointerdown", e => {
+  if(e.pointerType === "touch") return;
+  dragging = true; moved = false; startX = e.clientX; startScroll = rail.scrollLeft;
+  rail.classList.add("dragging");
+});
+window.addEventListener("pointermove", e => {
+  if(!dragging) return;
+  const dx = e.clientX - startX;
+  if(Math.abs(dx) > 4) moved = true;
+  rail.scrollLeft = startScroll - dx;
+});
+window.addEventListener("pointerup", () => {
+  if(!dragging) return;
+  dragging = false;
+  setTimeout(() => rail.classList.remove("dragging"), 0);
+});
+
+/* ---- 3D Tilt（作品海报跟随鼠标倾斜） ---- */
+document.querySelectorAll(".tilt").forEach(card => {
+  card.addEventListener("pointermove", e => {
+    if(dragging) return;
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - .5;
+    const y = (e.clientY - r.top) / r.height - .5;
+    card.style.transform = `rotateY(${x * 10}deg) rotateX(${-y * 8}deg) scale(1.02)`;
+  });
+  card.addEventListener("pointerleave", () => { card.style.transform = ""; });
+});
+
+/* ---- 入场动画 ---- */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if(e.isIntersecting){
+    e.target.classList.add("in");
+    e.target.querySelectorAll?.("[data-count]").forEach(animateNum);
+    io.unobserve(e.target);
+  }
+}), {threshold:.12});
+document.querySelectorAll(".rise").forEach(el => io.observe(el));
+</script>
+</body>
 </html>

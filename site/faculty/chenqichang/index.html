@@ -2,136 +2,602 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>陈琪昌 · AIGC 视频训练师 · 遥触灵境</title>
-<meta name="description" content="AIGC 视频训练师、工作流前沿研究者；累计完成 2000+ 分钟 AIGC 内容，多部作品千万级播放；Seedance 2.5 / Happyhorse 内测工作流开发先行者，自研漫剧前置资产 Skills 工作流。">
-<meta name="theme-color" content="#FFFFFF">
-<link rel="icon" href="../../favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="../../assets/logo/favicon-32.png">
-<link rel="apple-touch-icon" href="../../assets/logo/apple-touch-icon.png">
-<link rel="stylesheet" href="../../assets/css/tokens.css">
-<link rel="stylesheet" href="../../assets/css/site.css">
-<link rel="stylesheet" href="../../assets/css/faculty.css">
-<script src="../../assets/js/site.js" defer></script>
-</head>
-<body class="">
-<div class="progress" id="progress" aria-hidden="true"></div>
-<header class="nav nav--solid" id="nav">
-  <div class="nav__inner">
-    <a class="brand" href="../../index.html" aria-label="遥触灵境 首页">
-      <img class="brand__mark" src="../../assets/logo/mark.png" width="40" height="34" alt="">
-      <span class="brand__name">遥触灵境</span>
-    </a>
-    <nav class="nav__links" aria-label="主导航"><a href="../../index.html#about">关于</a><a href="../../index.html#business">业务</a><a href="../../index.html#cases">案例</a><a href="../../faculty/index.html" aria-current="page">师资</a><a href="../../demos/index.html">Demo</a><a href="../../index.html#partners">合作</a></nav>
-    <div class="nav__actions">
-      <a class="btn btn--sm btn--green" href="../../index.html#contact">联系我们</a>
-      <button class="nav__toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false" aria-controls="sheet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
-    </div>
-  </div>
-</header>
-<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="导航菜单">
-  <button class="sheet__close" id="sheetClose" aria-label="关闭菜单"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
-  <a href="../../index.html#about" style="--i:0">关于</a><a href="../../index.html#business" style="--i:1">业务</a><a href="../../index.html#cases" style="--i:2">案例</a><a href="../../faculty/index.html" style="--i:3">师资</a><a href="../../demos/index.html" style="--i:4">Demo</a><a href="../../index.html#partners" style="--i:5">合作</a>
-</div><main>
-  <header class="person">
-    <div class="container">
-      <div class="breadcrumb" data-reveal><a href="../../index.html">首页</a><span>/</span><a href="../index.html">师资团队</a><span>/</span><span>陈琪昌</span></div>
-      <div class="person__grid" style="margin-top:26px">
-        <div>
-          <div class="person__tagline" data-reveal>AIGC 视频训练师</div>
-          <h1 class="person__name" data-reveal="blur" style="--i:1">陈琪昌</h1>
-          <div class="person__roles" data-reveal style="--i:2"><p>AIGC 视频训练师 · AIGC 视频工作流前沿研究者</p><p>Seedance 2.5 / Happyhorse 内测工作流开发先行者</p></div>
-          <div class="person__motto" data-reveal style="--i:3">“技术为笔，创意为墨——用 AI 重塑想象，让故事被世界看见。”</div>
-          <div class="chips" data-reveal style="--i:4"><span>AIGC 视频工作流</span><span>千万级播放</span><span>Seedance 2.5 先行者</span></div>
-        </div>
-        <div class="person__photo" data-reveal style="--i:2">
-          <img src="../../assets/img/faculty/chenqichang.jpg" width="560" height="700" alt="陈琪昌">
-        </div>
-      </div>
-      <div class="pstats" data-reveal><div class="pstat"><b>2000+</b><span>分钟 · 累计 AIGC 内容制作</span></div><div class="pstat"><b>千万级播放</b><span>红果剧场 / TikTok 爆款</span></div><div class="pstat"><b>Seedance 2.5</b><span>内测工作流开发先行者</span></div><div class="pstat"><b>三期 · 百人</b><span>温州广电专项培训</span></div></div>
-    </div>
-  </header>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>陈琪昌 · AIGC视频训练师</title>
+<meta name="description" content="陈琪昌，AIGC视频训练师，AIGC视频工作流前沿研究者。累计完成2000+分钟AIGC内容制作，多部作品千万级播放，Seedance 2.5 / Happyhorse内测工作流开发先行者。">
+<style>
+  :root{
+    --bg:#F5F5F7;
+    --card:#FFFFFF;
+    --card-soft:#FFFFFF;
+    --ink:#1D1D1F;
+    --ink-dim:#6E6E73;
+    --ink-faint:#AEAEB2;
+    --line:rgba(0,0,0,.06);
+    --tint:#B08A2E;
+    --tint-soft:rgba(176,138,46,.10);
+    --shadow-1:0 2px 8px rgba(0,0,0,.04),0 12px 32px rgba(0,0,0,.06);
+    --shadow-2:0 4px 12px rgba(0,0,0,.06),0 20px 48px rgba(0,0,0,.10);
+    --nav-bg:rgba(245,245,247,.72);
+    --sans:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","PingFang SC","HarmonyOS Sans SC","Microsoft YaHei",sans-serif;
+  }
+  html[data-theme="dark"]{
+    --bg:#1D1D1F;
+    --card:#2C2C2E;
+    --card-soft:#2C2C2E;
+    --ink:#F5F5F7;
+    --ink-dim:#A1A1A6;
+    --ink-faint:#636366;
+    --line:rgba(255,255,255,.08);
+    --tint:#C9A85C;
+    --tint-soft:rgba(201,168,92,.14);
+    --shadow-1:0 2px 8px rgba(0,0,0,.24),0 12px 32px rgba(0,0,0,.32);
+    --shadow-2:0 4px 12px rgba(0,0,0,.28),0 20px 48px rgba(0,0,0,.40);
+    --nav-bg:rgba(29,29,31,.72);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.75;
+    overflow-x:hidden;transition:background .5s ease,color .5s ease}
+  ::selection{background:var(--tint-soft)}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 28px}
 
-  <div class="container" style="margin-top:clamp(24px,4vw,44px)">
-    <section class="psec" data-reveal><div class="psec__head">
-  <span class="psec__no">01</span>
-  <h2 class="psec__title">关于他</h2>
-  <span class="psec__en">About</span>
-</div><p class="lead">以创作者的身份进入 AIGC，以研究者的方式深入工作流——既懂镜头前的内容，也懂模型背后的逻辑。</p><div class="prose"><p>陈琪昌，AIGC 视频训练师，AIGC 视频工作流前沿研究者。自毕业起便专注 AIGC 视频创作，深耕一线创作实战场域，累计完成 2000+ 分钟 AIGC 内容制作，在大量真实项目中反复打磨提示词、镜头语言与生成流程的每一个细节。</p><p>作品层面，多部内容在红果剧场、TikTok 等国内外平台上线并成为爆款，播放量达千万级——实现了从“能生成”到“能传播”的完整跨越。</p><p>技术层面，作为大模型工作流开发者，深度参与主流大模型 AIGC 工作流建设，是 Seedance 2.5、Happyhorse 内测工作流的开发先行者。持续探索 AI 与内容的边界，让技术服务于更有温度的表达。</p></div><div class="chips"><span># AIGC 视频创作</span><span># 大模型工作流开发</span><span># 爆款内容实战</span></div></section><section class="psec" data-reveal><div class="psec__head">
-  <span class="psec__no">02</span>
-  <h2 class="psec__title">专业资历</h2>
-  <span class="psec__en">Credentials</span>
-</div><div class="cardgrid"><article class="pcard"><div class="pcard__no">01 · FIELD</div><h4>深耕领域 · AIGC 视频创作</h4><p>自毕业起便开始专注 AIGC 视频创作，与行业共同成长的一线创作者。</p><div class="pcard__tail">一线创作 · 与行业共成长</div></article><article class="pcard"><div class="pcard__no">02 · OUTPUT</div><h4>内容产出 · 2000+ 分钟</h4><p>累计完成的 AIGC 内容制作体量，横跨多类型项目的实战沉淀。</p><div class="pcard__tail">多类型项目 · 实战沉淀</div></article><article class="pcard"><div class="pcard__no">03 · HITS</div><h4>爆款成绩 · 千万级播放</h4><p>多部作品在红果剧场 / TikTok 等平台达成千万级播放。</p><div class="pcard__tail">红果剧场 / TikTok</div></article><article class="pcard"><div class="pcard__no">04 · TECH</div><h4>技术深耕 · 大模型工作流</h4><p>Seedance 2.5 / Happyhorse 内测工作流开发先行者。</p><div class="pcard__tail">内测先行 · 前沿实践</div></article></div></section><section class="psec" data-reveal><div class="psec__head">
-  <span class="psec__no">03</span>
-  <h2 class="psec__title">代表作品</h2>
-  <span class="psec__en">Works</span>
-</div><div class="rail"><div class="wcard"><div class="wcard__ph"><span class="wcard__rank">NO.01</span><img src="../../assets/img/posters/jiange.jpg" alt="捡个家人是大佬 海报" loading="lazy"></div><div class="wcard__meta"><div class="wcard__title">《捡个家人是大佬》</div>
-<div class="wcard__genre">古装家庭</div>
-<div class="wcard__tag">红果短剧 · AIGC 全流程</div></div></div><div class="wcard"><div class="wcard__ph"><span class="wcard__rank">NO.02</span><img src="../../assets/img/posters/shengong.jpg" alt="深宫劫之凰鸣 海报" loading="lazy"></div><div class="wcard__meta"><div class="wcard__title">《深宫劫之凰鸣》</div>
-<div class="wcard__genre">古装宫廷</div>
-<div class="wcard__tag">红果短剧 · AIGC 全流程</div></div></div><div class="wcard"><div class="wcard__ph"><span class="wcard__rank">NO.03</span><img src="../../assets/img/posters/emperor.jpg" alt="现代理工男穿越大晟当皇帝 海报" loading="lazy"></div><div class="wcard__meta"><div class="wcard__title">《现代理工男穿越大晟当皇帝》</div>
-<div class="wcard__genre">历史穿越</div>
-<div class="wcard__tag">红果短剧 · AIGC 全流程</div></div></div><div class="wcard"><div class="wcard__ph"><span class="wcard__rank">NO.04</span><img src="../../assets/img/posters/xiaomengsun.jpg" alt="小萌孙驾到 海报" loading="lazy"></div><div class="wcard__meta"><div class="wcard__title">《小萌孙驾到》</div>
-<div class="wcard__genre">家庭萌宝</div>
-<div class="wcard__tag">强势奶奶宠上天 · AIGC 全流程</div></div></div><div class="wcard"><div class="wcard__ph"><div class="typo">
-  <span class="typo__no">AIGC PRODUCTION</span>
-  <span class="typo__big">聊</span>
-  <div class="typo__meta"><b>聊斋志异之花姑子</b><i>志怪爱情 · 聊斋 IP 改编</i></div>
-</div></div><div class="wcard__meta"><div class="wcard__title">《聊斋志异之花姑子》</div>
-<div class="wcard__genre">志怪爱情</div>
-<div class="wcard__tag">聊斋 IP 改编 · AIGC 制作</div></div></div><div class="wcard"><div class="wcard__ph"><div class="typo">
-  <span class="typo__no">OVERSEAS · AIGC</span>
-  <span class="typo__big">W</span>
-  <div class="typo__meta"><b>War of the Golden Apple</b><i>海外英语剧 · 海外短剧平台</i></div>
-</div></div><div class="wcard__meta"><div class="wcard__title">War of the Golden Apple</div>
-<div class="wcard__genre">海外英语剧</div>
-<div class="wcard__tag">海外短剧平台 · AIGC 制作</div></div></div><div class="wcard"><div class="wcard__ph"><div class="typo">
-  <span class="typo__no">OVERSEAS · AIGC</span>
-  <span class="typo__big">M</span>
-  <div class="typo__meta"><b>My Husband, The Ruthless King</b><i>海外英语剧 · 海外短剧平台</i></div>
-</div></div><div class="wcard__meta"><div class="wcard__title">My Husband, The Ruthless King</div>
-<div class="wcard__genre">海外英语剧</div>
-<div class="wcard__tag">海外短剧平台 · AIGC 制作</div></div></div><div class="wcard"><div class="wcard__ph"><div class="typo">
-  <span class="typo__no">OVERSEAS · AIGC</span>
-  <span class="typo__big">D</span>
-  <div class="typo__meta"><b>Dead City Protocol: 72 Hours to Save Her</b><i>海外英语剧 · 海外短剧平台</i></div>
-</div></div><div class="wcard__meta"><div class="wcard__title">Dead City Protocol</div>
-<div class="wcard__genre">海外英语剧</div>
-<div class="wcard__tag">海外短剧平台 · AIGC 制作</div></div></div><div class="wcard"><div class="wcard__ph"><div class="typo">
-  <span class="typo__no">OVERSEAS · AIGC</span>
-  <span class="typo__big">C</span>
-  <div class="typo__meta"><b>Crown of Thorns and Roses</b><i>海外英语剧 · 海外短剧平台</i></div>
-</div></div><div class="wcard__meta"><div class="wcard__title">Crown of Thorns and Roses</div>
-<div class="wcard__genre">海外英语剧</div>
-<div class="wcard__tag">海外短剧平台 · AIGC 制作</div></div></div><div class="wcard"><div class="wcard__ph"><div class="typo">
-  <span class="typo__no">OVERSEAS · AIGC</span>
-  <span class="typo__big">H</span>
-  <div class="typo__meta"><b>Her Invisible Crown</b><i>海外英语剧 · 海外短剧平台</i></div>
-</div></div><div class="wcard__meta"><div class="wcard__title">Her Invisible Crown</div>
-<div class="wcard__genre">海外英语剧</div>
-<div class="wcard__tag">海外短剧平台 · AIGC 制作</div></div></div></div></section><section class="psec" data-reveal><div class="psec__head">
-  <span class="psec__no">04</span>
-  <h2 class="psec__title">专业领域</h2>
-  <span class="psec__en">Fields</span>
-</div><div class="cardgrid"><article class="pcard"><div class="pcard__no">01 · FULL PIPELINE</div><h4>AIGC 视频创作全流程实战</h4><p>从创意策划到视频产出，掌握 AIGC 视频创作的每一个环节。在累计 2000+ 分钟的内容制作中，熔炼出一套可复制、可落地的高效创作流程——让每一步都有章法，每一帧都可交付。</p><div class="pcard__tail">创意策划 → 生成 → 交付</div></article><article class="pcard"><div class="pcard__no">02 · LLM WORKFLOW</div><h4>大模型应用与工作流开发</h4><p>深度参与 Seedance 2.5、Happyhorse 等主流大模型的内测工作流开发，始终站在工具演进的最前排。对 AI 工具的应用保持着前沿性的理解与第一手的实践经验。</p><div class="pcard__tail">内测先行 · 前沿实践</div></article><article class="pcard"><div class="pcard__no">03 · CONTENT STRATEGY</div><h4>AI 内容策略与商业变现</h4><p>将 AI 技术与内容营销深度结合，把“生成能力”转化为“传播结果”与“商业价值”，帮助企业与个人实现内容价值的最大化。</p><div class="pcard__tail">内容 → 流量 → 价值</div></article><article class="pcard"><div class="pcard__no">04 · SELF-BUILT SKILLS</div><h4>自研漫剧前置资产 Skills 工作流</h4><p>自主研发漫剧前置资产 Skills，将角色、场景等前置资产的生成流程标准化、工具化；深度参与配套网站开发，让创作能力触手可及，打破技术与创作之间的行业壁垒。</p><div class="pcard__tail">自研工具 · 打破壁垒</div></article></div></section><section class="psec" data-reveal><div class="psec__head">
-  <span class="psec__no">05</span>
-  <h2 class="psec__title">教学特色</h2>
-  <span class="psec__en">Teaching</span>
-</div><div class="leadcard"><h3>实战驱动×知行合一</h3><p>不做纯粹的理论填鸭，而是通过真实案例与现场演示，带领学员边学边做。每一次课程都紧密结合行业实际应用场景，确保学员学以致用——课堂结束之时，就是能力上手之日。</p></div><div class="cardgrid"><article class="pcard"><div class="pcard__no">POINT · 01</div><h4>真实案例拆解</h4><p>爆款作品的创作思路全程公开，看到结果，更看到过程。</p></article><article class="pcard"><div class="pcard__no">POINT · 02</div><h4>现场演示实操</h4><p>关键环节当场演示，生成、调整、对比，每一步看得见摸得着。</p></article><article class="pcard"><div class="pcard__no">POINT · 03</div><h4>贴近行业场景</h4><p>课程内容与行业实际应用场景紧密结合，学完即可投入真实工作流。</p></article><article class="pcard"><div class="pcard__no">POINT · 04</div><h4>边学边做出结果</h4><p>以产出为导向，让学员在过程中完成作品，而不是只带走笔记。</p></article></div></section><section class="psec" data-reveal><div class="psec__head">
-  <span class="psec__no">06</span>
-  <h2 class="psec__title">服务案例</h2>
-  <span class="psec__en">Cases</span>
-</div><div class="cardgrid"><article class="pcard"><div class="pcard__no">CASE · 01</div><h4>温州广播电视台 · AIGC 视频创作专项培训</h4><p class="pcard__tags">三期培训 / 百人规模 / 机构培训</p><p>为温州广播电视台提供三期 AIGC 视频创作专项培训，累计覆盖百人团队，帮助广电团队掌握 AI 视频生成技术，提升内容生产效率与创意表达能力。培训期间，学员独立制作出圈作品《刘伯温今天退休了吗？》——以温州文成本土历史文化名人刘伯温为创作原点，用 AI 视频让历史人物走进当下语境，呼应温州“传统影视看横店，AI 影视看温州”的 AI 内容创作热潮，成为 AI 赋能地方媒体内容创新的代表性成果。</p><div class="pcard__tail">培训收益 · AI 视频生成技术 · 内容生产效率 · 创意表达能力</div></article><article class="pcard"><div class="pcard__no">CASE · 02</div><h4>武汉文理学院 · AIGC 专项培训</h4><p class="pcard__tags">二期培训 / 真实落地交付 / 高校培训</p><p>为武汉文理学院开展二期 AIGC 专项培训，以真实项目为载体、以落地交付为标准，带领学员在培训过程中完成实际作品创作，实现“学完即产出”。</p><div class="pcard__tail">培训收益 · 真实项目载体 · 落地交付标准 · 学完即产出</div></article></div></section>
-    <nav class="pager" aria-label="讲师翻页">
-      <a href="../wangliangzheng/index.html"><span>上一位</span><b>王梁正 · 遥触灵境（杭州）科技 · 联合创始人</b></a>
-      <a href="../geweibin/index.html"><span>下一位</span><b>葛蔚斌 · AIGC 视频创作专家</b></a>
-    </nav>
+  /* ===== 吸顶毛玻璃导航 ===== */
+  .nav{position:fixed;top:0;left:0;right:0;z-index:80;transition:background .4s ease,border-color .4s ease,backdrop-filter .4s ease}
+  .nav-inner{max-width:1060px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;gap:8px}
+  .nav-name{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:700;letter-spacing:-.01em;
+    opacity:0;transform:translateY(-6px);transition:opacity .35s ease,transform .35s ease}
+  .nav.scrolled{background:var(--nav-bg);backdrop-filter:blur(20px) saturate(1.8);-webkit-backdrop-filter:blur(20px) saturate(1.8);
+    border-bottom:1px solid var(--line)}
+  .nav.scrolled .nav-name{opacity:1;transform:translateY(0)}
+  .nav-name img{width:28px;height:28px;border-radius:9px;object-fit:cover;object-position:top center}
+  .nav-links{margin-left:auto;display:flex;gap:2px}
+  .nav-links a{font-size:13px;font-weight:500;color:var(--ink-dim);text-decoration:none;
+    padding:7px 14px;border-radius:999px;transition:color .25s ease,background .25s ease}
+  .nav-links a:hover{color:var(--ink);background:var(--tint-soft)}
+    /* 返回集合页按钮 */
+  .back-btn{display:inline-flex;align-items:center;font-size:13px;font-weight:600;color:var(--tint);
+    text-decoration:none;padding:7px 13px 7px 9px;border-radius:999px;
+    transition:background .25s ease,transform .25s ease}
+  .back-btn:hover{background:var(--tint-soft)}
+  .back-btn:active{transform:scale(.96)}
+  .back-btn .arr{font-size:16px;font-weight:700;margin-right:3px;line-height:1}
+.theme-btn{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);
+    background:var(--card);color:var(--ink);cursor:pointer;font-size:14px;
+    display:flex;align-items:center;justify-content:center;margin-left:6px;
+    transition:transform .3s ease,box-shadow .3s ease}
+  .theme-btn:hover{transform:scale(1.08);box-shadow:var(--shadow-1)}
+  .theme-btn:active{transform:scale(.94)}
+
+  /* ===== Hero ===== */
+  header.wrap{padding:clamp(110px,14vw,150px) 0 0}
+  .hero{display:grid;grid-template-columns:1fr 310px;gap:clamp(36px,6vw,72px);align-items:center}
+  .hero-tag{font-size:13px;font-weight:600;letter-spacing:.12em;color:var(--tint);
+    text-transform:uppercase;margin-bottom:14px}
+  .cert-badge{display:inline-flex;align-items:center;gap:9px;margin-top:18px;padding:8px 18px;
+    border-radius:999px;border:1px solid color-mix(in srgb,var(--tint) 42%,transparent);
+    background:color-mix(in srgb,var(--tint) 8%,transparent);color:var(--tint);
+    font-size:13px;font-weight:600;letter-spacing:.06em}
+  .cert-dot{width:7px;height:7px;border-radius:50%;background:var(--tint);flex:none;
+    box-shadow:0 0 0 3px color-mix(in srgb,var(--tint) 18%,transparent)}
+  h1{font-size:clamp(46px,8vw,70px);font-weight:700;letter-spacing:-.02em;line-height:1.06}
+  .roles{margin-top:16px;display:flex;flex-direction:column;gap:5px}
+  .role{font-size:clamp(14px,2.4vw,16.5px);color:var(--ink-dim)}
+  .role b{color:var(--ink);font-weight:600}
+  .motto{margin-top:24px;padding:18px 22px;border-radius:18px;background:var(--card);
+    box-shadow:var(--shadow-1);border-left:4px solid var(--tint)}
+  .motto p{font-size:clamp(15px,2.5vw,17px);line-height:1.8}
+  .motto p b{color:var(--tint);font-weight:700}
+
+  .photo-card{position:relative;justify-self:center}
+  .photo-card img{display:block;width:310px;max-width:100%;aspect-ratio:4/5;object-fit:cover;
+    border-radius:28px;box-shadow:var(--shadow-2)}
+  .photo-badge{position:absolute;bottom:14px;left:14px;right:14px;padding:10px 16px;border-radius:16px;
+    background:rgba(255,255,255,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    display:flex;align-items:center;justify-content:space-between}
+  .photo-badge .n{font-size:13px;font-weight:700;color:#1D1D1F;letter-spacing:.04em}
+  .photo-badge .r{font-size:10.5px;font-weight:600;color:var(--tint);letter-spacing:.14em}
+
+  /* 数据条 */
+  .stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:clamp(28px,4vw,40px)}
+  .sb-item{background:var(--card);border-radius:20px;box-shadow:var(--shadow-1);padding:20px 18px;
+    text-align:center;transition:transform .4s cubic-bezier(.22,1,.36,1),box-shadow .4s ease}
+  .sb-item:hover{transform:translateY(-3px);box-shadow:var(--shadow-2)}
+  .sb-num{display:block;font-size:clamp(24px,3.6vw,32px);font-weight:700;letter-spacing:-.02em;
+    font-variant-numeric:tabular-nums;color:var(--tint)}
+  .sb-label{font-size:12.5px;color:var(--ink-dim);margin-top:4px;display:block}
+
+  /* 跑马灯 */
+  .marquee{margin-top:clamp(30px,4vw,46px);border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    overflow:hidden;position:relative}
+  .mq-track{display:flex;width:max-content;animation:mq 30s linear infinite}
+  .mq-item{display:flex;align-items:center;gap:12px;padding:13px 24px;white-space:nowrap;
+    font-size:13px;font-weight:500;color:var(--ink-dim)}
+  .mq-item i{font-style:normal;color:var(--tint);font-size:10px}
+  @keyframes mq{to{transform:translateX(-50%)}}
+
+  /* ===== 通用 section ===== */
+  section{padding-top:clamp(52px,8vw,92px)}
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:clamp(22px,3.5vw,32px)}
+  .sec-tag{font-size:12px;font-weight:600;letter-spacing:.14em;color:var(--tint);text-transform:uppercase}
+  .sec-title{font-size:clamp(26px,4.2vw,36px);font-weight:700;letter-spacing:-.015em}
+  .sec-en{margin-left:auto;font-size:11px;font-weight:600;letter-spacing:.22em;color:var(--ink-faint);text-transform:uppercase}
+
+  /* 简介卡 */
+  .intro{background:var(--card);border-radius:28px;box-shadow:var(--shadow-1);padding:clamp(26px,4vw,40px);
+    display:flex;flex-direction:column;gap:14px}
+  .intro p{font-size:clamp(14.5px,2.2vw,16px);color:var(--ink-dim);line-height:1.9}
+  .intro p b{color:var(--ink);font-weight:600}
+  .intro p .hl{color:var(--tint);font-weight:600}
+  .intro p.lead{font-size:clamp(16px,2.6vw,19px);color:var(--ink);font-weight:600;line-height:1.85}
+  .cap-row{display:flex;flex-wrap:wrap;gap:9px;margin-top:8px}
+  .cap{font-size:13px;font-weight:500;color:var(--ink-dim);padding:8px 17px;border-radius:999px;
+    background:var(--bg);border:1px solid var(--line)}
+  .cap b{color:var(--tint);font-weight:700}
+
+  /* 教学方式核心卡 */
+  .teach-card{background:var(--card);border-radius:28px;box-shadow:var(--shadow-1);
+    padding:clamp(26px,4vw,40px);margin-bottom:18px}
+  .teach-card h3{font-size:clamp(24px,4vw,34px);font-weight:700;letter-spacing:-.01em}
+  .teach-card h3 .x{font-size:.62em;color:var(--tint);font-weight:400;margin:0 12px;vertical-align:middle}
+  .teach-card > p{margin-top:12px;font-size:clamp(14px,2.1vw,15.5px);color:var(--ink-dim);line-height:1.9;max-width:820px}
+  .teach-card > p b{color:var(--ink);font-weight:600}
+
+  /* ===== 作品轮播（3D tilt） ===== */
+  .carousel-hint{font-size:12.5px;color:var(--ink-faint);letter-spacing:.08em;margin-bottom:18px}
+  .rail{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;
+    padding:10px 6px 22px;cursor:grab;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .rail::-webkit-scrollbar{display:none}
+  .rail.dragging{cursor:grabbing;scroll-snap-type:none}
+  .wcard{flex:0 0 300px;scroll-snap-align:start;user-select:none;-webkit-user-drag:none;
+    transform-style:preserve-3d;perspective:900px}
+  .wcard .ph{position:relative;border-radius:22px;overflow:hidden;box-shadow:var(--shadow-1);
+    aspect-ratio:2/3;background:var(--card);transition:transform .18s ease-out,box-shadow .3s ease;
+    will-change:transform}
+  .wcard .ph:hover{box-shadow:var(--shadow-2)}
+  .wcard img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+  .rank{position:absolute;top:14px;left:14px;padding:5px 13px;border-radius:999px;
+    background:rgba(255,255,255,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    font-size:11px;font-weight:700;color:#1D1D1F;letter-spacing:.1em;z-index:2}
+  .wcard .meta{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-top:14px}
+  .wcard .t{font-size:15px;font-weight:700;letter-spacing:-.01em}
+  .wcard .g{font-size:11.5px;font-weight:600;color:var(--tint);white-space:nowrap}
+  .wcard .tag{font-size:12px;color:var(--ink-faint);margin-top:3px}
+  /* 排版位海报 */
+  .typo-poster{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;
+    padding:18px;background:linear-gradient(160deg,#4A3D18 0%,#292208 100%)}
+  html[data-theme="dark"] .typo-poster{background:linear-gradient(160deg,#4A3D1880 0%,#292208 100%),linear-gradient(160deg,#382F12,#241E09)}
+  .typo-poster .big{position:absolute;right:-8px;bottom:-22px;font-size:150px;font-weight:800;
+    color:rgba(255,255,255,.08);line-height:1;pointer-events:none}
+  .typo-poster .top{display:flex;justify-content:space-between;align-items:center}
+  .typo-poster .top .no{font-size:11px;font-weight:700;letter-spacing:.18em;color:rgba(255,255,255,.85)}
+  .typo-poster .top .type{font-size:11px;font-weight:600;color:rgba(255,255,255,.7);
+    padding:4px 11px;border-radius:999px;border:1px solid rgba(255,255,255,.25)}
+  .typo-poster .name{position:relative;font-size:23px;font-weight:800;color:#FFF;letter-spacing:.06em;
+    text-shadow:0 2px 12px rgba(0,0,0,.35)}
+  .typo-poster .bottom{display:flex;justify-content:space-between;align-items:center}
+  .typo-poster .platform{font-size:11px;font-weight:600;color:rgba(255,255,255,.75);letter-spacing:.1em}
+  .typo-poster .deco{width:34px;height:1px;background:rgba(255,255,255,.35)}
+  .car-nav{display:flex;align-items:center;gap:14px;margin-top:6px}
+  .car-btn{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--card);
+    color:var(--ink);cursor:pointer;font-size:16px;box-shadow:var(--shadow-1);
+    transition:transform .3s ease,box-shadow .3s ease}
+  .car-btn:hover{transform:scale(1.06);box-shadow:var(--shadow-2)}
+  .car-btn:active{transform:scale(.95)}
+  .progress{flex:1;height:4px;border-radius:4px;background:var(--line);overflow:hidden}
+  .progress i{display:block;height:100%;width:25%;border-radius:4px;background:var(--tint);
+    transition:width .3s ease}
+  .car-hint{font-size:10.5px;font-weight:600;letter-spacing:.2em;color:var(--ink-faint)}
+
+  /* 白卡网格（专业方向 / 教学方式 / 实战案例） */
+  .cap-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .cap-item{background:var(--card);border-radius:24px;box-shadow:var(--shadow-1);padding:clamp(22px,3.5vw,30px);
+    transition:transform .4s cubic-bezier(.22,1,.36,1),box-shadow .4s ease}
+  .cap-item:hover{transform:translateY(-4px);box-shadow:var(--shadow-2)}
+  .cap-item .n{font-size:11px;font-weight:700;letter-spacing:.18em;color:var(--tint);margin-bottom:10px}
+  .cap-item h4{font-size:clamp(16.5px,2.4vw,19px);font-weight:700;letter-spacing:-.01em}
+  .cap-item p{margin-top:9px;font-size:clamp(13px,1.9vw,14.5px);color:var(--ink-dim);line-height:1.85}
+  .cap-item .cap-tags{margin-top:6px;font-size:12px;color:var(--ink-faint);letter-spacing:.12em}
+  .cap-item .cap-tail{margin-top:10px;font-size:12.5px;font-weight:600;color:var(--tint);letter-spacing:.14em}
+
+  /* 页脚 */
+  footer{margin-top:clamp(56px,8vw,96px);background:var(--card);border-radius:32px 32px 0 0;
+    padding:clamp(40px,6vw,60px) 28px calc(clamp(36px,5vw,52px) + 20px);text-align:center}
+  .foot-mark{display:inline-flex;align-items:center;justify-content:center;width:58px;height:58px;
+    border-radius:19px;background:var(--tint-soft);font-size:23px;font-weight:800;color:var(--tint);margin-bottom:14px}
+  .foot-name{font-size:16px;font-weight:700;letter-spacing:.02em}
+  .foot-sub{font-size:12px;color:var(--ink-faint);letter-spacing:.1em;margin-top:5px}
+
+  /* 入场动画 */
+  .rise{opacity:0;transform:translateY(24px);transition:opacity .85s cubic-bezier(.22,1,.36,1),transform .85s cubic-bezier(.22,1,.36,1)}
+  .rise.in{opacity:1;transform:translateY(0)}
+  .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+  @media (max-width:880px){
+    .hero{grid-template-columns:1fr;gap:34px}
+    .photo-card{justify-self:start}
+    .stats-bar{grid-template-columns:1fr 1fr}
+    .cap-grid{grid-template-columns:1fr}
+    .nav-links{display:none}
+  }
+  @media (max-width:640px){
+    .wcard{flex-basis:250px}
+  }
+  /* 本页补充 */
+  .cap-item p b{color:var(--ink);font-weight:600}
+  .typo-poster .name.sm{font-size:17px;line-height:1.55}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="back-btn" href="../index.html" aria-label="返回师资目录首页"><span class="arr">‹</span>返回首页</a>
+    <div class="nav-name"><img src="photo.jpg" alt="陈琪昌">陈琪昌</div>
+    <div class="nav-links">
+      <a href="#profile">简介</a>
+      <a href="#creds">资历</a>
+      <a href="#works">作品</a>
+      <a href="#fields">领域</a>
+      <a href="#teaching">教学</a>
+      <a href="#cases">案例</a>
+    </div>
+    <button class="theme-btn" id="themeBtn" aria-label="切换深浅色" title="切换深浅色">◐</button>
   </div>
+</nav>
+
+<header class="wrap">
+  <div class="hero">
+    <div>
+      <p class="hero-tag rise">AIGC Video Trainer · 师资介绍</p>
+      <h1 class="rise d1">陈琪昌</h1>
+      <div class="roles rise d2">
+        <div class="role"><b>AIGC 视频训练师</b> · AIGC 视频工作流前沿研究者</div>
+        <div class="role">Seedance 2.5 / Happyhorse <b>内测工作流开发先行者</b></div>
+      </div>
+      <div class="cert-badge rise d3"><span class="cert-dot"></span>中广有线指定培训师</div>
+      <div class="motto rise d3">
+        <p>“<b>技术为笔，创意为墨</b>——用 AI 重塑想象，让故事被世界看见。”</p>
+      </div>
+    </div>
+    <div class="photo-card rise d2">
+      <img src="photo.jpg" alt="陈琪昌">
+      <div class="photo-badge"><span class="n">陈琪昌</span><span class="r">CHEN QICHANG · TRAINER</span></div>
+    </div>
+  </div>
+
+  <div class="stats-bar rise d3">
+    <div class="sb-item"><span class="sb-num" data-count="2000" data-suffix="+">2000+</span><span class="sb-label">分钟 · 累计 AIGC 内容制作</span></div>
+    <div class="sb-item"><span class="sb-num">千万级播放</span><span class="sb-label">红果剧场 / TikTok 爆款</span></div>
+    <div class="sb-item"><span class="sb-num">Seedance 2.5</span><span class="sb-label">内测工作流开发先行者</span></div>
+    <div class="sb-item"><span class="sb-num">三期 · 百人</span><span class="sb-label">温州广电专项培训</span></div>
+  </div>
+
+  <div class="marquee" aria-hidden="true"><div class="mq-track" id="mqTrack"></div></div>
+</header>
+
+<main class="wrap">
+
+  <section id="profile">
+    <div class="sec-head rise"><span class="sec-tag">01 · About</span><h2 class="sec-title">关于他</h2><span class="sec-en">About</span></div>
+    <div class="intro rise d1">
+      <p class="lead">以创作者的身份进入 AIGC，以研究者的方式深入工作流——<span class="hl">既懂镜头前的内容，也懂模型背后的逻辑。</span></p>
+      <p>陈琪昌，AIGC 视频训练师，AIGC 视频工作流前沿研究者。自毕业起便专注 AIGC 视频创作，深耕一线创作实战场域，累计完成 <b>2000+ 分钟</b> AIGC 内容制作，在大量真实项目中反复打磨提示词、镜头语言与生成流程的每一个细节。</p>
+      <p>作品层面，多部内容在<b>红果剧场、TikTok 等国内外平台</b>上线并成为爆款，播放量达<b>千万级</b>——实现了从“能生成”到“能传播”的完整跨越。</p>
+      <p>技术层面，作为大模型工作流开发者，深度参与主流大模型 AIGC 工作流建设，是 <span class="hl">Seedance 2.5、Happyhorse 内测工作流</span>的开发先行者。持续探索 AI 与内容的边界，让技术服务于更有温度的表达。</p>
+      <div class="cap-row">
+        <span class="cap"># <b>AIGC 视频创作</b></span>
+        <span class="cap"># <b>大模型工作流开发</b></span>
+        <span class="cap"># <b>爆款内容实战</b></span>
+      </div>
+    </div>
+  </section>
+
+  <section id="creds">
+    <div class="sec-head rise"><span class="sec-tag">02 · Credentials</span><h2 class="sec-title">专业资历</h2><span class="sec-en">Credentials</span></div>
+    <div class="cap-grid">
+      <div class="cap-item rise d1">
+        <div class="n">01 · FIELD</div>
+        <h4>深耕领域 · AIGC 视频创作</h4>
+        <p>自毕业起便开始专注 AIGC 视频创作，与行业共同成长的一线创作者。</p>
+        <p class="cap-tail">一线创作 · 与行业共成长</p>
+      </div>
+      <div class="cap-item rise d1">
+        <div class="n">02 · OUTPUT</div>
+        <h4>内容产出 · 2000+ 分钟</h4>
+        <p>累计完成的 AIGC 内容制作体量，横跨多类型项目的实战沉淀。</p>
+        <p class="cap-tail">多类型项目 · 实战沉淀</p>
+      </div>
+      <div class="cap-item rise d2">
+        <div class="n">03 · HITS</div>
+        <h4>爆款成绩 · 千万级播放</h4>
+        <p>多部作品在红果剧场 / TikTok 等平台达成千万级播放。</p>
+        <p class="cap-tail">红果剧场 / TikTok</p>
+      </div>
+      <div class="cap-item rise d2">
+        <div class="n">04 · TECH</div>
+        <h4>技术深耕 · 大模型工作流</h4>
+        <p>Seedance 2.5 / Happyhorse 内测工作流开发先行者。</p>
+        <p class="cap-tail">内测先行 · 前沿实践</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="works">
+    <div class="sec-head rise"><span class="sec-tag">03 · Works</span><h2 class="sec-title">代表作品</h2><span class="sec-en">Works</span></div>
+    <p class="carousel-hint rise">红果短剧 & 海外平台 · AIGC 全流程制作 · 卡片支持拖拽与 3D 触控</p>
+    <div class="rail rise d1" id="rail">
+      <article class="wcard">
+        <div class="ph tilt"><span class="rank">NO.01</span><img src="poster-jiange.jpg" alt="捡个家人是大佬 海报" draggable="false"></div>
+        <div class="meta"><span class="t">《捡个家人是大佬》</span><span class="g">古装家庭</span></div>
+        <p class="tag">红果短剧 · AIGC 全流程</p>
+      </article>
+      <article class="wcard">
+        <div class="ph tilt"><span class="rank">NO.02</span><img src="poster-shengong.jpg" alt="深宫劫之凰鸣 海报" draggable="false"></div>
+        <div class="meta"><span class="t">《深宫劫之凰鸣》</span><span class="g">古装宫廷</span></div>
+        <p class="tag">红果短剧 · AIGC 全流程</p>
+      </article>
+      <article class="wcard">
+        <div class="ph tilt"><span class="rank">NO.03</span><img src="poster-emperor.jpg" alt="现代理工男穿越大晟当皇帝 海报" draggable="false"></div>
+        <div class="meta"><span class="t">《现代理工男穿越大晟当皇帝》</span><span class="g">历史穿越</span></div>
+        <p class="tag">红果短剧 · AIGC 全流程</p>
+      </article>
+      <article class="wcard">
+        <div class="ph tilt"><span class="rank">NO.04</span><img src="poster-xiaomengsun.jpg" alt="小萌孙驾到 海报" draggable="false"></div>
+        <div class="meta"><span class="t">《小萌孙驾到》</span><span class="g">家庭萌宝</span></div>
+        <p class="tag">强势奶奶宠上天 · AIGC 全流程</p>
+      </article>
+      <article class="wcard">
+        <div class="ph tilt">
+          <div class="typo-poster">
+            <div class="big">聊</div>
+            <div class="top"><span class="no">AIGC PRODUCTION</span><span class="type">志怪爱情</span></div>
+            <div class="name">聊斋志异之花姑子</div>
+            <div class="bottom"><span class="platform">聊斋 IP 改编</span><span class="deco"></span></div>
+          </div>
+        </div>
+        <div class="meta"><span class="t">《聊斋志异之花姑子》</span><span class="g">志怪爱情</span></div>
+        <p class="tag">聊斋 IP 改编 · AIGC 制作</p>
+      </article>
+      <article class="wcard">
+        <div class="ph tilt">
+          <div class="typo-poster">
+            <div class="big">W</div>
+            <div class="top"><span class="no">OVERSEAS · AIGC</span><span class="type">海外英语剧</span></div>
+            <div class="name sm">War of the Golden Apple</div>
+            <div class="bottom"><span class="platform">海外短剧平台</span><span class="deco"></span></div>
+          </div>
+        </div>
+        <div class="meta"><span class="t">War of the Golden Apple</span><span class="g">海外英语剧</span></div>
+        <p class="tag">海外短剧平台 · AIGC 制作</p>
+      </article>
+      <article class="wcard">
+        <div class="ph tilt">
+          <div class="typo-poster">
+            <div class="big">M</div>
+            <div class="top"><span class="no">OVERSEAS · AIGC</span><span class="type">海外英语剧</span></div>
+            <div class="name sm">My Husband, The Ruthless King</div>
+            <div class="bottom"><span class="platform">海外短剧平台</span><span class="deco"></span></div>
+          </div>
+        </div>
+        <div class="meta"><span class="t">My Husband, The Ruthless King</span><span class="g">海外英语剧</span></div>
+        <p class="tag">海外短剧平台 · AIGC 制作</p>
+      </article>
+      <article class="wcard">
+        <div class="ph tilt">
+          <div class="typo-poster">
+            <div class="big">D</div>
+            <div class="top"><span class="no">OVERSEAS · AIGC</span><span class="type">海外英语剧</span></div>
+            <div class="name sm">Dead City Protocol: 72 Hours to Save Her</div>
+            <div class="bottom"><span class="platform">海外短剧平台</span><span class="deco"></span></div>
+          </div>
+        </div>
+        <div class="meta"><span class="t">Dead City Protocol</span><span class="g">海外英语剧</span></div>
+        <p class="tag">海外短剧平台 · AIGC 制作</p>
+      </article>
+      <article class="wcard">
+        <div class="ph tilt">
+          <div class="typo-poster">
+            <div class="big">C</div>
+            <div class="top"><span class="no">OVERSEAS · AIGC</span><span class="type">海外英语剧</span></div>
+            <div class="name sm">Crown of Thorns and Roses</div>
+            <div class="bottom"><span class="platform">海外短剧平台</span><span class="deco"></span></div>
+          </div>
+        </div>
+        <div class="meta"><span class="t">Crown of Thorns and Roses</span><span class="g">海外英语剧</span></div>
+        <p class="tag">海外短剧平台 · AIGC 制作</p>
+      </article>
+      <article class="wcard">
+        <div class="ph tilt">
+          <div class="typo-poster">
+            <div class="big">H</div>
+            <div class="top"><span class="no">OVERSEAS · AIGC</span><span class="type">海外英语剧</span></div>
+            <div class="name sm">Her Invisible Crown</div>
+            <div class="bottom"><span class="platform">海外短剧平台</span><span class="deco"></span></div>
+          </div>
+        </div>
+        <div class="meta"><span class="t">Her Invisible Crown</span><span class="g">海外英语剧</span></div>
+        <p class="tag">海外短剧平台 · AIGC 制作</p>
+      </article>
+    </div>
+    <div class="car-nav rise d2">
+      <button class="car-btn" id="prevBtn" aria-label="上一部">←</button>
+      <button class="car-btn" id="nextBtn" aria-label="下一部">→</button>
+      <div class="progress"><i id="progBar"></i></div>
+      <span class="car-hint">DRAG / SCROLL</span>
+    </div>
+  </section>
+
+  <section id="fields">
+    <div class="sec-head rise"><span class="sec-tag">04 · Fields</span><h2 class="sec-title">专业领域</h2><span class="sec-en">Fields</span></div>
+    <div class="cap-grid">
+      <div class="cap-item rise d1">
+        <div class="n">01 · FULL PIPELINE</div>
+        <h4>AIGC 视频创作全流程实战</h4>
+        <p>从创意策划到视频产出，掌握 AIGC 视频创作的每一个环节。在累计 2000+ 分钟的内容制作中，熔炼出一套可复制、可落地的高效创作流程——让每一步都有章法，每一帧都可交付。</p>
+        <p class="cap-tail">创意策划 → 生成 → 交付</p>
+      </div>
+      <div class="cap-item rise d1">
+        <div class="n">02 · LLM WORKFLOW</div>
+        <h4>大模型应用与工作流开发</h4>
+        <p>深度参与 Seedance 2.5、Happyhorse 等主流大模型的内测工作流开发，始终站在工具演进的最前排。对 AI 工具的应用保持着前沿性的理解与第一手的实践经验。</p>
+        <p class="cap-tail">内测先行 · 前沿实践</p>
+      </div>
+      <div class="cap-item rise d2">
+        <div class="n">03 · CONTENT STRATEGY</div>
+        <h4>AI 内容策略与商业变现</h4>
+        <p>将 AI 技术与内容营销深度结合，把“生成能力”转化为“传播结果”与“商业价值”，帮助企业与个人实现内容价值的最大化。</p>
+        <p class="cap-tail">内容 → 流量 → 价值</p>
+      </div>
+      <div class="cap-item rise d2">
+        <div class="n">04 · SELF-BUILT SKILLS</div>
+        <h4>自研漫剧前置资产 Skills 工作流</h4>
+        <p>自主研发漫剧前置资产 Skills，将角色、场景等前置资产的生成流程标准化、工具化；深度参与配套网站开发，让创作能力触手可及，打破技术与创作之间的行业壁垒。</p>
+        <p class="cap-tail">自研工具 · 打破壁垒</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="teaching">
+    <div class="sec-head rise"><span class="sec-tag">05 · Teaching</span><h2 class="sec-title">教学特色</h2><span class="sec-en">Teaching</span></div>
+    <div class="teach-card rise d1">
+      <h3>实战驱动<span class="x">×</span>知行合一</h3>
+      <p>不做纯粹的理论填鸭，而是通过<b>真实案例与现场演示</b>，带领学员边学边做。每一次课程都紧密结合行业实际应用场景，确保学员学以致用——课堂结束之时，就是能力上手之日。</p>
+    </div>
+    <div class="cap-grid">
+      <div class="cap-item rise d1"><div class="n">POINT · 01</div><h4>真实案例拆解</h4><p>爆款作品的创作思路全程公开，看到结果，更看到过程。</p></div>
+      <div class="cap-item rise d1"><div class="n">POINT · 02</div><h4>现场演示实操</h4><p>关键环节当场演示，生成、调整、对比，每一步看得见摸得着。</p></div>
+      <div class="cap-item rise d2"><div class="n">POINT · 03</div><h4>贴近行业场景</h4><p>课程内容与行业实际应用场景紧密结合，学完即可投入真实工作流。</p></div>
+      <div class="cap-item rise d2"><div class="n">POINT · 04</div><h4>边学边做出结果</h4><p>以产出为导向，让学员在过程中完成作品，而不是只带走笔记。</p></div>
+    </div>
+  </section>
+
+  <section id="cases">
+    <div class="sec-head rise"><span class="sec-tag">06 · Cases</span><h2 class="sec-title">服务案例</h2><span class="sec-en">Cases</span></div>
+    <div class="cap-grid">
+      <div class="cap-item rise d1">
+        <div class="n">CASE · 01</div>
+        <h4>温州广播电视台 · AIGC 视频创作专项培训</h4>
+        <p class="cap-tags">三期培训 / 百人规模 / 机构培训</p>
+        <p>为温州广播电视台提供三期 AIGC 视频创作专项培训，累计覆盖百人团队，帮助广电团队掌握 AI 视频生成技术，提升内容生产效率与创意表达能力。培训期间，学员独立制作出圈作品<b>《刘伯温今天退休了吗？》</b>——以温州文成本土历史文化名人刘伯温为创作原点，用 AI 视频让历史人物走进当下语境，呼应温州“传统影视看横店，AI 影视看温州”的 AI 内容创作热潮，成为 AI 赋能地方媒体内容创新的代表性成果。</p>
+        <p class="cap-tail">培训收益 · AI 视频生成技术 · 内容生产效率 · 创意表达能力</p>
+      </div>
+      <div class="cap-item rise d2">
+        <div class="n">CASE · 02</div>
+        <h4>武汉文理学院 · AIGC 专项培训</h4>
+        <p class="cap-tags">二期培训 / 真实落地交付 / 高校培训</p>
+        <p>为武汉文理学院开展二期 AIGC 专项培训，以真实项目为载体、以落地交付为标准，带领学员在培训过程中完成实际作品创作，实现“学完即产出”。</p>
+        <p class="cap-tail">培训收益 · 真实项目载体 · 落地交付标准 · 学完即产出</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="rise">
+    <div class="foot-mark">陈</div>
+    <div class="foot-name">陈琪昌 · CHEN QICHANG</div>
+    <div class="foot-sub">AIGC VIDEO TRAINER · 技术为笔 · 创意为墨 · 让故事被世界看见</div>
+  </footer>
+
 </main>
-<footer class="foot-min">
-  <div class="container foot-min__inner">
-    <span>© 2026 遥触灵境（杭州）科技有限公司</span>
-    <span><a href="../../index.html">返回官网首页</a> · <a href="../../index.html#contact">联系我们</a></span>
-  </div>
-</footer></body>
+<script>
+/* ---- 静态渲染支持（?noanim=1 时跳过入场动画，用于截图/无障碍场景） ---- */
+if(location.search.includes('noanim')){
+  document.querySelectorAll('.rise').forEach(el=>el.classList.add('in'));
+}
+
+/* ---- 主题切换 ---- */
+const themeBtn = document.getElementById("themeBtn");
+const savedTheme = localStorage.getItem("theme") || "light";
+document.documentElement.dataset.theme = savedTheme;
+themeBtn.textContent = savedTheme === "dark" ? "☀" : "◐";
+themeBtn.addEventListener("click", () => {
+  const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+  document.documentElement.dataset.theme = next;
+  localStorage.setItem("theme", next);
+  themeBtn.textContent = next === "dark" ? "☀" : "◐";
+});
+
+/* ---- 吸顶导航 ---- */
+const nav = document.getElementById("nav");
+window.addEventListener("scroll", () => {
+  nav.classList.toggle("scrolled", window.scrollY > 64);
+}, {passive:true});
+
+/* ---- 跑马灯 ---- */
+const MQ = ["Seedance 2.5 / Happyhorse 内测工作流开发先行者","多部作品千万级播放 · 红果剧场 / TikTok","累计 2000+ 分钟 AIGC 内容制作","自研漫剧前置资产 Skills 工作流","温州广电三期百人专项培训","武汉文理学院二期落地交付","AIGC 视频训练师 · 工作流前沿研究者"];
+const track = document.getElementById("mqTrack");
+const html = MQ.map(t => `<span class="mq-item"><i>◆</i>${t}</span>`).join("");
+track.innerHTML = html + html;
+
+/* ---- 数字滚动 ---- */
+function animateNum(el){
+  const target = parseInt(el.dataset.count, 10);
+  const suffix = el.dataset.suffix || "";
+  const dur = 1400, t0 = performance.now();
+  function tick(now){
+    const p = Math.min((now - t0) / dur, 1);
+    const eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.round(target * eased).toLocaleString() + suffix;
+    if(p < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+/* ---- 作品轮播：拖拽 + 按钮 + 进度 ---- */
+const rail = document.getElementById("rail");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+const progBar = document.getElementById("progBar");
+function cardStep(){ return rail.querySelector(".wcard").offsetWidth + 18; }
+nextBtn.addEventListener("click", () => rail.scrollBy({left: cardStep(), behavior:"smooth"}));
+prevBtn.addEventListener("click", () => rail.scrollBy({left: -cardStep(), behavior:"smooth"}));
+function updateProg(){
+  const max = rail.scrollWidth - rail.clientWidth;
+  progBar.style.width = (max > 0 ? 25 + (rail.scrollLeft / max) * 75 : 100) + "%";
+}
+rail.addEventListener("scroll", updateProg, {passive:true});
+window.addEventListener("resize", updateProg);
+updateProg();
+/* 拖拽 */
+let dragging = false, startX = 0, startScroll = 0, moved = false;
+rail.addEventListener("pointerdown", e => {
+  if(e.pointerType === "touch") return;
+  dragging = true; moved = false; startX = e.clientX; startScroll = rail.scrollLeft;
+  rail.classList.add("dragging");
+});
+window.addEventListener("pointermove", e => {
+  if(!dragging) return;
+  const dx = e.clientX - startX;
+  if(Math.abs(dx) > 4) moved = true;
+  rail.scrollLeft = startScroll - dx;
+});
+window.addEventListener("pointerup", () => {
+  if(!dragging) return;
+  dragging = false;
+  setTimeout(() => rail.classList.remove("dragging"), 0);
+});
+
+/* ---- 3D Tilt（作品海报跟随鼠标倾斜） ---- */
+document.querySelectorAll(".tilt").forEach(card => {
+  card.addEventListener("pointermove", e => {
+    if(dragging) return;
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - .5;
+    const y = (e.clientY - r.top) / r.height - .5;
+    card.style.transform = `rotateY(${x * 10}deg) rotateX(${-y * 8}deg) scale(1.02)`;
+  });
+  card.addEventListener("pointerleave", () => { card.style.transform = ""; });
+});
+
+/* ---- 入场动画 ---- */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if(e.isIntersecting){
+    e.target.classList.add("in");
+    e.target.querySelectorAll?.("[data-count]").forEach(animateNum);
+    io.unobserve(e.target);
+  }
+}), {threshold:.12});
+document.querySelectorAll(".rise:not(.in)").forEach(el => io.observe(el));
+</script>
+</body>
 </html>

@@ -439,16 +439,20 @@ def main():
     out_dir = os.path.join(SITE, "faculty")
     os.makedirs(out_dir, exist_ok=True)
 
-    html = build_index(people, site)
-    open(os.path.join(out_dir, "index.html"), "w", encoding="utf-8").write(html)
-    print("师资列表", len(html) // 1024, "KB")
+    # 师资页已按业务要求恢复为旧版「每人一色」，不再由本脚本覆盖
+    if os.path.exists(os.path.join(out_dir, ".legacy-restored")):
+        print("师资页为旧版还原状态，跳过生成")
+    else:
+        html = build_index(people, site)
+        open(os.path.join(out_dir, "index.html"), "w", encoding="utf-8").write(html)
+        print("师资列表", len(html) // 1024, "KB")
 
-    for p in people:
-        d = os.path.join(out_dir, p["slug"])
-        os.makedirs(d, exist_ok=True)
-        h = build_person(p, people, site)
-        open(os.path.join(d, "index.html"), "w", encoding="utf-8").write(h)
-        print(f'  {p["slug"]:<16} {len(p["sections"])} 章节  {len(h)//1024} KB')
+        for p in people:
+            d = os.path.join(out_dir, p["slug"])
+            os.makedirs(d, exist_ok=True)
+            h = build_person(p, people, site)
+            open(os.path.join(d, "index.html"), "w", encoding="utf-8").write(h)
+            print(f'  {p["slug"]:<16} {len(p["sections"])} 章节  {len(h)//1024} KB')
 
     ddir = os.path.join(SITE, "demos")
     os.makedirs(ddir, exist_ok=True)
