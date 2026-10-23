@@ -1,937 +1,204 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="dark"><head>
+<html lang="zh-CN">
+<head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>AIGC 内容团队 · 团队介绍</title>
-<meta name="description" content="AIGC 内容团队：创始人王雅各（遥触灵境 CEO）、王梁正（联合创始人）与陈琪昌、葛蔚斌、陈昊男、周于凯、陈家龙、施润宇、周正鸿、谢千星、戴思阳、李自长、张启伟、朱江江十二位导师。覆盖平台操盘、AIGC 视频工作流、企业 AI 培训交付、AIGC 实战教学与企业转型、AI 教育与编程教学、AI 商业操盘与短剧 IP 策划、影视剧集与网络短剧创作、AI 短剧资产制作与画面质检等方向。">
-<style>
-  :root{
-    --bg:#F5F5F7;
-    --bg-soft:#FFFFFF;
-    --card:#FFFFFF;
-    --ink:#1D1D1F;
-    --ink-dim:#6E6E73;
-    --ink-faint:#AEAEB2;
-    --line:rgba(0,0,0,.06);
-    --tint:#0071E3;
-    --shadow-1:0 2px 8px rgba(0,0,0,.04),0 12px 32px rgba(0,0,0,.06);
-    --shadow-2:0 4px 12px rgba(0,0,0,.06),0 20px 48px rgba(0,0,0,.10);
-    --nav-bg:rgba(255,255,255,.72);
-    --dock-bg:rgba(255,255,255,.65);
-    --sans:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","PingFang SC","HarmonyOS Sans SC","Microsoft YaHei",sans-serif;
-  }
-  html[data-theme="dark"]{
-    --bg:#1D1D1F;
-    --bg-soft:#1D1D1F;
-    --card:#2C2C2E;
-    --ink:#F5F5F7;
-    --ink-dim:#A1A1A6;
-    --ink-faint:#636366;
-    --line:rgba(255,255,255,.08);
-    --shadow-1:0 2px 8px rgba(0,0,0,.24),0 12px 32px rgba(0,0,0,.32);
-    --shadow-2:0 4px 12px rgba(0,0,0,.28),0 20px 48px rgba(0,0,0,.40);
-    --nav-bg:rgba(28,28,30,.68);
-    --dock-bg:rgba(44,44,46,.62);
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-  body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.7;
-    overflow-x:hidden;transition:background .5s ease,color .5s ease}
-  ::selection{background:rgba(0,113,227,.22)}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 28px}
-
-  /* ===== 主题按钮（右下角悬浮小圆钮） ===== */
-  .theme-btn{position:fixed;right:22px;bottom:22px;z-index:60;
-    width:40px;height:40px;border-radius:50%;border:1px solid var(--line);
-    background:var(--card);color:var(--ink);cursor:pointer;font-size:16px;
-    display:flex;align-items:center;justify-content:center;
-    box-shadow:var(--shadow-1);
-    transition:transform .3s ease,box-shadow .3s ease}
-  .theme-btn:hover{transform:scale(1.08);box-shadow:var(--shadow-2,var(--shadow-1))}
-  .theme-btn:active{transform:scale(.94)}
-
-  /* ===== 音效开关（主题按钮左侧） ===== */
-  .sound-btn{right:70px}
-  .sound-btn svg{width:17px;height:17px;display:block}
-  .sound-btn .slash{display:none}
-  .sound-btn.muted .slash{display:block}
-  .sound-btn.muted .waves{display:none}
-
-  /* ===== 顶部滚动进度线 ===== */
-  .scroll-progress{position:fixed;top:0;left:0;height:2px;width:0;z-index:80;
-    background:linear-gradient(90deg,var(--tint),#7C5CFC);
-    border-radius:0 2px 2px 0;opacity:.85;pointer-events:none}
-
-  /* ===== Hero ===== */
-  header{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;
-    padding:clamp(60px,8vh,100px) 0 clamp(30px,4vh,60px)}
-  header::before{content:"";position:absolute;left:50%;top:0;transform:translateX(-50%);
-    width:min(960px,130vw);height:100%;pointer-events:none;z-index:-1;
-    background:radial-gradient(ellipse 65% 55% at 50% 45%,rgba(0,113,227,.09),transparent 72%)}
-  html[data-theme="dark"] header::before{
-    background:radial-gradient(ellipse 65% 55% at 50% 45%,rgba(124,92,252,.13),transparent 72%)}
-  .hero-tag{font-size:13px;font-weight:600;letter-spacing:.12em;color:var(--ink-dim);
-    text-transform:uppercase;margin-bottom:14px}
-  h1{font-size:clamp(38px,7vw,64px);font-weight:700;letter-spacing:-.02em;line-height:1.08}
-  .sub{margin-top:18px;font-size:clamp(15px,2.2vw,18px);color:var(--ink-dim);max-width:620px;line-height:1.75}
-  .sub b{color:var(--ink);font-weight:600}
-  .count-row{margin-top:26px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
-  .count-pill{display:inline-flex;align-items:baseline;gap:7px;padding:8px 18px;border-radius:999px;
-    background:var(--card);box-shadow:var(--shadow-1);font-size:13px;color:var(--ink-dim);
-    transition:transform .3s ease,box-shadow .3s ease}
-  .count-pill b{font-size:19px;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums}
-  .count-pill:hover{transform:translateY(-2px);box-shadow:var(--shadow-2)}
-  .demo-pill{text-decoration:none;color:#0053C2;font-weight:700;cursor:pointer;
-    border:1px solid var(--line);transition:border-color .3s ease,transform .3s ease,box-shadow .3s ease;
-    --glow:rgba(0,83,194,.32);
-    animation:pulseGlow 2.8s ease-in-out infinite}
-  html[data-theme="dark"] .demo-pill{color:#6FB4FF;--glow:rgba(111,180,255,.34)}
-  @keyframes pulseGlow{
-    0%,100%{box-shadow:0 0 0 0 var(--glow)}
-    55%{box-shadow:0 0 0 12px transparent}
-  }
-  .demo-pill b{color:inherit}
-  .demo-pill:hover{animation:none;transform:translateY(-2px);box-shadow:var(--shadow-1);border-color:rgba(10,132,255,.45)}
-  a.count-pill{text-decoration:none;color:var(--ink-dim);cursor:pointer}
-  main section{scroll-margin-top:76px}
-  html{scroll-behavior:smooth}
-
-  /* ===== 分组标题 ===== */
-  .group-head{display:flex;align-items:baseline;gap:14px;margin:clamp(64px,9vw,110px) 0 clamp(16px,2.5vw,24px)}
-  .group-head .zh{font-size:clamp(22px,3.4vw,30px);font-weight:700;letter-spacing:-.01em}
-  .group-head .en{font-size:12px;font-weight:600;color:var(--ink-faint);letter-spacing:.18em;text-transform:uppercase}
-
-  /* ===== 创始人横卡 ===== */
-  .fgrid{display:grid;gap:20px}
-  .fcard{position:relative;display:grid;grid-template-columns:240px 1fr;background:var(--card);
-    border-radius:24px;box-shadow:var(--shadow-1);text-decoration:none;color:inherit;overflow:hidden;
-    transition:transform .45s cubic-bezier(.22,1,.36,1),box-shadow .45s ease}
-  .fcard:hover{transform:translateY(-5px) scale(1.005);box-shadow:var(--shadow-2)}
-  .fcard .photo-box{position:relative;background:var(--bg);min-height:250px}
-  .fcard .photo-box img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;
-    transition:transform .6s cubic-bezier(.22,1,.36,1)}
-  .fcard:hover .photo-box img{transform:scale(1.04)}
-  .fcard .body{padding:26px 30px;display:flex;flex-direction:column;min-width:0}
-  .fcard .name-row{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
-  .fcard .name{font-size:clamp(26px,3.4vw,34px);font-weight:700;letter-spacing:-.01em}
-  .fcard .title{font-size:13.5px;font-weight:600;color:var(--c);letter-spacing:.02em}
-  .fcard .desc{margin-top:12px;font-size:14.5px;color:var(--ink-dim);line-height:1.85;flex:1}
-  .fcard .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
-  .fcard .chip{font-size:12.5px;font-weight:500;color:var(--ink-dim);padding:5px 14px;
-    border-radius:999px;background:var(--bg)}
-  .fcard .go{margin-top:18px;font-size:13.5px;font-weight:600;color:var(--c);
-    display:inline-flex;align-items:center;gap:6px}
-  .fcard .go::after{content:"→";transition:transform .3s ease}
-  .fcard:hover .go::after{transform:translateX(4px)}
-
-  /* ===== 导师网格 ===== */
-  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding-bottom:clamp(120px,16vw,160px)}
-  .card{position:relative;display:flex;flex-direction:column;background:var(--card);
-    border-radius:22px;box-shadow:var(--shadow-1);text-decoration:none;color:inherit;overflow:hidden;
-    transition:transform .45s cubic-bezier(.22,1,.36,1),box-shadow .45s ease}
-  .card:hover{transform:translateY(-6px);box-shadow:var(--shadow-2)}
-  .photo-box{position:relative;aspect-ratio:4/5;background:var(--bg);overflow:hidden}
-  .photo-box img{width:100%;height:100%;object-fit:cover;object-position:top center;
-    transition:transform .6s cubic-bezier(.22,1,.36,1),opacity .5s ease}
-  .card:hover .photo-box img{transform:scale(1.045)}
-  .badge{position:absolute;top:14px;left:14px;padding:5px 13px;border-radius:999px;
-    background:rgba(255,255,255,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-    font-size:11.5px;font-weight:600;color:#1D1D1F;letter-spacing:.02em;z-index:2}
-  .body{padding:20px 22px 22px;display:flex;flex-direction:column;flex:1;min-width:0}
-  .name-row{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap}
-  .name{font-size:21px;font-weight:700;letter-spacing:-.01em}
-  .title{font-size:12.5px;font-weight:600;color:var(--c)}
-  .desc{margin-top:8px;font-size:13.5px;color:var(--ink-dim);line-height:1.75;flex:1;
-    display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-  .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
-  .chip{font-size:11.5px;font-weight:500;color:var(--ink-dim);padding:4px 11px;border-radius:999px;background:var(--bg)}
-  .more{margin-top:14px;padding-top:13px;border-top:1px solid var(--line);
-    font-size:12.5px;font-weight:600;color:var(--ink-faint);letter-spacing:.04em;
-    display:flex;align-items:center;justify-content:space-between;transition:color .3s ease}
-  .card:hover .more{color:var(--c)}
-  .more::after{content:"→"}
-
-  footer{padding:34px 0 140px;text-align:center;font-size:12.5px;color:var(--ink-faint);letter-spacing:.06em}
-
-  /* ===== Dock（4 人窗口 · 悬停滚轮横滑） ===== */
-  .dock{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:70;
-    display:flex;flex-direction:column;align-items:center}
-  .dock-tip{margin-bottom:9px;padding:5px 13px;border-radius:10px;background:var(--card);
-    box-shadow:var(--shadow-2);font-size:12.5px;font-weight:600;color:var(--ink);white-space:nowrap;
-    opacity:0;transform:translateY(4px);pointer-events:none;
-    transition:opacity .22s ease,transform .22s ease}
-  .dock-tip.show{opacity:1;transform:translateY(0)}
-  .dock-scroll{display:flex;gap:9px;padding:9px 13px;border-radius:24px;max-width:246px;
-    background:var(--dock-bg);backdrop-filter:blur(24px) saturate(1.8);-webkit-backdrop-filter:blur(24px) saturate(1.8);
-    border:1px solid var(--line);box-shadow:var(--shadow-2);
-    overflow-x:auto;scrollbar-width:none;scroll-behavior:smooth;overscroll-behavior-x:contain;
-    --ml:0;--mr:1;
-    mask-image:linear-gradient(90deg,rgba(0,0,0,var(--ml)) 0,#000 16px,#000 calc(100% - 16px),rgba(0,0,0,var(--mr)) 100%);
-    -webkit-mask-image:linear-gradient(90deg,rgba(0,0,0,var(--ml)) 0,#000 16px,#000 calc(100% - 16px),rgba(0,0,0,var(--mr)) 100%)}
-  .dock-scroll::-webkit-scrollbar{display:none}
-  .dock-item{display:flex;flex-direction:column;align-items:center;flex:0 0 auto;
-    text-decoration:none;transition:transform .28s cubic-bezier(.22,1,.36,1)}
-  .dock-item img{width:44px;height:44px;border-radius:13px;object-fit:cover;object-position:top center;
-    box-shadow:0 2px 8px rgba(0,0,0,.18);transition:box-shadow .3s ease}
-  .dock-item .dot{width:4px;height:4px;border-radius:50%;background:var(--ink-faint);margin-top:5px;
-    transition:background .3s ease}
-  .dock-item:hover .dot{background:var(--c)}
-
-  /* 入场动画 */
-  .rise{opacity:0;transform:translateY(22px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
-  .rise.in{opacity:1;transform:translateY(0)}
-
-  @media (max-width:900px){
-    .grid{grid-template-columns:1fr 1fr}
-  }
-  /* ===== 漂浮物彩蛋 ===== */
-  #bg-objs{position:fixed;inset:0;z-index:-2;pointer-events:none}
-  .float-toast{position:fixed;left:50%;bottom:96px;transform:translateX(-50%) translateY(10px);z-index:90;
-    padding:11px 22px;border-radius:999px;background:rgba(29,29,31,.88);color:#fff;font-size:13px;font-weight:600;
-    letter-spacing:.02em;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-    box-shadow:0 10px 32px rgba(0,0,0,.22);opacity:0;pointer-events:none;transition:opacity .45s ease,transform .45s ease}
-  .float-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-  @keyframes microShake{
-    0%,100%{transform:translate(0,0)}
-    20%{transform:translate(-3px,1px)}
-    40%{transform:translate(3px,-1px)}
-    60%{transform:translate(-2px,-1px)}
-    80%{transform:translate(2px,1px)}
-  }
-  body.shake{animation:microShake .32s ease}
-  @media (max-width:640px){
-    .grid{grid-template-columns:1fr}
-    .fcard{grid-template-columns:1fr}
-    .fcard .photo-box{min-height:0;aspect-ratio:4/3}
-    .fcard .photo-box img{position:absolute}
-    .dock-scroll{gap:6px;padding:7px 9px;border-radius:20px;max-width:198px}
-    .dock-item img{width:36px;height:36px;border-radius:11px}
-  }
-</style>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>师资团队 · 遥触灵境</title>
+<meta name="description" content="遥触灵境 14 位一线实战导师，覆盖平台操盘、工作流开发、短剧创作、企业培训与教学设计。">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/logo/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/logo/apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+<link rel="stylesheet" href="../assets/css/faculty.css">
+<script src="../assets/js/site.js" defer></script>
 </head>
-<body>
-
-<canvas id="bg-objs" aria-hidden="true"></canvas>
-<div class="float-toast" id="floatToast">能量已注入 AIGC 流水线 🎬</div>
-
-<div class="scroll-progress" id="scrollProgress" style="width: 11.6144%;"></div>
-<button class="theme-btn" id="themeBtn" aria-label="切换深浅色" title="切换深浅色">☀</button>
-<button class="theme-btn sound-btn" id="soundFab" aria-label="音效开关" title="漂浮物音效开关">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M11 5 6 9H3v6h3l5 4z" fill="currentColor" stroke="none"/>
-    <path class="waves" d="M15.5 8.5a5 5 0 0 1 0 7"/>
-    <path class="waves" d="M18 6a8.5 8.5 0 0 1 0 12"/>
-    <line class="slash" x1="4" y1="4" x2="20" y2="20"/>
-  </svg>
-</button>
-
-<header class="wrap">
-  <div class="hero-tag rise in">Team · 团队阵容</div>
-  <h1 class="rise d1 in">AIGC 内容团队</h1>
-  <p class="sub rise d2 in">以 <b>AIGC 驱动内容工业化</b>的创始人与导师阵容，覆盖平台操盘、工作流开发、短视频实战教育、AI 短剧全流程训练、AI 宣传片创作等方向。</p>
-  <div class="count-row rise d3 in">
-    <a class="count-pill" href="#founders"><b id="numF">2</b> 位创始人</a>
-    <a class="count-pill" href="#mentors"><b id="numM">12</b> 位导师</a>
-    <span class="count-pill" style="color:var(--ink-faint)">持续扩充</span>
-    <a class="count-pill demo-pill" href="../demos/index.html" style="font-size: 15px; font-weight: bold">Demo 作品 →</a>
+<body class="">
+<div class="progress" id="progress" aria-hidden="true"></div>
+<header class="nav nav--solid" id="nav">
+  <div class="nav__inner">
+    <a class="brand" href="../index.html" aria-label="遥触灵境 首页">
+      <img class="brand__mark" src="../assets/logo/mark.png" width="40" height="34" alt="">
+      <span class="brand__name">遥触灵境</span>
+    </a>
+    <nav class="nav__links" aria-label="主导航"><a href="../index.html#about">关于</a><a href="../index.html#business">业务</a><a href="../index.html#cases">案例</a><a href="../faculty/index.html" aria-current="page">师资</a><a href="../demos/index.html">Demo</a><a href="../index.html#partners">合作</a></nav>
+    <div class="nav__actions">
+      <a class="btn btn--sm btn--green" href="../index.html#contact">联系我们</a>
+      <button class="nav__toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false" aria-controls="sheet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
   </div>
 </header>
-
-<main class="wrap">
-  <section id="founders">
-    <div class="group-head rise in"><span class="zh">创始人</span><span class="en">Founder</span></div>
-    <div class="fgrid" id="fgrid"></div>
-  </section>
-  <section id="mentors">
-    <div class="group-head rise in"><span class="zh">导师团队</span><span class="en">Mentors</span></div>
-    <div class="grid" id="grid"></div>
-  </section>
-
-  <footer class="rise">AIGC 内容团队 · 团队介绍</footer>
-</main>
-
-<nav class="dock" id="dock" aria-label="成员快速导航">
-  <div class="dock-tip" id="dockTip"></div>
-  <div class="dock-scroll" id="dockScroll"></div></nav>
-
-<script>
-/* =====================================================================
-   成员数据（在这里加新成员）
-   ---------------------------------------------------------------------
-   新增步骤：
-   1. 在仓库（本目录）下新建子文件夹，放入该成员的 index.html 和 photo.jpg
-   2. 复制下面一组 { } 到数组末尾，改掉 name / dir / title / tags / desc
-   3. color 填该成员页面的 tint 主题色（十六进制）
-   4. group 填 "founder" 则归入创始人分区；不填或填其他值归入导师团队
-   ===================================================================== */
-const LECTURERS = [
-  {
-    group: "founder",
-    name: "王雅各",
-    dir: "wangyage/",
-    title: "遥触灵境（杭州）科技 · 首席执行官",
-    color: "#7C5CFC",
-    tags: ["10 年+ 平台操盘", "亿级爆款短剧", "年产能 1200+ 部"],
-    desc: "国内最早一批深耕短剧赛道的平台操盘手，10 年+互联网内容行业经验；主导头部平台短剧业务从 0 到 1，打造多个亿级播放量爆款；现带领遥触灵境深耕 AIGC 内容工业化与产教融合。"
-  },
-  {
-    group: "founder",
-    name: "王梁正",
-    dir: "wangliangzheng/",
-    title: "遥触灵境（杭州）科技 · 联合创始人",
-    color: "#C77E42",
-    tags: ["7 年互联网营销", "AIGC 市场体系 0→1", "B 端生态合作"],
-    desc: "深耕 AIGC 领域 4 年+，7 年互联网市场营销与业务拓展经验；从 0 到 1 搭建完整 AIGC 产品市场体系，在 B 端客户拓展与生态合作构建方面积累丰富实战经验，代表公司达成中南卡通、中泽空间等多项战略合作。"
-  },
-  {
-    name: "陈琪昌",
-    dir: "chenqichang/",
-    title: "AIGC 视频训练师",
-    color: "#C9971C",
-    tags: ["AIGC 视频工作流", "千万级播放", "Seedance 2.5 先行者"],
-    desc: "AIGC 视频训练师、工作流前沿研究者；累计完成 2000+ 分钟 AIGC 内容，多部作品千万级播放；Seedance 2.5 / Happyhorse 内测工作流开发先行者，自研漫剧前置资产 Skills 工作流。"
-  },
-  {
-    name: "葛蔚斌",
-    dir: "geweibin/",
-    title: "AIGC 视频创作专家",
-    color: "#D1567F",
-    tags: ["2000+ 分钟创作", "千万级播放", "企业 AI 培训交付"],
-    desc: "AIGC 视频创作专家 & AI 短剧讲师；累计创作内容超 2000 分钟，多部作品千万级播放；温州广电三期 AI 短剧专项培训、温州文旅 AI 宣传片培训，并面向宁波企业、临海青创学院（政府联合创办）交付企业 AI 培训。"
-  },
-  {
-    name: "陈昊男",
-    dir: "chenhaonan/",
-    title: "实战派短视频导师",
-    color: "#3E8E6D",
-    tags: ["10 年传统影视", "AIGC 真人短剧", "企业转型赋能"],
-    desc: "实战派短视频导师、AIGC 讲师，10 年传统影视经验；深耕 AIGC 真人短剧创作与短视频实战教育，服务东风日产、东阿阿胶、上汽进口、麦吉丽等品牌，培训足迹覆盖杭州、武汉、深圳、上海。"
-  },
-  {
-    name: "周于凯",
-    dir: "zhouyukai/",
-    title: "AIGC 视频创作专家",
-    color: "#5B6B7A",
-    tags: ["2000+ 分钟创作", "千万级播放", "温州广电三期培训"],
-    desc: "AIGC 视频创作专家 & AI 短剧讲师；累计创作内容超 2000 分钟，作品覆盖红果剧场、TikTok 等主流平台，多部作品播放量突破千万级；兼具实战经验与教学能力，助力传统行业实现 AI 内容升级。"
-  },
-  {
-    name: "陈家龙",
-    dir: "chenjialong/",
-    title: "AIGC 视频导师",
-    color: "#C25E6E",
-    tags: ["单部 8000 万+ 播放", "累计播放 1 亿+", "温州广电合作导师"],
-    desc: "AIGC 视频导师，红果短剧与海外短剧平台千万级爆款制作负责人，作品累计播放超 1 亿；兼具实战经验与教学能力，把想象力做成千万级播放。"
-  },
-  {
-    name: "施润宇",
-    dir: "shirunyu/",
-    title: "AIGC 实战应用讲师",
-    color: "#0F8B8D",
-    tags: ["工信部认证培训师", "微软认证应用师", "5000+ 培训学员"],
-    desc: "专注 AIGC 实战应用与商业落地的资深讲师；工信部认证 AIGC 高级培训师、提示词工程师，微软认证全球通用人工智能应用师；累计服务 30+ 企业 AI 转型项目（平均提效 33%），线下授课超 400 小时、培训学员超 5000 人，全网粉丝超 50 万。"
-  },
-  {
-    name: "周正鸿",
-    dir: "zhouzhenghong/",
-    title: "AI 教育与 AIGC 方向讲师",
-    color: "#4338CA",
-    tags: ["十余年高校教育", "5 年 AI 教育创业", "自研 5S 实操课程"],
-    desc: "西安电子科技大学信息管理系统专业毕业，十余年高校教育经历与 5 年 AI 教育、创业经验，现深耕 AIGC、GEO、FDE 方向；长期专注 AI 内容生产全链路，系统掌握提示词工程、AI 工作流搭建与多模态工具组合应用，自主研发《新手 AI 学习 5S 实操》课程。"
-  },
-  {
-    name: "谢千星",
-    dir: "xieqianxing/",
-    title: "AI 与编程教学讲师",
-    color: "#E07A2F",
-    tags: ["双本科学位", "AI 漫剧全流程", "蓝桥杯省一等奖"],
-    desc: "多年 AI 与编程教学经验，双本科学位（沈阳师范大学计算机 + 国家开放大学人工智能本科）；曾于星火智脑 AI 少年科创营讲授 AI 漫剧制作，熟悉 AI 漫剧制作全流程；蓝桥 STEMA 评测 C++ 组优秀指导教师，曾获蓝桥杯程序设计大赛省一等奖，胜寒高智商俱乐部会员。"
-  },
-  {
-    name: "戴思阳",
-    dir: "daisiyang/",
-    title: "AI 商业讲师 · IP 与短剧策划",
-    color: "#B5563C",
-    tags: ["18 年一线操盘", "文旅 · 游戏 · AIGC", "海外短剧 IP 策划"],
-    desc: "实战型商业操盘人、AI 商业讲师，18 年一线项目操盘经验，先后担任技术合伙人、联合创始人，横跨城乡规划文旅、数字游戏文创、AIGC 文创多大赛道；主攻企业实战型 AI 商业落地、海外 AI 短剧 IP 策划与全流程剧本创作。"
-  },
-  {
-    name: "李自长",
-    dir: "lizizhang/",
-    title: "AIGC 视频编导 · 编剧",
-    color: "#2563EB",
-    tags: ["五年短剧创作积淀", "奇幻 × 轻喜剧", "生成式技术 × 影视叙事"],
-    desc: "AIGC 视频编导、编剧、内容策划人；五年影视剧集及网络短剧创作积淀，在内容策划、叙事建构与影像表达之间形成贯通能力；创作兼具奇幻题材的想象张力与轻喜剧类型的松弛质感，持续探索生成式技术与影视叙事的融合边界。"
-  },
-  {
-    name: "张启伟",
-    dir: "zhangqiwei/",
-    title: "AI 短剧抽卡师 · 助教",
-    color: "#7A9C1B",
-    tags: ["AI 绘图角色抽卡", "画面质检", "助教全流程"],
-    desc: "AI 短剧抽卡师，拥有一线 AI 短剧资产落地实战经验，长期负责 AI 绘图角色抽卡、画面质检与视觉风格统一管控；能快速识别 AI 出图常见问题，沉淀标准化素材筛选规范与实操避坑方法论，可独立承担助教全流程工作。"
-  },
-  {
-    name: "朱江江",
-    dir: "zhujiangjiang/",
-    title: "AI 视频创作 · 资产 / 分镜 / 生成",
-    color: "#B5378F",
-    tags: ["资产制作", "剧本分镜", "视频生成"],
-    desc: "AI 视频创作从业者，长期专注 AI 影像内容的策划与制作；曾参与多部 AI 题材剧集全程制作，负责资产制作、剧本分镜生成及视频生成三大核心环节，持续研究 AI 视频在效率提升、成本控制与创作表现方面的应用路径。"
-  }
-];
-
-/* ---- 主题切换 ---- */
-if ("scrollRestoration" in history) history.scrollRestoration = "manual";
-const themeBtn = document.getElementById("themeBtn");
-const savedTheme = localStorage.getItem("theme") || "light";
-document.documentElement.dataset.theme = savedTheme;
-themeBtn.textContent = savedTheme === "dark" ? "☀" : "◐";
-themeBtn.addEventListener("click", () => {
-  const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-  document.documentElement.dataset.theme = next;
-  localStorage.setItem("theme", next);
-  themeBtn.textContent = next === "dark" ? "☀" : "◐";
-});
-
-/* ---- 渲染 ---- */
-const fgrid = document.getElementById("fgrid");
-const grid = document.getElementById("grid");
-const founders = LECTURERS.filter(l => l.group === "founder");
-const mentors = LECTURERS.filter(l => l.group !== "founder");
-
-founders.forEach(l => {
-  const a = document.createElement("a");
-  a.className = "fcard rise";
-  a.href = l.dir + "index.html";
-  a.style.setProperty("--c", l.color);
-  a.innerHTML = `
-    <div class="photo-box"><img src="${l.dir}photo.jpg" alt="${l.name}" loading="lazy"></div>
-    <div class="body">
-      <div class="name-row"><span class="name">${l.name}</span><span class="title">${l.title}</span></div>
-      <p class="desc">${l.desc}</p>
-      <div class="chips">${l.tags.map(t => `<span class="chip">${t}</span>`).join("")}</div>
-      <span class="go">查看详情</span>
-    </div>`;
-  fgrid.appendChild(a);
-});
-
-mentors.forEach((l, i) => {
-  const a = document.createElement("a");
-  a.className = "card rise d" + ((i % 3) + 1);
-  a.href = l.dir + "index.html";
-  a.style.setProperty("--c", l.color);
-  a.innerHTML = `
-    <div class="photo-box">
-      <span class="badge">${l.title}</span>
-      <img src="${l.dir}photo.jpg" alt="${l.name}" loading="lazy">
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="导航菜单">
+  <button class="sheet__close" id="sheetClose" aria-label="关闭菜单"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+  <a href="../index.html#about" style="--i:0">关于</a><a href="../index.html#business" style="--i:1">业务</a><a href="../index.html#cases" style="--i:2">案例</a><a href="../faculty/index.html" style="--i:3">师资</a><a href="../demos/index.html" style="--i:4">Demo</a><a href="../index.html#partners" style="--i:5">合作</a>
+</div><main>
+  <header class="page-hero">
+    <div class="container">
+      <div class="breadcrumb" data-reveal><a href="../index.html">首页</a><span>/</span><span>师资团队</span></div>
+      <h1 class="page-hero__title" data-reveal="blur" style="--i:1">14 位一线实战导师</h1>
+      <p class="page-hero__sub" data-reveal style="--i:2">一线实战导师，覆盖平台操盘、工作流开发、短剧创作、企业培训与教学设计</p>
+      <div class="fstats" data-reveal style="--i:3">
+        <div class="fstat"><b>14</b><span>在册导师</span></div>
+        <div class="fstat"><b>2</b><span>创始人</span></div>
+        <div class="fstat"><b>12</b><span>导师团队</span></div>
+        <div class="fstat"><b>18</b><span>部代表作品</span></div>
+      </div>
     </div>
-    <div class="body">
-      <div class="name-row"><span class="name">${l.name}</span><span class="title">${l.title}</span></div>
-      <p class="desc">${l.desc}</p>
-      <div class="chips">${l.tags.map(t => `<span class="chip">${t}</span>`).join("")}</div>
-      <span class="more">查看详情</span>
-    </div>`;
-  grid.appendChild(a);
-});
-document.getElementById("numF").textContent = founders.length;
-document.getElementById("numM").textContent = mentors.length;
+  </header>
 
-/* ---- 数字滚动（count-up） ---- */
-function countUp(el, target, dur){
-  dur = dur || 900;
-  const t0 = performance.now();
-  const step = now => {
-    const p = Math.min((now - t0) / dur, 1);
-    const e = 1 - Math.pow(1 - p, 3);
-    el.textContent = Math.round(e * target);
-    if (p < 1) requestAnimationFrame(step);
-  };
-  requestAnimationFrame(step);
-}
-setTimeout(() => {
-  countUp(document.getElementById("numF"), founders.length, 700);
-  countUp(document.getElementById("numM"), mentors.length, 900);
-}, 400);
+  <div class="container">
+    <div class="filter" role="group" aria-label="筛选成员" data-reveal>
+      <button data-filter="all" class="is-on" aria-pressed="true">全部 14</button>
+      <button data-filter="founder" aria-pressed="false">创始人 2</button>
+      <button data-filter="mentor" aria-pressed="false">导师 12</button>
+    </div>
 
-/* ---- 卡片 3D 倾斜（rAF 阻尼插值，跟手且带回弹） ---- */
-const finePointer = matchMedia("(pointer:fine)").matches;
-if (finePointer){
-  const attachTilt = el => {
-    let tx = 0, ty = 0, cx = 0, cy = 0, raf = null;
-    const MAX = 2.6, DAMP = .13, LIFT = 3;
-    const loop = () => {
-      cx += (tx - cx) * DAMP;
-      cy += (ty - cy) * DAMP;
-      const settled = tx === 0 && ty === 0 && Math.abs(cx) < .002 && Math.abs(cy) < .002;
-      el.style.transform = settled ? "" :
-        `perspective(1100px) rotateX(${(-cy * MAX).toFixed(2)}deg) rotateY(${(cx * MAX).toFixed(2)}deg) translateY(-${LIFT}px)`;
-      if (settled){ raf = null; return; }
-      raf = requestAnimationFrame(loop);
-    };
-    const kick = () => { if (!raf) raf = requestAnimationFrame(loop); };
-    el.addEventListener("mousemove", e => {
-      const r = el.getBoundingClientRect();
-      tx = (e.clientX - r.left) / r.width - .5;
-      ty = (e.clientY - r.top) / r.height - .5;
-      kick();
-    });
-    el.addEventListener("mouseleave", () => { tx = 0; ty = 0; kick(); });
-  };
-  document.querySelectorAll(".fcard, .card").forEach(attachTilt);
-}
+    <section class="founders" data-section="founder">
+      <a class="fcard" href="wangyage/index.html" data-reveal data-group="founder">
+  <div class="fcard__photo"><img src="../assets/img/faculty/wangyage.jpg" width="560" height="700" alt="王雅各" loading="lazy"></div>
+  <div class="fcard__body">
+    <h2 class="fcard__name">王雅各</h2>
+    <div class="fcard__title">遥触灵境（杭州）科技 · 首席执行官</div>
+    <p class="fcard__desc">国内最早一批深耕短剧赛道的平台操盘手，10 年+互联网内容行业经验；主导头部平台短剧业务从 0 到 1，打造多个亿级播放量爆款；现带领遥触灵境深耕 AIGC 内容工业化与产教融合。</p>
+    <div class="fcard__tags"><span>10 年+ 平台操盘</span><span>亿级爆款短剧</span><span>年产能 1200+ 部</span></div>
+    <span class="fcard__go">查看履历 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+  </div>
+</a><a class="fcard" href="wangliangzheng/index.html" data-reveal data-group="founder">
+  <div class="fcard__photo"><img src="../assets/img/faculty/wangliangzheng.jpg" width="560" height="700" alt="王梁正" loading="lazy"></div>
+  <div class="fcard__body">
+    <h2 class="fcard__name">王梁正</h2>
+    <div class="fcard__title">遥触灵境（杭州）科技 · 联合创始人</div>
+    <p class="fcard__desc">深耕 AIGC 领域 4 年+，7 年互联网市场营销与业务拓展经验；从 0 到 1 搭建完整 AIGC 产品市场体系，在 B 端客户拓展与生态合作构建方面积累丰富实战经验，代表公司达成中南卡通、中泽空间等多项战略合作。</p>
+    <div class="fcard__tags"><span>7 年互联网营销</span><span>AIGC 市场体系 0→1</span><span>B 端生态合作</span></div>
+    <span class="fcard__go">查看履历 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+  </div>
+</a>
+    </section>
 
-/* ---- 顶部滚动进度线 ---- */
-const progressBar = document.getElementById("scrollProgress");
-const syncProgress = () => {
-  const max = document.documentElement.scrollHeight - innerHeight;
-  progressBar.style.width = (max > 0 ? (scrollY / max) * 100 : 0) + "%";
-};
-addEventListener("scroll", syncProgress, { passive: true });
-syncProgress();
+    <section class="mentors" data-section="mentor">
+      <a class="mcard" href="chenqichang/index.html" data-reveal data-group="mentor" style="--i:0">
+  <div class="mcard__photo"><img src="../assets/img/faculty/chenqichang.jpg" width="560" height="700" alt="陈琪昌" loading="lazy"></div>
+  <div class="mcard__body">
+    <div class="mcard__name">陈琪昌</div>
+    <div class="mcard__title">AIGC 视频训练师</div>
+    <p class="mcard__desc">AIGC 视频训练师、工作流前沿研究者；累计完成 2000+ 分钟 AIGC 内容，多部作品千万级播放；Seedance 2.5 / Happyhorse 内测工作流开发先行者，自研漫剧前置资产 Skills 工作流。</p>
+    <div class="mcard__tags"><span>AIGC 视频工作流</span><span>千万级播放</span><span>Seedance 2.5 先行者</span></div>
+    <span class="mcard__go">查看履历 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+  </div>
+</a><a class="mcard" href="geweibin/index.html" data-reveal data-group="mentor" style="--i:1">
+  <div class="mcard__photo"><img src="../assets/img/faculty/geweibin.jpg" width="560" height="700" alt="葛蔚斌" loading="lazy"></div>
+  <div class="mcard__body">
+    <div class="mcard__name">葛蔚斌</div>
+    <div class="mcard__title">AIGC 视频创作专家</div>
+    <p class="mcard__desc">AIGC 视频创作专家 &amp; AI 短剧讲师；累计创作内容超 2000 分钟，多部作品千万级播放；温州广电三期 AI 短剧专项培训、温州文旅 AI 宣传片培训，并面向宁波企业、临海青创学院（政府联合创办）交付企业 AI 培训。</p>
+    <div class="mcard__tags"><span>2000+ 分钟创作</span><span>千万级播放</span><span>企业 AI 培训交付</span></div>
+    <span class="mcard__go">查看履历 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+  </div>
+</a><a class="mcard" href="chenhaonan/index.html" data-reveal data-group="mentor" style="--i:2">
+  <div class="mcard__photo"><img src="../assets/img/faculty/chenhaonan.jpg" width="560" height="700" alt="陈昊男" loading="lazy"></div>
+  <div class="mcard__body">
+    <div class="mcard__name">陈昊男</div>
+    <div class="mcard__title">实战派短视频导师</div>
+    <p class="mcard__desc">实战派短视频导师、AIGC 讲师，10 年传统影视经验；深耕 AIGC 真人短剧创作与短视频实战教育，服务东风日产、东阿阿胶、上汽进口、麦吉丽等品牌，培训足迹覆盖杭州、武汉、深圳、上海。</p>
+    <div class="mcard__tags"><span>10 年传统影视</span><span>AIGC 真人短剧</span><span>企业转型赋能</span></div>
+    <span class="mcard__go">查看履历 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+  </div>
+</a><a class="mcard" href="zhouyukai/index.html" data-reveal data-group="mentor" style="--i:0">
+  <div class="mcard__photo"><img src="../assets/img/faculty/zhouyukai.jpg" width="560" height="700" alt="周于凯" loading="lazy"></div>
+  <div class="mcard__body">
+    <div class="mcard__name">周于凯</div>
+    <div class="mcard__title">AIGC 视频创作专家</div>
+    <p class="mcard__desc">AIGC 视频创作专家 &amp; AI 短剧讲师；累计创作内容超 2000 分钟，作品覆盖红果剧场、TikTok 等主流平台，多部作品播放量突破千万级；兼具实战经验与教学能力，助力传统行业实现 AI 内容升级。</p>
+    <div class="mcard__tags"><span>2000+ 分钟创作</span><span>千万级播放</span><span>温州广电三期培训</span></div>
+    <span class="mcard__go">查看履历 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+  </div>
+</a><a class="mcard" href="chenjialong/index.html" data-reveal data-group="mentor" style="--i:1">
+  <div class="mcard__photo"><img src="../assets/img/faculty/chenjialong.jpg" width="560" height="700" alt="陈家龙" loading="lazy"></div>
+  <div class="mcard__body">
+    <div class="mcard__name">陈家龙</div>
+    <div class="mcard__title">AIGC 视频导师</div>
+    <p class="mcard__desc">AIGC 视频导师，红果短剧与海外短剧平台千万级爆款制作负责人，作品累计播放超 1 亿；兼具实战经验与教学能力，把想象力做成千万级播放。</p>
+    <div class="mcard__tags"><span>单部 8000 万+ 播放</span><span>累计播放 1 亿+</span><span>温州广电合作导师</span></div>
+    <span class="mcard__go">查看履历 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+  </div>
+</a><a class="mcard" href="shirunyu/index.html" data-reveal data-group="mentor" style="--i:2">
+  <div class="mcard__photo"><img src="../assets/img/faculty/shirunyu.jpg" width="560" height="700" alt="施润宇" loading="lazy"></div>
+  <div class="mcard__body">
+    <div class="mcard__name">施润宇</div>
+    <div class="mcard__title">AIGC 实战应用讲师</div>
+    <p class="mcard__desc">专注 AIGC 实战应用与商业落地的资深讲师；工信部认证 AIGC 高级培训师、提示词工程师，微软认证全球通用人工智能应用师；累计服务 30+ 企业 AI 转型项目（平均提效 33%），线下授课超 400 小时、培训学员超 5000 人，全网粉丝超 50 万。</p>
+    <div class="mcard__tags"><span>工信部认证培训师</span><span>微软认证应用师</span><span>5000+ 培训学员</span></div>
+    <span class="mcard__go">查看履历 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+  </div>
+</a><a class="mcard" href="zhouzhenghong/index.html" data-reveal data-group="mentor" style="--i:0">
+  <div class="mcard__photo"><img src="../assets/img/faculty/zhouzhenghong.jpg" width="560" height="700" alt="周正鸿" loading="lazy"></div>
+  <div class="mcard__body">
+    <div class="mcard__name">周正鸿</div>
+    <div class="mcard__title">AI 教育与 AIGC 方向讲师</div>
+    <p class="mcard__desc">西安电子科技大学信息管理系统专业毕业，十余年高校教育经历与 5 年 AI 教育、创业经验，现深耕 AIGC、GEO、FDE 方向；长期专注 AI 内容生产全链路，系统掌握提示词工程、AI 工作流搭建与多模态工具组合应用，自主研发《新手 AI 学习 5S 实操》课程。</p>
+    <div class="mcard__tags"><span>十余年高校教育</span><span>5 年 AI 教育创业</span><span>自研 5S 实操课程</span></div>
+    <span class="mcard__go">查看履历 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+  </div>
+</a><a class="mcard" href="xieqianxing/index.html" data-reveal data-group="mentor" style="--i:1">
+  <div class="mcard__photo"><img src="../assets/img/faculty/xieqianxing.jpg" width="560" height="700" alt="谢千星" loading="lazy"></div>
+  <div class="mcard__body">
+    <div class="mcard__name">谢千星</div>
+    <div class="mcard__title">AI 与编程教学讲师</div>
+    <p class="mcard__desc">多年 AI 与编程教学经验，双本科学位（沈阳师范大学计算机 + 国家开放大学人工智能本科）；曾于星火智脑 AI 少年科创营讲授 AI 漫剧制作，熟悉 AI 漫剧制作全流程；蓝桥 STEMA 评测 C++ 组优秀指导教师，曾获蓝桥杯程序设计大赛省一等奖，胜寒高智商俱乐部会员。</p>
+    <div class="mcard__tags"><span>双本科学位</span><span>AI 漫剧全流程</span><span>蓝桥杯省一等奖</span></div>
+    <span class="mcard__go">查看履历 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+  </div>
+</a><a class="mcard" href="daisiyang/index.html" data-reveal data-group="mentor" style="--i:2">
+  <div class="mcard__photo"><img src="../assets/img/faculty/daisiyang.jpg" width="560" height="700" alt="戴思阳" loading="lazy"></div>
+  <div class="mcard__body">
+    <div class="mcard__name">戴思阳</div>
+    <div class="mcard__title">AI 商业讲师 · IP 与短剧策划</div>
+    <p class="mcard__desc">实战型商业操盘人、AI 商业讲师，18 年一线项目操盘经验，先后担任技术合伙人、联合创始人，横跨城乡规划文旅、数字游戏文创、AIGC 文创多大赛道；主攻企业实战型 AI 商业落地、海外 AI 短剧 IP 策划与全流程剧本创作。</p>
+    <div class="mcard__tags"><span>18 年一线操盘</span><span>文旅 · 游戏 · AIGC</span><span>海外短剧 IP 策划</span></div>
+    <span class="mcard__go">查看履历 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+  </div>
+</a><a class="mcard" href="lizizhang/index.html" data-reveal data-group="mentor" style="--i:0">
+  <div class="mcard__photo"><img src="../assets/img/faculty/lizizhang.jpg" width="560" height="700" alt="李自长" loading="lazy"></div>
+  <div class="mcard__body">
+    <div class="mcard__name">李自长</div>
+    <div class="mcard__title">AIGC 视频编导 · 编剧</div>
+    <p class="mcard__desc">AIGC 视频编导、编剧、内容策划人；五年影视剧集及网络短剧创作积淀，在内容策划、叙事建构与影像表达之间形成贯通能力；创作兼具奇幻题材的想象张力与轻喜剧类型的松弛质感，持续探索生成式技术与影视叙事的融合边界。</p>
+    <div class="mcard__tags"><span>五年短剧创作积淀</span><span>奇幻 × 轻喜剧</span><span>生成式技术 × 影视叙事</span></div>
+    <span class="mcard__go">查看履历 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+  </div>
+</a><a class="mcard" href="zhangqiwei/index.html" data-reveal data-group="mentor" style="--i:1">
+  <div class="mcard__photo"><img src="../assets/img/faculty/zhangqiwei.jpg" width="560" height="700" alt="张启伟" loading="lazy"></div>
+  <div class="mcard__body">
+    <div class="mcard__name">张启伟</div>
+    <div class="mcard__title">AI 短剧抽卡师 · 助教</div>
+    <p class="mcard__desc">AI 短剧抽卡师，拥有一线 AI 短剧资产落地实战经验，长期负责 AI 绘图角色抽卡、画面质检与视觉风格统一管控；能快速识别 AI 出图常见问题，沉淀标准化素材筛选规范与实操避坑方法论，可独立承担助教全流程工作。</p>
+    <div class="mcard__tags"><span>AI 绘图角色抽卡</span><span>画面质检</span><span>助教全流程</span></div>
+    <span class="mcard__go">查看履历 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+  </div>
+</a><a class="mcard" href="zhujiangjiang/index.html" data-reveal data-group="mentor" style="--i:2">
+  <div class="mcard__photo"><img src="../assets/img/faculty/zhujiangjiang.jpg" width="560" height="700" alt="朱江江" loading="lazy"></div>
+  <div class="mcard__body">
+    <div class="mcard__name">朱江江</div>
+    <div class="mcard__title">AI 视频创作 · 资产 / 分镜 / 生成</div>
+    <p class="mcard__desc">AI 视频创作从业者，长期专注 AI 影像内容的策划与制作；曾参与多部 AI 题材剧集全程制作，负责资产制作、剧本分镜生成及视频生成三大核心环节，持续研究 AI 视频在效率提升、成本控制与创作表现方面的应用路径。</p>
+    <div class="mcard__tags"><span>资产制作</span><span>剧本分镜</span><span>视频生成</span></div>
+    <span class="mcard__go">查看履历 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+  </div>
+</a>
+    </section>
 
-/* ---- Dock（4 人窗口 · 滚轮横滑 · 共享 tip） ---- */
-const dock = document.getElementById("dock");
-const dockScroll = document.getElementById("dockScroll");
-const dockTip = document.getElementById("dockTip");
-const dockItems = [];
-LECTURERS.forEach(l => {
-  const a = document.createElement("a");
-  a.className = "dock-item";
-  a.href = l.dir + "index.html";
-  a.style.setProperty("--c", l.color);
-  a.dataset.tip = `${l.name} · ${l.title.split("·").pop().trim()}`;
-  a.innerHTML = `<img src="${l.dir}photo.jpg" alt="${l.name}" loading="eager"><span class="dot"></span>`;
-  dockScroll.appendChild(a);
-  dockItems.push(a);
-});
-dockItems.forEach((item, idx) => {
-  item.addEventListener("mouseenter", () => {
-    dockItems.forEach((other, j) => {
-      const dist = Math.abs(idx - j);
-      const scale = dist === 0 ? 1.5 : dist === 1 ? 1.22 : dist === 2 ? 1.08 : 1;
-      other.style.transform = `scale(${scale}) translateY(${dist === 0 ? -8 : dist === 1 ? -4 : 0}px)`;
-    });
-    dockTip.textContent = item.dataset.tip;
-    dockTip.classList.add("show");
-  });
-});
-dock.addEventListener("mouseleave", () => {
-  dockItems.forEach(i => i.style.transform = "");
-  dockTip.classList.remove("show");
-});
-dock.addEventListener("wheel", e => {
-  const d = e.deltaY || e.deltaX;
-  if (!d) return;
-  dockScroll.scrollLeft += d;
-  e.preventDefault();
-}, { passive: false });
-const updFade = () => {
-  dockScroll.style.setProperty("--ml", dockScroll.scrollLeft > 4 ? 1 : 0);
-  dockScroll.style.setProperty("--mr", dockScroll.scrollLeft < dockScroll.scrollWidth - dockScroll.clientWidth - 4 ? 1 : 0);
-};
-dockScroll.addEventListener("scroll", updFade, { passive: true });
-addEventListener("resize", updFade);
-updFade();
-
-/* ---- 入场动画 ---- */
-const io = new IntersectionObserver(es => es.forEach(e => {
-  if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
-}), {threshold:.1});
-document.querySelectorAll(".rise").forEach(el => io.observe(el));
-
-/* =====================================================================
-   背景漂浮物彩蛋（A+）：4 物种 · 拖转 · 击飞 · 连击震屏
-   ===================================================================== */
-(() => {
-  const canvas = document.getElementById("bg-objs");
-  const toast = document.getElementById("floatToast");
-  if (!canvas || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  const ctx = canvas.getContext("2d");
-  const DPR = Math.min(devicePixelRatio || 1, 2);
-  let W = innerWidth, H = innerHeight;
-  const resize = () => {
-    W = innerWidth; H = innerHeight;
-    canvas.width = W * DPR; canvas.height = H * DPR;
-    canvas.style.width = W + "px"; canvas.style.height = H + "px";
-    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-  };
-  resize(); addEventListener("resize", resize);
-
-  /* 主题调色板（跟随深浅色） */
-  const PALS = {
-    light: { film:"124,92,252", bubble:"0,113,227", pixel:"180,138,46", node:"58,124,165", token:"214,86,127", spark:"201,110,54", a:.11, a2:.2 },
-    dark:  { film:"170,146,255", bubble:"120,185,255", pixel:"218,185,110", node:"140,195,235", token:"242,150,178", spark:"240,180,120", a:.17, a2:.3 }
-  };
-  let pal = PALS.light;
-  const syncTheme = () => { pal = document.documentElement.dataset.theme === "dark" ? PALS.dark : PALS.light; };
-  new MutationObserver(syncTheme).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
-  syncTheme();
-
-  /* ---- 音效引擎：Web Audio 实时合成（零音频文件） ---- */
-  const AudioFX = (() => {
-    let ac = null, muted = localStorage.getItem("zz-sound") === "off", lastAt = 0;
-    const ensure = () => {
-      try { if (!ac) ac = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { return null; }
-      if (ac.state === "suspended") ac.resume();
-      return ac;
-    };
-    const play = name => {
-      if (muted) return;
-      const now = performance.now();
-      if (now - lastAt < 150) return;                      // 节流：150ms 内只响一声
-      const c = ensure(); if (!c) return;
-      lastAt = now;
-      const t = c.currentTime;
-      const master = c.createGain(); master.gain.value = .16; master.connect(c.destination);
-      const mk = (type, f0, f1, dur, at, vol) => {          // 单音：f1 有值则滑向
-        const osc = c.createOscillator(), g = c.createGain();
-        osc.type = type; osc.frequency.setValueAtTime(f0, t + at);
-        if (f1) osc.frequency.exponentialRampToValueAtTime(f1, t + at + dur);
-        g.gain.setValueAtTime(0, t + at);
-        g.gain.linearRampToValueAtTime(vol, t + at + .012);
-        g.gain.exponentialRampToValueAtTime(.0001, t + at + dur);
-        osc.connect(g); g.connect(master);
-        osc.start(t + at); osc.stop(t + at + dur + .05);
-      };
-      const noise = (dur, at, vol, freq) => {               // 噪声脉冲（键盘/快门质感）
-        const n = c.createBufferSource();
-        const buf = c.createBuffer(1, Math.max(1, c.sampleRate * dur | 0), c.sampleRate);
-        const d = buf.getChannelData(0);
-        for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
-        n.buffer = buf;
-        const bp = c.createBiquadFilter(); bp.type = "bandpass"; bp.frequency.value = freq || 1800; bp.Q.value = 1.2;
-        const g = c.createGain();
-        g.gain.setValueAtTime(vol, t + at);
-        g.gain.exponentialRampToValueAtTime(.0001, t + at + dur);
-        n.connect(bp); bp.connect(g); g.connect(master);
-        n.start(t + at); n.stop(t + at + dur);
-      };
-      const S = {
-        film(){ mk("square", 520, 0, .05, 0, .5); mk("square", 520, 0, .05, .07, .5); mk("square", 520, 0, .05, .14, .5); },
-        bubble(){ mk("sine", 820, 180, .09, 0, .8); mk("sine", 1560, 0, .12, .07, .4); },
-        pixel(){ mk("square", 1046, 0, .07, 0, .5); mk("square", 1318, 0, .12, .08, .5); },
-        node(){ mk("sawtooth", 220, 1250, .22, 0, .55); },
-        token(){ noise(.03, 0, .5, 2400); mk("sine", 190, 0, .06, 0, .5); },
-        spark(){ mk("triangle", 1200, 0, .35, 0, .5); mk("triangle", 2400, 0, .25, .01, .12); },
-        combo(){ [523, 659, 784].forEach((f, i) => mk("triangle", f, 0, .3, i * .09, .5)); }
-      };
-      (S[name] || function(){})();
-    };
-    return { play, get muted(){ return muted; },
-      toggle(){ muted = !muted; localStorage.setItem("zz-sound", muted ? "off" : "on"); return muted; } };
-  })();
-
-  const rnd = (a, b) => a + Math.random() * (b - a);
-  const TYPES = ["film", "bubble", "pixel", "node", "token", "spark"];
-  const QUOTA = { film: 3, bubble: 3, pixel: 3, node: 2, token: 3, spark: 2 };
-
-  class Floater {
-    constructor(type){ this.type = type; this.respawn(false); }
-    respawn(edge){
-      this.size = rnd(26, 54);
-      this.x = rnd(this.size + 10, W - this.size - 10);
-      if (edge){ this.y = Math.random() < .5 ? H + this.size + rnd(30, 120) : -this.size - rnd(30, 120); }
-      else this.y = rnd(this.size + 10, H - this.size - 10);
-      const dir = edge ? (this.y > H ? -1 : 1) : (Math.random() < .5 ? -1 : 1);
-      this.vy = dir * rnd(.18, .45);
-      this.vx = rnd(-.18, .18);
-      this.angle = rnd(0, Math.PI * 2); this.va = rnd(-.005, .005);
-      this.state = "idle"; this.rebirth = 0;
-      this.flash = 0; this.launchAt = 0;      // 胶片闪帧后击飞
-      this.wob = rnd(0, 6.28); this.jitter = 0;
-      this.trail = []; this.hover = false;
-    }
-    get color(){ return pal[this.type] || pal.film; }
-    hit(px, py){
-      if (this.state === "dead") return false;
-      const dx = px - this.x, dy = py - this.y, r = this.size * .68 + 16;
-      return dx * dx + dy * dy < r * r;
-    }
-    launch(ix, iy, power){           // 击飞：沿点击点→物体中心方向冲出
-      let dx = this.x - ix, dy = this.y - iy;
-      const d = Math.hypot(dx, dy) || 1;
-      this.vx = dx / d * power; this.vy = dy / d * power;
-      this.va = (Math.random() < .5 ? -1 : 1) * rnd(.12, .3);
-      this.state = "flying";
-      if (this.type === "node") this.trail = [];
-    }
-    update(dt){
-      if (this.state === "dead"){
-        this.rebirth -= dt;
-        if (this.rebirth <= 0) this.respawn(true);
-        return;
-      }
-      if (this.state !== "drag"){
-        this.x += this.vx * dt * .06;
-        this.y += this.vy * dt * .06;
-        this.angle += this.va * dt * .06;
-      }
-      this.wob += .0025 * dt;
-      if (this.flash > 0 && performance.now() >= this.launchAt){
-        this.flash = 0;
-        if (this.type === "token"){                        // 打字完成 → 向上弹飞
-          this.vx = rnd(-2.6, 2.6); this.vy = -rnd(7, 9.5);
-          this.va = (Math.random() < .5 ? -1 : 1) * rnd(.14, .3);
-          this.state = "flying";
-        } else this.launch(this.x - this.vx, this.y - this.vy, 11);
-        onKnockout(this);
-      }
-      if (this.type === "node" && this.state === "flying"){
-        this.trail.push([this.x, this.y]);
-        if (this.trail.length > 26) this.trail.shift();
-      }
-      if (this.state === "idle"){           // 边界反弹（仅游荡态）
-        const m = this.size * .6;
-        if (this.x < m){ this.x = m; this.vx = Math.abs(this.vx); }
-        if (this.x > W - m){ this.x = W - m; this.vx = -Math.abs(this.vx); }
-        if (this.y < m){ this.y = m; this.vy = Math.abs(this.vy); }
-        if (this.y > H - m){ this.y = H - m; this.vy = -Math.abs(this.vy); }
-      }
-      const out = this.x < -this.size - 80 || this.x > W + this.size + 80 ||
-                  this.y < -this.size - 80 || this.y > H + this.size + 80;
-      if (out && this.state === "flying"){ this.state = "dead"; this.rebirth = rnd(5000, 10000); this.trail = []; }
-    }
-    draw(){
-      if (this.state === "dead") return;
-      if (this.type === "node" && this.trail.length > 1){   // 光尾：屏幕坐标，未变换
-        for (let i = 1; i < this.trail.length; i++){
-          const t = i / this.trail.length;
-          ctx.strokeStyle = `rgba(${this.color},${t * pal.a * 1.6})`;
-          ctx.lineWidth = 1 + t * 1.6;
-          ctx.beginPath();
-          ctx.moveTo(this.trail[i - 1][0], this.trail[i - 1][1]);
-          ctx.lineTo(this.trail[i][0], this.trail[i][1]);
-          ctx.stroke();
-        }
-      }
-      const a = this.hover || this.state === "drag" ? pal.a2 : pal.a;
-      ctx.save();
-      ctx.translate(this.x + (this.jitter > 0 ? rnd(-1.5, 1.5) : 0), this.y + (this.jitter > 0 ? rnd(-1.5, 1.5) : 0));
-      ctx.rotate(this.angle);
-      ctx.fillStyle = `rgba(${this.color},${a})`;
-      ctx.strokeStyle = `rgba(${this.color},${Math.min(a + .08, .5)})`;
-      ctx.lineWidth = 1.4;
-      const s = this.size;
-      if (this.type === "film"){                          // 胶片帧：圆齿孔 + 双画格 + 顶部高光
-        const h = s * .74;
-        ctx.beginPath(); roundRect(-s / 2, -h / 2, s, h, 6); ctx.fill();
-        ctx.fillStyle = `rgba(${this.color},${a + .1})`;
-        for (let i = 0; i < 4; i++){
-          ctx.beginPath(); ctx.arc(-s / 2 + s * .155 + i * s * .21, -h / 2 + h * .14, s * .035, 0, 7); ctx.fill();
-          ctx.beginPath(); ctx.arc(-s / 2 + s * .155 + i * s * .21, h / 2 - h * .14, s * .035, 0, 7); ctx.fill();
-        }
-        const on = this.flash > 0 ? (Math.floor(performance.now() / 90) % 2 === 0) : true;
-        ctx.fillStyle = on ? `rgba(${this.color},${Math.min(a + .16, .48)})` : `rgba(${this.color},${a * .4})`;
-        ctx.fillRect(-s * .3, -h * .22, s * .26, h * .44);
-        ctx.fillRect(s * .05, -h * .22, s * .26, h * .44);
-        ctx.strokeStyle = `rgba(${this.color},${Math.min(a + .12, .4)})`;
-        ctx.lineWidth = 1;
-        ctx.beginPath(); ctx.moveTo(-s * .38, -h * .42); ctx.lineTo(s * .38, -h * .42); ctx.stroke();
-      } else if (this.type === "bubble"){                 // 玻璃气泡：星点内嵌
-        const w = s * .92, h = s * .68;
-        const sq = Math.sin(this.wob) * .06;
-        ctx.scale(1 + sq, 1 - sq);
-        ctx.beginPath(); roundRect(-w / 2, -h / 2, w, h, s * .2); ctx.fill();
-        ctx.beginPath();                                   // 尾巴
-        ctx.moveTo(-s * .1, h / 2 - 1);
-        ctx.lineTo(s * .06, h / 2 + s * .2);
-        ctx.lineTo(s * .18, h / 2 - 1);
-        ctx.closePath(); ctx.fill();
-        ctx.fillStyle = `rgba(${this.color},${Math.min(a + .12, .5)})`;
-        ctx.beginPath(); ctx.arc(-s * .22, -h * .1, s * .045, 0, 7); ctx.fill();
-        ctx.beginPath(); ctx.arc(s * .1, h * .08, s * .03, 0, 7); ctx.fill();
-        ctx.beginPath(); ctx.arc(-s * .02, h * .2, s * .025, 0, 7); ctx.fill();
-      } else if (this.type === "pixel"){                   // 像素块：四象限微错位 + 内芯
-        const q = s * .46, off = s * .05;
-        ctx.fillRect(-q - off, -q - off, q, q);
-        ctx.fillRect(off, -q + off * .6, q, q);
-        ctx.fillRect(-q + off * .6, off, q, q);
-        ctx.fillRect(q * .2, q * .2 + off, q, q);
-        ctx.fillStyle = `rgba(${this.color},${a * .45})`;
-        ctx.fillRect(-s * .16, -s * .16, s * .32, s * .32);
-      } else if (this.type === "token"){                   // 提示词条：胶囊 + 打字点/闪烁光标
-        const w = s * 1.06, h = s * .52;
-        ctx.beginPath(); roundRect(-w / 2, -h / 2, w, h, h / 2); ctx.fill();
-        ctx.fillStyle = `rgba(${this.color},${Math.min(a + .14, .5)})`;
-        if (this.flash > 0){                                // 打字中：圆点依次点亮
-          const n = Math.min(4, Math.floor((1 - Math.max(0, (this.launchAt - performance.now()) / 420)) * 4) + 1);
-          for (let i = 0; i < n; i++){ ctx.beginPath(); ctx.arc(-w * .28 + i * w * .19, 0, s * .05, 0, 7); ctx.fill(); }
-        } else {                                            // 待机：闪烁光标
-          if (Math.floor(performance.now() / 500) % 2 === 0) ctx.fillRect(w * .3, -h * .18, s * .05, h * .36);
-          ctx.beginPath(); ctx.arc(-w * .24, 0, s * .035, 0, 7); ctx.fill();
-        }
-      } else if (this.type === "spark"){                   // 生成火花：四芒星 + 芯点
-        const L = s * .58, l = s * .16;
-        ctx.beginPath();
-        ctx.moveTo(0, -L); ctx.lineTo(l, -l); ctx.lineTo(L, 0); ctx.lineTo(l, l);
-        ctx.lineTo(0, L); ctx.lineTo(-l, l); ctx.lineTo(-L, 0); ctx.lineTo(-l, -l);
-        ctx.closePath(); ctx.fill();
-        ctx.fillStyle = `rgba(${this.color},${Math.min(a + .15, .5)})`;
-        ctx.beginPath(); ctx.arc(0, 0, s * .1, 0, 7); ctx.fill();
-      } else {                                              // 神经节点：三角簇 + 沿线脉冲
-        const pts = [[-s * .3, -s * .16], [s * .3, s * .08], [-s * .02, s * .3]];
-        ctx.beginPath();
-        ctx.moveTo(pts[0][0], pts[0][1]); ctx.lineTo(pts[1][0], pts[1][1]);
-        ctx.lineTo(pts[2][0], pts[2][1]); ctx.closePath(); ctx.stroke();
-        pts.forEach(p => { ctx.beginPath(); ctx.arc(p[0], p[1], s * .11, 0, 7); ctx.fill(); });
-        const t = (this.wob % 6.28) / 6.28;
-        const seg = Math.floor(t * 3), lt = t * 3 - seg;
-        const a1 = pts[seg], a2 = pts[(seg + 1) % 3];
-        ctx.fillStyle = `rgba(${this.color},${Math.min(a + .2, .55)})`;
-        ctx.beginPath(); ctx.arc(a1[0] + (a2[0] - a1[0]) * lt, a1[1] + (a2[1] - a1[1]) * lt, s * .05, 0, 7); ctx.fill();
-      }
-      ctx.restore();
-    }
-  }
-  function roundRect(x, y, w, h, r){
-    if (ctx.roundRect){ ctx.roundRect(x, y, w, h, r); return; }
-    ctx.moveTo(x + r, y);
-    ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r);
-    ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
-  }
-
-  /* 实例 + 粒子 */
-  const floaters = [];
-  TYPES.forEach(t => { for (let i = 0; i < QUOTA[t]; i++) floaters.push(new Floater(t)); });
-  const bursts = [];                                     // 气泡爆裂粒子
-  const shards = [];                                      // 像素分裂碎片
-  const fireworks = [];                                   // 火花绽放粒子
-
-  /* 连击彩蛋（10 秒击飞 6 个） */
-  const knocks = [];
-  const onKnockout = f => {
-    knocks.push(performance.now());
-    while (knocks.length && performance.now() - knocks[0] > 10000) knocks.shift();
-    if (knocks.length >= 6){
-      knocks.length = 0;
-      AudioFX.play("combo");
-      document.body.classList.add("shake");
-      setTimeout(() => document.body.classList.remove("shake"), 360);
-      toast.classList.add("show");
-      setTimeout(() => toast.classList.remove("show"), 2400);
-    }
-  };
-
-  /* 交互（document 级转发，canvas 底层不挡页面） */
-  let drag = null, hoverOne = null, suppressClick = false;
-  const findAt = (x, y) => { for (let i = floaters.length - 1; i >= 0; i--) if (floaters[i].hit(x, y)) return floaters[i]; return null; };
-  const setCursor = c => { document.body.style.cursor = c; };
-
-  document.addEventListener("pointerdown", e => {
-    if (e.button !== 0 && e.pointerType === "mouse") return;
-    const f = findAt(e.clientX, e.clientY);
-    if (!f) return;
-    drag = { f, x: e.clientX, y: e.clientY, sx: e.clientX, sy: e.clientY, t0: performance.now(),
-             lvx: 0, lvy: 0, la: performance.now() };
-    f.state = "drag"; f.jitter = f.type === "pixel" ? 1 : 0;
-    setCursor("grabbing"); suppressClick = true;
-    e.preventDefault();
-  });
-  document.addEventListener("pointermove", e => {
-    if (drag){
-      const f = drag.f, now = performance.now();
-      const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
-      const dtms = Math.max(now - drag.la, 1);
-      drag.lvx = dx / dtms * 16; drag.lvy = dy / dtms * 16;       // 每帧速度
-      drag.la = now;
-      f.x += dx; f.y += dy;
-      f.va = Math.max(-.22, Math.min(.22, f.va + dx * .0035));     // 拖转
-      drag.x = e.clientX; drag.y = e.clientY;
-    } else {
-      const f = findAt(e.clientX, e.clientY);
-      if (f !== hoverOne){ hoverOne && (hoverOne.hover = false); hoverOne = f; f && (f.hover = true); }
-      setCursor(f ? "grab" : "");
-    }
-  });
-  document.addEventListener("pointerup", e => {
-    if (!drag) return;
-    const f = drag.f, dt = performance.now() - drag.t0;
-    const moved = Math.hypot(e.clientX - drag.sx, e.clientY - drag.sy);
-    f.jitter = 0;
-    if (moved < 8 && dt < 350){                                    // 点击：物种专属 + 音效
-      AudioFX.play(f.type);
-      if (f.type === "film"){ f.flash = 1; f.launchAt = performance.now() + 420; }
-      else if (f.type === "token"){ f.flash = 1; f.launchAt = performance.now() + 420; }
-      else if (f.type === "bubble"){
-        for (let i = 0; i < 6; i++) bursts.push({ x: f.x, y: f.y, vx: rnd(-2.4, 2.4), vy: rnd(-2.4, 2.4),
-          r: rnd(2.5, 5.5), life: 1 });
-        f.state = "dead"; f.rebirth = rnd(6000, 11000); onKnockout(f);
-      }
-      else if (f.type === "pixel"){
-        for (let i = 0; i < 4; i++) shards.push({ x: f.x, y: f.y, vx: rnd(-2.8, 2.8), vy: rnd(-2.8, 2.8),
-          s: f.size * .4, life: 1 });
-        f.state = "dead"; f.rebirth = rnd(6000, 11000); onKnockout(f);
-      }
-      else if (f.type === "spark"){
-        for (let i = 0; i < 8; i++) fireworks.push({ x: f.x, y: f.y, vx: rnd(-2.2, 2.2), vy: rnd(-3.6, -.6),
-          r: rnd(1.8, 3.6), life: 1 });
-        f.state = "dead"; f.rebirth = rnd(6000, 11000); onKnockout(f);
-      }
-      else f.launch(e.clientX, e.clientY, 11), onKnockout(f);
-    } else {                                                        // 甩出
-      f.vx = Math.max(-20, Math.min(20, drag.lvx));
-      f.vy = Math.max(-20, Math.min(20, drag.lvy));
-      f.state = Math.hypot(f.vx, f.vy) > .6 ? "flying" : "idle";
-    }
-    drag = null; setCursor(hoverOne ? "grab" : "");
-  });
-  document.addEventListener("click", e => {                        // 吞掉点击漂浮物时的穿透
-    if (suppressClick && findAt(e.clientX, e.clientY)){ e.preventDefault(); e.stopPropagation(); }
-    suppressClick = false;
-  }, true);
-  document.addEventListener("pointercancel", () => {
-    if (!drag) return;
-    drag.f.state = "idle"; drag.f.jitter = 0; drag = null; setCursor("");
-  });
-  document.addEventListener("touchmove", e => { if (drag) e.preventDefault(); }, { passive: false });
-
-  /* 主循环 */
-  let raf = 0, last = performance.now();
-  const loop = () => {
-    const now = performance.now(), dt = Math.min(now - last, 50); last = now;
-    ctx.clearRect(0, 0, W, H);
-    floaters.forEach(f => { f.update(dt); f.draw(); });
-    for (let i = bursts.length - 1; i >= 0; i--){
-      const p = bursts[i];
-      p.x += p.vx; p.y += p.vy; p.vx *= .985; p.vy *= .985; p.life -= dt / 900;
-      if (p.life <= 0){ bursts.splice(i, 1); continue; }
-      ctx.fillStyle = `rgba(${pal.bubble},${p.life * .5})`;
-      ctx.beginPath(); ctx.arc(p.x, p.y, p.r * p.life, 0, 7); ctx.fill();
-    }
-    for (let i = shards.length - 1; i >= 0; i--){
-      const p = shards[i];
-      p.x += p.vx; p.y += p.vy; p.vx *= .98; p.vy *= .98; p.life -= dt / 1100;
-      if (p.life <= 0){ shards.splice(i, 1); continue; }
-      ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.life * 5);
-      ctx.fillStyle = `rgba(${pal.pixel},${p.life * .4})`;
-      ctx.fillRect(-p.s / 2, -p.s / 2, p.s, p.s);
-      ctx.restore();
-    }
-    for (let i = fireworks.length - 1; i >= 0; i--){             // 火花：重力弧线散落
-      const p = fireworks[i];
-      p.x += p.vx; p.y += p.vy; p.vy += .045; p.vx *= .988; p.life -= dt / 1200;
-      if (p.life <= 0){ fireworks.splice(i, 1); continue; }
-      ctx.fillStyle = `rgba(${pal.spark},${p.life * .55})`;
-      ctx.beginPath(); ctx.arc(p.x, p.y, p.r * p.life, 0, 7); ctx.fill();
-    }
-    raf = requestAnimationFrame(loop);
-  };
-  raf = requestAnimationFrame(loop);
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) cancelAnimationFrame(raf);
-    else { last = performance.now(); raf = requestAnimationFrame(loop); }
-  });
-
-  /* ---- 音效开关（右下角，主题按钮左侧） ---- */
-  const soundFab = document.getElementById("soundFab");
-  if (soundFab){
-    const syncSound = () => soundFab.classList.toggle("muted", AudioFX.muted);
-    soundFab.addEventListener("click", () => { AudioFX.toggle(); syncSound(); });
-    syncSound();
-  }
-})();
-</script>
-
-
-</body></html>
+    <div class="roster-cta" data-reveal>
+      <div><b>想看他们做出来的东西</b><p>S 级与 A 级 Demo 作品库，按分级归档，可直接播放</p></div>
+      <a class="btn btn--green" href="../demos/index.html">进入 Demo 库 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    </div>
+  </div>
+</main>
+<footer class="foot-min">
+  <div class="container foot-min__inner">
+    <span>© 2026 遥触灵境（杭州）科技有限公司</span>
+    <span><a href="../index.html">返回官网首页</a> · <a href="../index.html#contact">联系我们</a></span>
+  </div>
+</footer><script src="../assets/js/faculty.js" defer></script>
+</body>
+</html>
