@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>张启伟 · AI 短剧抽卡师 · 助教</title>
+<meta name="description" content="张启伟，AI 短剧抽卡师，拥有一线 AI 短剧资产落地实战经验，长期负责 AI 绘图角色抽卡、画面质检、视觉风格统一管控，深度参与短剧人物资产量产流程；能快速识别 AI 出图常见问题，沉淀标准化素材筛选规范与实操避坑方法论，可独立承担助教全流程工作。">
+<style>
+  :root{
+    --bg:#F5F5F7;
+    --card:#FFFFFF;
+    --card-soft:#FFFFFF;
+    --ink:#1D1D1F;
+    --ink-dim:#6E6E73;
+    --ink-faint:#AEAEB2;
+    --line:rgba(0,0,0,.06);
+    --tint:#7A9C1B;
+    --tint-soft:rgba(122,156,27,.10);
+    --shadow-1:0 2px 8px rgba(0,0,0,.04),0 12px 32px rgba(0,0,0,.06);
+    --shadow-2:0 4px 12px rgba(0,0,0,.06),0 20px 48px rgba(0,0,0,.10);
+    --nav-bg:rgba(245,245,247,.72);
+    --sans:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","PingFang SC","HarmonyOS Sans SC","Microsoft YaHei",sans-serif;
+  }
+  html[data-theme="dark"]{
+    --bg:#1D1D1F;
+    --card:#2C2C2E;
+    --card-soft:#2C2C2E;
+    --ink:#F5F5F7;
+    --ink-dim:#A1A1A6;
+    --ink-faint:#636366;
+    --line:rgba(255,255,255,.08);
+    --tint:#AFCB5E;
+    --tint-soft:rgba(175,203,94,.14);
+    --shadow-1:0 2px 8px rgba(0,0,0,.24),0 12px 32px rgba(0,0,0,.32);
+    --shadow-2:0 4px 12px rgba(0,0,0,.28),0 20px 48px rgba(0,0,0,.40);
+    --nav-bg:rgba(29,29,31,.72);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.75;
+    overflow-x:hidden;transition:background .5s ease,color .5s ease}
+  ::selection{background:var(--tint-soft)}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 28px}
+
+  /* ===== 吸顶毛玻璃导航 ===== */
+  .nav{position:fixed;top:0;left:0;right:0;z-index:80;transition:background .4s ease,border-color .4s ease,backdrop-filter .4s ease}
+  .nav-inner{max-width:1060px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;gap:8px}
+  .nav-name{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:700;letter-spacing:-.01em;
+    opacity:0;transform:translateY(-6px);transition:opacity .35s ease,transform .35s ease}
+  .nav.scrolled{background:var(--nav-bg);backdrop-filter:blur(20px) saturate(1.8);-webkit-backdrop-filter:blur(20px) saturate(1.8);
+    border-bottom:1px solid var(--line)}
+  .nav.scrolled .nav-name{opacity:1;transform:translateY(0)}
+  .nav-name img{width:28px;height:28px;border-radius:9px;object-fit:cover;object-position:top center}
+  .nav-links{margin-left:auto;display:flex;gap:2px}
+  .nav-links a{font-size:13px;font-weight:500;color:var(--ink-dim);text-decoration:none;
+    padding:7px 14px;border-radius:999px;transition:color .25s ease,background .25s ease}
+  .nav-links a:hover{color:var(--ink);background:var(--tint-soft)}
+    /* 返回集合页按钮 */
+  .back-btn{display:inline-flex;align-items:center;font-size:13px;font-weight:600;color:var(--tint);
+    text-decoration:none;padding:7px 13px 7px 9px;border-radius:999px;
+    transition:background .25s ease,transform .25s ease}
+  .back-btn:hover{background:var(--tint-soft)}
+  .back-btn:active{transform:scale(.96)}
+  .back-btn .arr{font-size:16px;font-weight:700;margin-right:3px;line-height:1}
+.theme-btn{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);
+    background:var(--card);color:var(--ink);cursor:pointer;font-size:14px;
+    display:flex;align-items:center;justify-content:center;margin-left:6px;
+    transition:transform .3s ease,box-shadow .3s ease}
+  .theme-btn:hover{transform:scale(1.08);box-shadow:var(--shadow-1)}
+  .theme-btn:active{transform:scale(.94)}
+
+  /* ===== Hero ===== */
+  header.wrap{padding:clamp(110px,14vw,150px) 0 0}
+  .hero{display:grid;grid-template-columns:1fr 310px;gap:clamp(36px,6vw,72px);align-items:center}
+  .hero-tag{font-size:13px;font-weight:600;letter-spacing:.12em;color:var(--tint);
+    text-transform:uppercase;margin-bottom:14px}
+  .cert-badge{display:inline-flex;align-items:center;gap:9px;margin-top:18px;padding:8px 18px;
+    border-radius:999px;border:1px solid color-mix(in srgb,var(--tint) 42%,transparent);
+    background:color-mix(in srgb,var(--tint) 8%,transparent);color:var(--tint);
+    font-size:13px;font-weight:600;letter-spacing:.06em}
+  .cert-dot{width:7px;height:7px;border-radius:50%;background:var(--tint);flex:none;
+    box-shadow:0 0 0 3px color-mix(in srgb,var(--tint) 18%,transparent)}
+  h1{font-size:clamp(46px,8vw,70px);font-weight:700;letter-spacing:-.02em;line-height:1.06}
+  .roles{margin-top:16px;display:flex;flex-direction:column;gap:5px}
+  .role{font-size:clamp(14px,2.4vw,16.5px);color:var(--ink-dim)}
+  .role b{color:var(--ink);font-weight:600}
+  .motto{margin-top:24px;padding:18px 22px;border-radius:18px;background:var(--card);
+    box-shadow:var(--shadow-1);border-left:4px solid var(--tint)}
+  .motto p{font-size:clamp(15px,2.5vw,17px);line-height:1.8}
+  .motto p b{color:var(--tint);font-weight:700}
+
+  .photo-card{position:relative;justify-self:center}
+  .photo-card img{display:block;width:310px;max-width:100%;aspect-ratio:640/1137;object-fit:cover;
+    border-radius:28px;box-shadow:var(--shadow-2)}
+  .photo-badge{position:absolute;bottom:14px;left:14px;right:14px;padding:10px 16px;border-radius:16px;
+    background:rgba(255,255,255,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    display:flex;align-items:center;justify-content:space-between}
+  .photo-badge .n{font-size:13px;font-weight:700;color:#1D1D1F;letter-spacing:.04em}
+  .photo-badge .r{font-size:10.5px;font-weight:600;color:var(--tint);letter-spacing:.14em}
+
+  /* 数据条 */
+  .stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:clamp(28px,4vw,40px)}
+  .sb-item{background:var(--card);border-radius:20px;box-shadow:var(--shadow-1);padding:20px 18px;
+    text-align:center;transition:transform .4s cubic-bezier(.22,1,.36,1),box-shadow .4s ease}
+  .sb-item:hover{transform:translateY(-3px);box-shadow:var(--shadow-2)}
+  .sb-num{display:block;font-size:clamp(24px,3.6vw,32px);font-weight:700;letter-spacing:-.02em;
+    font-variant-numeric:tabular-nums;color:var(--tint)}
+  .sb-label{font-size:12.5px;color:var(--ink-dim);margin-top:4px;display:block}
+
+  /* 跑马灯 */
+  .marquee{margin-top:clamp(30px,4vw,46px);border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    overflow:hidden;position:relative}
+  .mq-track{display:flex;width:max-content;animation:mq 30s linear infinite}
+  .mq-item{display:flex;align-items:center;gap:12px;padding:13px 24px;white-space:nowrap;
+    font-size:13px;font-weight:500;color:var(--ink-dim)}
+  .mq-item i{font-style:normal;color:var(--tint);font-size:10px}
+  @keyframes mq{to{transform:translateX(-50%)}}
+
+  /* ===== 通用 section ===== */
+  section{padding-top:clamp(52px,8vw,92px)}
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:clamp(22px,3.5vw,32px)}
+  .sec-tag{font-size:12px;font-weight:600;letter-spacing:.14em;color:var(--tint);text-transform:uppercase}
+  .sec-title{font-size:clamp(26px,4.2vw,36px);font-weight:700;letter-spacing:-.015em}
+  .sec-en{margin-left:auto;font-size:11px;font-weight:600;letter-spacing:.22em;color:var(--ink-faint);text-transform:uppercase}
+
+  /* 简介卡 */
+  .intro{background:var(--card);border-radius:28px;box-shadow:var(--shadow-1);padding:clamp(26px,4vw,40px);
+    display:flex;flex-direction:column;gap:14px}
+  .intro p{font-size:clamp(14.5px,2.2vw,16px);color:var(--ink-dim);line-height:1.9}
+  .intro p b{color:var(--ink);font-weight:600}
+  .intro p .hl{color:var(--tint);font-weight:600}
+  .intro p.lead{font-size:clamp(16px,2.6vw,19px);color:var(--ink);font-weight:600;line-height:1.85}
+  .cap-row{display:flex;flex-wrap:wrap;gap:9px;margin-top:8px}
+  .cap{font-size:13px;font-weight:500;color:var(--ink-dim);padding:8px 17px;border-radius:999px;
+    background:var(--bg);border:1px solid var(--line)}
+  .cap b{color:var(--tint);font-weight:700}
+
+  /* 教学方式核心卡 */
+  .teach-card{background:var(--card);border-radius:28px;box-shadow:var(--shadow-1);
+    padding:clamp(26px,4vw,40px);margin-bottom:18px}
+  .teach-card h3{font-size:clamp(24px,4vw,34px);font-weight:700;letter-spacing:-.01em}
+  .teach-card h3 .x{font-size:.62em;color:var(--tint);font-weight:400;margin:0 12px;vertical-align:middle}
+  .teach-card > p{margin-top:12px;font-size:clamp(14px,2.1vw,15.5px);color:var(--ink-dim);line-height:1.9;max-width:820px}
+  .teach-card > p b{color:var(--ink);font-weight:600}
+
+  /* ===== 作品轮播（3D tilt） ===== */
+  .carousel-hint{font-size:12.5px;color:var(--ink-faint);letter-spacing:.08em;margin-bottom:18px}
+  .rail{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;
+    padding:10px 6px 22px;cursor:grab;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .rail::-webkit-scrollbar{display:none}
+  .rail.dragging{cursor:grabbing;scroll-snap-type:none}
+  .wcard{flex:0 0 300px;scroll-snap-align:start;user-select:none;-webkit-user-drag:none;
+    transform-style:preserve-3d;perspective:900px}
+  .wcard .ph{position:relative;border-radius:22px;overflow:hidden;box-shadow:var(--shadow-1);
+    aspect-ratio:2/3;background:var(--card);transition:transform .18s ease-out,box-shadow .3s ease;
+    will-change:transform}
+  .wcard .ph:hover{box-shadow:var(--shadow-2)}
+  .wcard img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+  .rank{position:absolute;top:14px;left:14px;padding:5px 13px;border-radius:999px;
+    background:rgba(255,255,255,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    font-size:11px;font-weight:700;color:#1D1D1F;letter-spacing:.1em;z-index:2}
+  .wcard .meta{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-top:14px}
+  .wcard .t{font-size:15px;font-weight:700;letter-spacing:-.01em}
+  .wcard .g{font-size:11.5px;font-weight:600;color:var(--tint);white-space:nowrap}
+  .wcard .tag{font-size:12px;color:var(--ink-faint);margin-top:3px}
+  /* 排版位海报 */
+  .typo-poster{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;
+    padding:18px;background:linear-gradient(160deg,#5A2638 0%,#331622 100%)}
+  html[data-theme="dark"] .typo-poster{background:linear-gradient(160deg,#5A263880 0%,#331622 100%),linear-gradient(160deg,#451C2A,#2B1019)}
+  .typo-poster .big{position:absolute;right:-8px;bottom:-22px;font-size:150px;font-weight:800;
+    color:rgba(255,255,255,.08);line-height:1;pointer-events:none}
+  .typo-poster .top{display:flex;justify-content:space-between;align-items:center}
+  .typo-poster .top .no{font-size:11px;font-weight:700;letter-spacing:.18em;color:rgba(255,255,255,.85)}
+  .typo-poster .top .type{font-size:11px;font-weight:600;color:rgba(255,255,255,.7);
+    padding:4px 11px;border-radius:999px;border:1px solid rgba(255,255,255,.25)}
+  .typo-poster .name{position:relative;font-size:23px;font-weight:800;color:#FFF;letter-spacing:.06em;
+    text-shadow:0 2px 12px rgba(0,0,0,.35)}
+  .typo-poster .bottom{display:flex;justify-content:space-between;align-items:center}
+  .typo-poster .platform{font-size:11px;font-weight:600;color:rgba(255,255,255,.75);letter-spacing:.1em}
+  .typo-poster .deco{width:34px;height:1px;background:rgba(255,255,255,.35)}
+  .car-nav{display:flex;align-items:center;gap:14px;margin-top:6px}
+  .car-btn{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--card);
+    color:var(--ink);cursor:pointer;font-size:16px;box-shadow:var(--shadow-1);
+    transition:transform .3s ease,box-shadow .3s ease}
+  .car-btn:hover{transform:scale(1.06);box-shadow:var(--shadow-2)}
+  .car-btn:active{transform:scale(.95)}
+  .progress{flex:1;height:4px;border-radius:4px;background:var(--line);overflow:hidden}
+  .progress i{display:block;height:100%;width:25%;border-radius:4px;background:var(--tint);
+    transition:width .3s ease}
+  .car-hint{font-size:10.5px;font-weight:600;letter-spacing:.2em;color:var(--ink-faint)}
+
+  /* 白卡网格（专业方向 / 教学方式 / 实战案例） */
+  .cap-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .cap-item{background:var(--card);border-radius:24px;box-shadow:var(--shadow-1);padding:clamp(22px,3.5vw,30px);
+    transition:transform .4s cubic-bezier(.22,1,.36,1),box-shadow .4s ease}
+  .cap-item:hover{transform:translateY(-4px);box-shadow:var(--shadow-2)}
+  .cap-item .n{font-size:11px;font-weight:700;letter-spacing:.18em;color:var(--tint);margin-bottom:10px}
+  .cap-item h4{font-size:clamp(16.5px,2.4vw,19px);font-weight:700;letter-spacing:-.01em}
+  .cap-item p{margin-top:9px;font-size:clamp(13px,1.9vw,14.5px);color:var(--ink-dim);line-height:1.85}
+  .cap-item .cap-tags{margin-top:6px;font-size:12px;color:var(--ink-faint);letter-spacing:.12em}
+  .cap-item .cap-tail{margin-top:10px;font-size:12.5px;font-weight:600;color:var(--tint);letter-spacing:.14em}
+
+  /* 页脚 */
+  footer{margin-top:clamp(56px,8vw,96px);background:var(--card);border-radius:32px 32px 0 0;
+    padding:clamp(40px,6vw,60px) 28px calc(clamp(36px,5vw,52px) + 20px);text-align:center}
+  .foot-mark{display:inline-flex;align-items:center;justify-content:center;width:58px;height:58px;
+    border-radius:19px;background:var(--tint-soft);font-size:23px;font-weight:800;color:var(--tint);margin-bottom:14px}
+  .foot-name{font-size:16px;font-weight:700;letter-spacing:.02em}
+  .foot-sub{font-size:12px;color:var(--ink-faint);letter-spacing:.1em;margin-top:5px}
+
+  /* 入场动画 */
+  .rise{opacity:0;transform:translateY(24px);transition:opacity .85s cubic-bezier(.22,1,.36,1),transform .85s cubic-bezier(.22,1,.36,1)}
+  .rise.in{opacity:1;transform:translateY(0)}
+  .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+  @media (max-width:880px){
+    .hero{grid-template-columns:1fr;gap:34px}
+    .photo-card{justify-self:start}
+    .stats-bar{grid-template-columns:1fr 1fr}
+    .cap-grid{grid-template-columns:1fr}
+    .nav-links{display:none}
+  }
+  @media (max-width:640px){
+    .wcard{flex-basis:250px}
+  }
+  /* 本页补充 */
+  .typo-poster .name.sm{font-size:17px;line-height:1.55}
+  .typo-poster .name.xs{font-size:13.5px;line-height:1.5}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="back-btn" href="../index.html" aria-label="返回师资目录首页"><span class="arr">‹</span>返回首页</a>
+    <div class="nav-name"><img src="photo.jpg" alt="张启伟">张启伟</div>
+    <div class="nav-links">
+      <a href="#profile">简介</a>
+      <a href="#fields">领域</a>
+      <a href="#creds">方法</a>
+      <a href="#teaching">助教</a>
+    </div>
+    <button class="theme-btn" id="themeBtn" aria-label="切换深浅色" title="切换深浅色">◐</button>
+  </div>
+</nav>
+
+<header class="wrap">
+  <div class="hero">
+    <div>
+      <p class="hero-tag rise">AI Asset QC &amp; Assistant · 师资介绍</p>
+      <h1 class="rise d1">张启伟</h1>
+      <div class="roles rise d2">
+        <div class="role"><b>AI 短剧抽卡师</b> · 画面质检 · 视觉风格管控</div>
+        <div class="role">一线 <b>AI 短剧资产落地</b>实战经验 · 可独立承担<b>助教全流程</b></div>
+      </div>
+      <div class="cert-badge rise d3"><span class="cert-dot"></span>中广有线指定培训师</div>
+      <div class="motto rise d3">
+        <p>把经验拆成步骤，<b>让学员少走弯路</b>。</p>
+      </div>
+    </div>
+    <div class="photo-card rise d2">
+      <img src="photo.jpg" alt="张启伟">
+      <div class="photo-badge"><span class="n">张启伟</span><span class="r">ZHANG QIWEI · QC</span></div>
+    </div>
+  </div>
+
+  <div class="stats-bar rise d3">
+    <div class="sb-item"><span class="sb-num">角色抽卡</span><span class="sb-label">AI 绘图 · 人物资产量产</span></div>
+    <div class="sb-item"><span class="sb-num">画面质检</span><span class="sb-label">出图质量把关</span></div>
+    <div class="sb-item"><span class="sb-num">五类问题</span><span class="sb-label">面部崩坏 · 肢体畸形 · 光影冲突 · 画风割裂 · 道具穿模</span></div>
+    <div class="sb-item"><span class="sb-num">助教全流程</span><span class="sb-label">陪练 · 答疑 · 点评 · 复盘</span></div>
+  </div>
+
+  <div class="marquee" aria-hidden="true"><div class="mq-track" id="mqTrack"></div></div>
+</header>
+
+<main class="wrap">
+
+  <section id="profile">
+    <div class="sec-head rise"><span class="sec-tag">01 · About</span><h2 class="sec-title">关于他</h2><span class="sec-en">About</span></div>
+    <div class="intro rise d1">
+      <p class="lead">一线 AI 短剧资产落地经验，<span class="hl">把出图质量管住</span>。</p>
+      <p>张启伟，长期从事 AI 短剧抽卡相关工作，拥有一线 <b>AI 短剧资产落地实战经验</b>，长期负责 <b>AI 绘图角色抽卡、画面质检、视觉风格统一管控</b>等核心工作，深度参与短剧<b>人物资产量产流程</b>。</p>
+      <p>能够快速识别<b>人物面部崩坏、肢体畸形、光影冲突、画风割裂、道具穿模</b>等各类 AI 出图常见问题，沉淀出一套<b>标准化素材筛选规范、快速排错思路</b>以及可直接复用的<b>实操避坑方法论</b>。</p>
+      <p>具备良好的<b>艺术审美与敏锐的细节洞察力</b>，可精准匹配古风、悬疑、现代等不同题材短剧的剧本调性、镜头氛围与视觉制作要求。</p>
+      <p>同时可独立承担<b>助教全流程工作</b>：学员实操陪练、实时答疑、作业审核点评、错误案例复盘总结，精准捕捉学员学习卡点并给出调整方案与优化思路。</p>
+      <div class="cap-row">
+        <span class="cap"># <b>AI 短剧抽卡</b></span>
+        <span class="cap"># <b>画面质检</b></span>
+        <span class="cap"># <b>视觉风格管控</b></span>
+      </div>
+    </div>
+  </section>
+
+  <section id="fields">
+    <div class="sec-head rise"><span class="sec-tag">02 · Fields</span><h2 class="sec-title">专业领域</h2><span class="sec-en">Fields</span></div>
+    <div class="cap-grid">
+      <div class="cap-item rise d1">
+        <div class="n">01 · CHARACTER GACHA</div>
+        <h4>AI 绘图角色抽卡</h4>
+        <p>负责 AI 绘图角色抽卡，深度参与短剧人物资产量产流程，为角色形象产出提供稳定供给。</p>
+        <p class="cap-tail">人物资产量产</p>
+      </div>
+      <div class="cap-item rise d1">
+        <div class="n">02 · VISUAL QC</div>
+        <h4>画面质检</h4>
+        <p>快速识别人物面部崩坏、肢体畸形、光影冲突、画风割裂、道具穿模等各类 AI 出图常见问题。</p>
+        <p class="cap-tail">五类常见问题</p>
+      </div>
+      <div class="cap-item rise d2">
+        <div class="n">03 · STYLE CONTROL</div>
+        <h4>视觉风格统一管控</h4>
+        <p>负责剧集视觉风格的统一管控，让人物、场景与道具在同一风格体系内保持一致。</p>
+        <p class="cap-tail">风格一致性</p>
+      </div>
+      <div class="cap-item rise d2">
+        <div class="n">04 · GENRE MATCHING</div>
+        <h4>题材调性匹配</h4>
+        <p>可精准匹配古风、悬疑、现代等不同题材短剧的剧本调性、镜头氛围与视觉制作要求。</p>
+        <p class="cap-tail">古风 · 悬疑 · 现代</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="creds">
+    <div class="sec-head rise"><span class="sec-tag">03 · Methods</span><h2 class="sec-title">实战方法</h2><span class="sec-en">Methods</span></div>
+    <div class="cap-grid">
+      <div class="cap-item rise d1">
+        <div class="n">METHOD · 01</div>
+        <h4>标准化素材筛选规范</h4>
+        <p>沉淀出一套标准化的素材筛选规范，让出图筛选有据可依。</p>
+        <p class="cap-tail">筛选规范</p>
+      </div>
+      <div class="cap-item rise d1">
+        <div class="n">METHOD · 02</div>
+        <h4>快速排错思路</h4>
+        <p>面对出图问题快速定位与排查，缩短返工链路。</p>
+        <p class="cap-tail">快速排错</p>
+      </div>
+      <div class="cap-item rise d2">
+        <div class="n">METHOD · 03</div>
+        <h4>实操避坑方法论</h4>
+        <p>可直接复用的实操避坑方法论，把一线经验变成可传授的方法。</p>
+        <p class="cap-tail">可复用</p>
+      </div>
+      <div class="cap-item rise d2">
+        <div class="n">METHOD · 04</div>
+        <h4>艺术审美与细节洞察</h4>
+        <p>具备良好的艺术审美与敏锐的细节洞察力，看得见画面里的问题。</p>
+        <p class="cap-tail">审美 · 细节</p>
+      </div>
+      <div class="cap-item rise d1">
+        <div class="n">METHOD · 05</div>
+        <h4>提示词逻辑拆解</h4>
+        <p>擅长把抽象的 AI 提示词逻辑、画面把控要点，拆解成简单易懂、可落地的分步教程。</p>
+        <p class="cap-tail">分步教程</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="teaching">
+    <div class="sec-head rise"><span class="sec-tag">04 · Assistant</span><h2 class="sec-title">助教与教学</h2><span class="sec-en">Assistant</span></div>
+    <div class="teach-card rise d1">
+      <h3>陪练<span class="x">×</span>答疑<span class="x">×</span>点评<span class="x">×</span>复盘</h3>
+      <p>可独立承担<b>助教全流程工作</b>，精准捕捉学员学习卡点，针对性给出调整方案与优化思路。</p>
+    </div>
+    <div class="cap-grid">
+      <div class="cap-item rise d1">
+        <div class="n">DUTY · 01</div>
+        <h4>学员实操陪练</h4>
+        <p>陪同学员完成实操，全程跟进练习过程。</p>
+      </div>
+      <div class="cap-item rise d1">
+        <div class="n">DUTY · 02</div>
+        <h4>实时答疑</h4>
+        <p>及时回应学员问题，减少卡点停留时间。</p>
+      </div>
+      <div class="cap-item rise d2">
+        <div class="n">DUTY · 03</div>
+        <h4>作业审核与点评</h4>
+        <p>对学员作业进行审核与点评，指出可改进之处。</p>
+      </div>
+      <div class="cap-item rise d2">
+        <div class="n">DUTY · 04</div>
+        <h4>错误案例复盘总结</h4>
+        <p>汇总常见错误案例并复盘成因，帮助学员建立规范的出图思维。</p>
+      </div>
+      <div class="cap-item rise d1">
+        <div class="n">DUTY · 05</div>
+        <h4>表达与引导</h4>
+        <p>表达条理清晰、耐心细致，稳定配合教学团队完成课程交付与学员成果跟进。</p>
+      </div>
+    </div>
+  </section>
+
+
+  <footer class="rise">
+    <div class="foot-mark">张</div>
+    <div class="foot-name">张启伟 · ZHANG QIWEI</div>
+    <div class="foot-sub">AI SHORT DRAMA · 抽卡 · 质检 · 风格管控</div>
+  </footer>
+
+</main>
+<script>
+/* ---- 静态渲染支持（?noanim=1 时跳过入场动画，用于截图/无障碍场景） ---- */
+if(location.search.includes('noanim')){
+  document.querySelectorAll('.rise').forEach(el=>el.classList.add('in'));
+}
+
+/* ---- 主题切换 ---- */
+const themeBtn = document.getElementById("themeBtn");
+const savedTheme = localStorage.getItem("theme") || "light";
+document.documentElement.dataset.theme = savedTheme;
+themeBtn.textContent = savedTheme === "dark" ? "☀" : "◐";
+themeBtn.addEventListener("click", () => {
+  const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+  document.documentElement.dataset.theme = next;
+  localStorage.setItem("theme", next);
+  themeBtn.textContent = next === "dark" ? "☀" : "◐";
+});
+
+/* ---- 吸顶导航 ---- */
+const nav = document.getElementById("nav");
+window.addEventListener("scroll", () => {
+  nav.classList.toggle("scrolled", window.scrollY > 64);
+}, {passive:true});
+
+/* ---- 跑马灯 ---- */
+const MQ = ["一线 AI 短剧资产落地实战经验","AI 绘图角色抽卡 · 画面质检","视觉风格统一管控","短剧人物资产量产流程","快速识别面部崩坏 · 肢体畸形 · 光影冲突 · 画风割裂 · 道具穿模","标准化素材筛选规范与快速排错思路","可直接复用的实操避坑方法论","助教全流程 · 实操陪练与作业点评"];
+const track = document.getElementById("mqTrack");
+const html = MQ.map(t => `<span class="mq-item"><i>◆</i>${t}</span>`).join("");
+track.innerHTML = html + html;
+
+/* ---- 数字滚动 ---- */
+function animateNum(el){
+  const target = parseInt(el.dataset.count, 10);
+  const suffix = el.dataset.suffix || "";
+  const dur = 1400, t0 = performance.now();
+  function tick(now){
+    const p = Math.min((now - t0) / dur, 1);
+    const eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.round(target * eased).toLocaleString() + suffix;
+    if(p < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+/* ---- 入场动画 ---- */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if(e.isIntersecting){
+    e.target.classList.add("in");
+    e.target.querySelectorAll?.("[data-count]").forEach(animateNum);
+    io.unobserve(e.target);
+  }
+}), {threshold:.12});
+document.querySelectorAll(".rise:not(.in)").forEach(el => io.observe(el));
+</script>
+</body>
+</html>

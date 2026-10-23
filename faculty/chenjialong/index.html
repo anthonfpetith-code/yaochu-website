@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>陈家龙 · AIGC视频导师</title>
+<meta name="description" content="陈家龙（Rowan），AIGC视频导师。红果短剧与海外平台多部千万级爆款制作负责人，作品累计播放超1亿，单部最佳8000万+；温州广电AIGC培训战略合作导师。">
+<style>
+  :root{
+    --bg:#F5F5F7;
+    --card:#FFFFFF;
+    --card-soft:#FFFFFF;
+    --ink:#1D1D1F;
+    --ink-dim:#6E6E73;
+    --ink-faint:#AEAEB2;
+    --line:rgba(0,0,0,.06);
+    --tint:#A63D52;
+    --tint-soft:rgba(166,61,82,.10);
+    --shadow-1:0 2px 8px rgba(0,0,0,.04),0 12px 32px rgba(0,0,0,.06);
+    --shadow-2:0 4px 12px rgba(0,0,0,.06),0 20px 48px rgba(0,0,0,.10);
+    --nav-bg:rgba(245,245,247,.72);
+    --sans:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","PingFang SC","HarmonyOS Sans SC","Microsoft YaHei",sans-serif;
+  }
+  html[data-theme="dark"]{
+    --bg:#1D1D1F;
+    --card:#2C2C2E;
+    --card-soft:#2C2C2E;
+    --ink:#F5F5F7;
+    --ink-dim:#A1A1A6;
+    --ink-faint:#636366;
+    --line:rgba(255,255,255,.08);
+    --tint:#D07084;
+    --tint-soft:rgba(208,112,132,.14);
+    --shadow-1:0 2px 8px rgba(0,0,0,.24),0 12px 32px rgba(0,0,0,.32);
+    --shadow-2:0 4px 12px rgba(0,0,0,.28),0 20px 48px rgba(0,0,0,.40);
+    --nav-bg:rgba(29,29,31,.72);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.75;
+    overflow-x:hidden;transition:background .5s ease,color .5s ease}
+  ::selection{background:var(--tint-soft)}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 28px}
+
+  /* ===== 吸顶毛玻璃导航 ===== */
+  .nav{position:fixed;top:0;left:0;right:0;z-index:80;transition:background .4s ease,border-color .4s ease,backdrop-filter .4s ease}
+  .nav-inner{max-width:1060px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;gap:8px}
+  .nav-name{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:700;letter-spacing:-.01em;
+    opacity:0;transform:translateY(-6px);transition:opacity .35s ease,transform .35s ease}
+  .nav.scrolled{background:var(--nav-bg);backdrop-filter:blur(20px) saturate(1.8);-webkit-backdrop-filter:blur(20px) saturate(1.8);
+    border-bottom:1px solid var(--line)}
+  .nav.scrolled .nav-name{opacity:1;transform:translateY(0)}
+  .nav-name img{width:28px;height:28px;border-radius:9px;object-fit:cover;object-position:top center}
+  .nav-links{margin-left:auto;display:flex;gap:2px}
+  .nav-links a{font-size:13px;font-weight:500;color:var(--ink-dim);text-decoration:none;
+    padding:7px 14px;border-radius:999px;transition:color .25s ease,background .25s ease}
+  .nav-links a:hover{color:var(--ink);background:var(--tint-soft)}
+    /* 返回集合页按钮 */
+  .back-btn{display:inline-flex;align-items:center;font-size:13px;font-weight:600;color:var(--tint);
+    text-decoration:none;padding:7px 13px 7px 9px;border-radius:999px;
+    transition:background .25s ease,transform .25s ease}
+  .back-btn:hover{background:var(--tint-soft)}
+  .back-btn:active{transform:scale(.96)}
+  .back-btn .arr{font-size:16px;font-weight:700;margin-right:3px;line-height:1}
+.theme-btn{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);
+    background:var(--card);color:var(--ink);cursor:pointer;font-size:14px;
+    display:flex;align-items:center;justify-content:center;margin-left:6px;
+    transition:transform .3s ease,box-shadow .3s ease}
+  .theme-btn:hover{transform:scale(1.08);box-shadow:var(--shadow-1)}
+  .theme-btn:active{transform:scale(.94)}
+
+  /* ===== Hero ===== */
+  header.wrap{padding:clamp(110px,14vw,150px) 0 0}
+  .hero{display:grid;grid-template-columns:1fr 310px;gap:clamp(36px,6vw,72px);align-items:center}
+  .hero-tag{font-size:13px;font-weight:600;letter-spacing:.12em;color:var(--tint);
+    text-transform:uppercase;margin-bottom:14px}
+  .cert-badge{display:inline-flex;align-items:center;gap:9px;margin-top:18px;padding:8px 18px;
+    border-radius:999px;border:1px solid color-mix(in srgb,var(--tint) 42%,transparent);
+    background:color-mix(in srgb,var(--tint) 8%,transparent);color:var(--tint);
+    font-size:13px;font-weight:600;letter-spacing:.06em}
+  .cert-dot{width:7px;height:7px;border-radius:50%;background:var(--tint);flex:none;
+    box-shadow:0 0 0 3px color-mix(in srgb,var(--tint) 18%,transparent)}
+  h1{font-size:clamp(46px,8vw,70px);font-weight:700;letter-spacing:-.02em;line-height:1.06}
+  .roles{margin-top:16px;display:flex;flex-direction:column;gap:5px}
+  .role{font-size:clamp(14px,2.4vw,16.5px);color:var(--ink-dim)}
+  .role b{color:var(--ink);font-weight:600}
+  .motto{margin-top:24px;padding:18px 22px;border-radius:18px;background:var(--card);
+    box-shadow:var(--shadow-1);border-left:4px solid var(--tint)}
+  .motto p{font-size:clamp(15px,2.5vw,17px);line-height:1.8}
+  .motto p b{color:var(--tint);font-weight:700}
+
+  .photo-card{position:relative;justify-self:center}
+  .photo-card img{display:block;width:310px;max-width:100%;aspect-ratio:4/5;object-fit:cover;
+    border-radius:28px;box-shadow:var(--shadow-2)}
+  .photo-badge{position:absolute;bottom:14px;left:14px;right:14px;padding:10px 16px;border-radius:16px;
+    background:rgba(255,255,255,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    display:flex;align-items:center;justify-content:space-between}
+  .photo-badge .n{font-size:13px;font-weight:700;color:#1D1D1F;letter-spacing:.04em}
+  .photo-badge .r{font-size:10.5px;font-weight:600;color:var(--tint);letter-spacing:.14em}
+
+  /* 数据条 */
+  .stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:clamp(28px,4vw,40px)}
+  .sb-item{background:var(--card);border-radius:20px;box-shadow:var(--shadow-1);padding:20px 18px;
+    text-align:center;transition:transform .4s cubic-bezier(.22,1,.36,1),box-shadow .4s ease}
+  .sb-item:hover{transform:translateY(-3px);box-shadow:var(--shadow-2)}
+  .sb-num{display:block;font-size:clamp(24px,3.6vw,32px);font-weight:700;letter-spacing:-.02em;
+    font-variant-numeric:tabular-nums;color:var(--tint)}
+  .sb-label{font-size:12.5px;color:var(--ink-dim);margin-top:4px;display:block}
+
+  /* 跑马灯 */
+  .marquee{margin-top:clamp(30px,4vw,46px);border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    overflow:hidden;position:relative}
+  .mq-track{display:flex;width:max-content;animation:mq 30s linear infinite}
+  .mq-item{display:flex;align-items:center;gap:12px;padding:13px 24px;white-space:nowrap;
+    font-size:13px;font-weight:500;color:var(--ink-dim)}
+  .mq-item i{font-style:normal;color:var(--tint);font-size:10px}
+  @keyframes mq{to{transform:translateX(-50%)}}
+
+  /* ===== 通用 section ===== */
+  section{padding-top:clamp(52px,8vw,92px)}
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:clamp(22px,3.5vw,32px)}
+  .sec-tag{font-size:12px;font-weight:600;letter-spacing:.14em;color:var(--tint);text-transform:uppercase}
+  .sec-title{font-size:clamp(26px,4.2vw,36px);font-weight:700;letter-spacing:-.015em}
+  .sec-en{margin-left:auto;font-size:11px;font-weight:600;letter-spacing:.22em;color:var(--ink-faint);text-transform:uppercase}
+
+  /* 简介卡 */
+  .intro{background:var(--card);border-radius:28px;box-shadow:var(--shadow-1);padding:clamp(26px,4vw,40px);
+    display:flex;flex-direction:column;gap:14px}
+  .intro p{font-size:clamp(14.5px,2.2vw,16px);color:var(--ink-dim);line-height:1.9}
+  .intro p b{color:var(--ink);font-weight:600}
+  .intro p .hl{color:var(--tint);font-weight:600}
+  .intro p.lead{font-size:clamp(16px,2.6vw,19px);color:var(--ink);font-weight:600;line-height:1.85}
+  .cap-row{display:flex;flex-wrap:wrap;gap:9px;margin-top:8px}
+  .cap{font-size:13px;font-weight:500;color:var(--ink-dim);padding:8px 17px;border-radius:999px;
+    background:var(--bg);border:1px solid var(--line)}
+  .cap b{color:var(--tint);font-weight:700}
+
+  /* 教学方式核心卡 */
+  .teach-card{background:var(--card);border-radius:28px;box-shadow:var(--shadow-1);
+    padding:clamp(26px,4vw,40px);margin-bottom:18px}
+  .teach-card h3{font-size:clamp(24px,4vw,34px);font-weight:700;letter-spacing:-.01em}
+  .teach-card h3 .x{font-size:.62em;color:var(--tint);font-weight:400;margin:0 12px;vertical-align:middle}
+  .teach-card > p{margin-top:12px;font-size:clamp(14px,2.1vw,15.5px);color:var(--ink-dim);line-height:1.9;max-width:820px}
+  .teach-card > p b{color:var(--ink);font-weight:600}
+
+  /* ===== 作品轮播（3D tilt） ===== */
+  .carousel-hint{font-size:12.5px;color:var(--ink-faint);letter-spacing:.08em;margin-bottom:18px}
+  .rail{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;
+    padding:10px 6px 22px;cursor:grab;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .rail::-webkit-scrollbar{display:none}
+  .rail.dragging{cursor:grabbing;scroll-snap-type:none}
+  .wcard{flex:0 0 300px;scroll-snap-align:start;user-select:none;-webkit-user-drag:none;
+    transform-style:preserve-3d;perspective:900px}
+  .wcard .ph{position:relative;border-radius:22px;overflow:hidden;box-shadow:var(--shadow-1);
+    aspect-ratio:2/3;background:var(--card);transition:transform .18s ease-out,box-shadow .3s ease;
+    will-change:transform}
+  .wcard .ph:hover{box-shadow:var(--shadow-2)}
+  .wcard img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+  .rank{position:absolute;top:14px;left:14px;padding:5px 13px;border-radius:999px;
+    background:rgba(255,255,255,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    font-size:11px;font-weight:700;color:#1D1D1F;letter-spacing:.1em;z-index:2}
+  .wcard .meta{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-top:14px}
+  .wcard .t{font-size:15px;font-weight:700;letter-spacing:-.01em}
+  .wcard .g{font-size:11.5px;font-weight:600;color:var(--tint);white-space:nowrap}
+  .wcard .tag{font-size:12px;color:var(--ink-faint);margin-top:3px}
+  /* 排版位海报 */
+  .typo-poster{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;
+    padding:18px;background:linear-gradient(160deg,#435360 0%,#27313B 100%)}
+  html[data-theme="dark"] .typo-poster{background:linear-gradient(160deg,#43536080 0%,#27313B 100%),linear-gradient(160deg,#333F4A,#27313B)}
+  .typo-poster .big{position:absolute;right:-8px;bottom:-22px;font-size:150px;font-weight:800;
+    color:rgba(255,255,255,.08);line-height:1;pointer-events:none}
+  .typo-poster .top{display:flex;justify-content:space-between;align-items:center}
+  .typo-poster .top .no{font-size:11px;font-weight:700;letter-spacing:.18em;color:rgba(255,255,255,.85)}
+  .typo-poster .top .type{font-size:11px;font-weight:600;color:rgba(255,255,255,.7);
+    padding:4px 11px;border-radius:999px;border:1px solid rgba(255,255,255,.25)}
+  .typo-poster .name{position:relative;font-size:23px;font-weight:800;color:#FFF;letter-spacing:.06em;
+    text-shadow:0 2px 12px rgba(0,0,0,.35)}
+  .typo-poster .bottom{display:flex;justify-content:space-between;align-items:center}
+  .typo-poster .platform{font-size:11px;font-weight:600;color:rgba(255,255,255,.75);letter-spacing:.1em}
+  .typo-poster .deco{width:34px;height:1px;background:rgba(255,255,255,.35)}
+  .car-nav{display:flex;align-items:center;gap:14px;margin-top:6px}
+  .car-btn{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--card);
+    color:var(--ink);cursor:pointer;font-size:16px;box-shadow:var(--shadow-1);
+    transition:transform .3s ease,box-shadow .3s ease}
+  .car-btn:hover{transform:scale(1.06);box-shadow:var(--shadow-2)}
+  .car-btn:active{transform:scale(.95)}
+  .progress{flex:1;height:4px;border-radius:4px;background:var(--line);overflow:hidden}
+  .progress i{display:block;height:100%;width:25%;border-radius:4px;background:var(--tint);
+    transition:width .3s ease}
+  .car-hint{font-size:10.5px;font-weight:600;letter-spacing:.2em;color:var(--ink-faint)}
+
+  /* 白卡网格（专业方向 / 教学方式 / 实战案例） */
+  .cap-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .cap-item{background:var(--card);border-radius:24px;box-shadow:var(--shadow-1);padding:clamp(22px,3.5vw,30px);
+    transition:transform .4s cubic-bezier(.22,1,.36,1),box-shadow .4s ease}
+  .cap-item:hover{transform:translateY(-4px);box-shadow:var(--shadow-2)}
+  .cap-item .n{font-size:11px;font-weight:700;letter-spacing:.18em;color:var(--tint);margin-bottom:10px}
+  .cap-item h4{font-size:clamp(16.5px,2.4vw,19px);font-weight:700;letter-spacing:-.01em}
+  .cap-item p{margin-top:9px;font-size:clamp(13px,1.9vw,14.5px);color:var(--ink-dim);line-height:1.85}
+  .cap-item .cap-tags{margin-top:6px;font-size:12px;color:var(--ink-faint);letter-spacing:.12em}
+  .cap-item .cap-tail{margin-top:10px;font-size:12.5px;font-weight:600;color:var(--tint);letter-spacing:.14em}
+
+  /* 页脚 */
+  footer{margin-top:clamp(56px,8vw,96px);background:var(--card);border-radius:32px 32px 0 0;
+    padding:clamp(40px,6vw,60px) 28px calc(clamp(36px,5vw,52px) + 20px);text-align:center}
+  .foot-mark{display:inline-flex;align-items:center;justify-content:center;width:58px;height:58px;
+    border-radius:19px;background:var(--tint-soft);font-size:23px;font-weight:800;color:var(--tint);margin-bottom:14px}
+  .foot-name{font-size:16px;font-weight:700;letter-spacing:.02em}
+  .foot-sub{font-size:12px;color:var(--ink-faint);letter-spacing:.1em;margin-top:5px}
+
+  /* 入场动画 */
+  .rise{opacity:0;transform:translateY(24px);transition:opacity .85s cubic-bezier(.22,1,.36,1),transform .85s cubic-bezier(.22,1,.36,1)}
+  .rise.in{opacity:1;transform:translateY(0)}
+  .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+  @media (max-width:880px){
+    .hero{grid-template-columns:1fr;gap:34px}
+    .photo-card{justify-self:start}
+    .stats-bar{grid-template-columns:1fr 1fr}
+    .cap-grid{grid-template-columns:1fr}
+    .nav-links{display:none}
+  }
+  @media (max-width:640px){
+    .wcard{flex-basis:250px}
+  }
+  /* 本页补充 */
+  .cap-item p b{color:var(--ink);font-weight:600}
+  h1 .en-name{font-size:.30em;font-weight:600;letter-spacing:.42em;color:var(--tint);margin-left:10px;vertical-align:.22em}
+  .cap-grid.tri{grid-template-columns:repeat(3,1fr)}
+  .flow{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:18px}
+  .flow-step{background:var(--card);border-radius:20px;box-shadow:var(--shadow-1);padding:20px 16px;
+    transition:transform .4s cubic-bezier(.22,1,.36,1),box-shadow .4s ease}
+  .flow-step:hover{transform:translateY(-3px);box-shadow:var(--shadow-2)}
+  .flow-step .fn{font-size:11px;font-weight:700;letter-spacing:.18em;color:var(--tint)}
+  .flow-step b{display:block;font-size:15px;font-weight:700;letter-spacing:-.01em;margin:8px 0 6px}
+  .flow-step span{font-size:12px;color:var(--ink-dim);line-height:1.7;display:block}
+  @media (max-width:920px){.flow{grid-template-columns:1fr 1fr}}
+  @media (max-width:880px){.cap-grid.tri{grid-template-columns:1fr}}
+  @media (max-width:560px){.flow{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="back-btn" href="../index.html" aria-label="返回师资目录首页"><span class="arr">‹</span>返回首页</a>
+    <div class="nav-name"><img src="photo.jpg" alt="陈家龙">陈家龙</div>
+    <div class="nav-links">
+      <a href="#works">作品</a>
+      <a href="#creds">资历</a>
+      <a href="#teaching">教学</a>
+    </div>
+    <button class="theme-btn" id="themeBtn" aria-label="切换深浅色" title="切换深浅色">◐</button>
+  </div>
+</nav>
+
+<header class="wrap">
+  <div class="hero">
+    <div>
+      <p class="hero-tag rise">AIGC Video Mentor · 师资介绍</p>
+      <h1 class="rise d1">陈家龙<span class="en-name">ROWAN</span></h1>
+      <div class="roles rise d2">
+        <div class="role"><b>AIGC 视频导师</b> · 红果短剧与海外平台千万级爆款制作负责人</div>
+        <div class="role">温州广电 <b>AIGC 培训合作导师</b></div>
+      </div>
+      <div class="cert-badge rise d3"><span class="cert-dot"></span>中广有线指定培训师</div>
+      <div class="motto rise d3">
+        <p>把想象力，<b>做成千万级播放</b>。</p>
+      </div>
+    </div>
+    <div class="photo-card rise d2">
+      <img src="photo.jpg" alt="陈家龙">
+      <div class="photo-badge"><span class="n">陈家龙</span><span class="r">CHEN JIALONG · ROWAN</span></div>
+    </div>
+  </div>
+
+  <div class="stats-bar rise d3">
+    <div class="sb-item"><span class="sb-num" data-count="8000" data-suffix="万+">8000万+</span><span class="sb-label">单部作品最佳播放</span></div>
+    <div class="sb-item"><span class="sb-num" data-count="1" data-suffix="亿+">1亿+</span><span class="sb-label">作品累计播放量</span></div>
+    <div class="sb-item"><span class="sb-num">2 大市场</span><span class="sb-label">国内红果 × 海外英语短剧</span></div>
+    <div class="sb-item"><span class="sb-num" data-count="6" data-suffix=" 部">6 部</span><span class="sb-label">千万级播放爆款短剧</span></div>
+  </div>
+
+  <div class="marquee" aria-hidden="true"><div class="mq-track" id="mqTrack"></div></div>
+</header>
+
+<main class="wrap">
+
+  <section id="works">
+    <div class="sec-head rise"><span class="sec-tag">01 · Works</span><h2 class="sec-title">代表作品</h2><span class="sec-en">Works</span></div>
+    <p class="carousel-hint rise">红果短剧 & 海外平台 · 多部千万级播放 · 卡片支持拖拽与 3D 触控</p>
+    <div class="rail rise d1" id="rail">
+      <article class="wcard">
+        <div class="ph tilt"><span class="rank">NO.01</span><img src="poster-jiange.jpg" alt="捡个家人是大佬 海报" draggable="false"></div>
+        <div class="meta"><span class="t">《捡个家人是大佬》</span><span class="g">古装家庭</span></div>
+        <p class="tag">红果短剧 · AIGC 全流程</p>
+      </article>
+      <article class="wcard">
+        <div class="ph tilt"><span class="rank">NO.02 · 文旅合作</span><img src="poster-dixian.jpg" alt="谪仙传·李白 海报" draggable="false"></div>
+        <div class="meta"><span class="t">《谪仙传·李白》</span><span class="g">文旅宣传片</span></div>
+        <p class="tag">马鞍山文旅 · 合作作品</p>
+      </article>
+      <article class="wcard">
+        <div class="ph tilt"><span class="rank">NO.03</span><img src="poster-shengong.jpg" alt="深宫劫之凰鸣 海报" draggable="false"></div>
+        <div class="meta"><span class="t">《深宫劫之凰鸣》</span><span class="g">古装宫廷</span></div>
+        <p class="tag">红果短剧 · AIGC 全流程</p>
+      </article>
+      <article class="wcard">
+        <div class="ph tilt"><span class="rank">NO.04</span><img src="poster-contract.jpg" alt="72-Hour Contract Wife 海报" draggable="false"></div>
+        <div class="meta"><span class="t">72-Hour Contract Wife</span><span class="g">海外英语剧</span></div>
+        <p class="tag">海外短剧平台 · AIGC 全流程</p>
+      </article>
+      <article class="wcard">
+        <div class="ph tilt"><span class="rank">NO.05</span><img src="poster-emperor.jpg" alt="现代理工男穿越大晟当皇帝 海报" draggable="false"></div>
+        <div class="meta"><span class="t">《现代理工男穿越大晟当皇帝》</span><span class="g">历史穿越</span></div>
+        <p class="tag">红果短剧 · AIGC 全流程</p>
+      </article>
+      <article class="wcard">
+        <div class="ph tilt"><span class="rank">NO.06</span><img src="poster-tavern.jpg" alt="穿越开酒馆，伙计全员怪胎 海报" draggable="false"></div>
+        <div class="meta"><span class="t">《穿越开酒馆，伙计全员怪胎》</span><span class="g">古装喜剧</span></div>
+        <p class="tag">红果短剧 · AIGC 全流程</p>
+      </article>
+    </div>
+    <div class="car-nav rise d2">
+      <button class="car-btn" id="prevBtn" aria-label="上一部">←</button>
+      <button class="car-btn" id="nextBtn" aria-label="下一部">→</button>
+      <div class="progress"><i id="progBar"></i></div>
+      <span class="car-hint">DRAG / SCROLL</span>
+    </div>
+  </section>
+
+  <section id="creds">
+    <div class="sec-head rise"><span class="sec-tag">02 · Credentials</span><h2 class="sec-title">合作与资历</h2><span class="sec-en">Credentials</span></div>
+    <div class="cap-grid tri">
+      <div class="cap-item rise d1">
+        <div class="n">2025 · 机构合作</div>
+        <h4>温州广电集团 · AIGC 培训战略合作导师</h4>
+        <p>为广电主持人与编导团队交付 AIGC 短视频工作流系统内训，覆盖新闻、综艺与直播内容生产场景。</p>
+        <p class="cap-tail">系统内训 · 场景覆盖</p>
+      </div>
+      <div class="cap-item rise d1">
+        <div class="n">2024—25 · 平台作品</div>
+        <h4>红果短剧 & 海外平台 · 千万级爆款制作负责人</h4>
+        <p>主导多部千万级播放短剧的 AIGC 全流程制作，从剧本拆分、分镜生成到成片交付，累计播放超 <b>1 亿</b>。</p>
+        <p class="cap-tail">全流程主导 · 累计 1 亿+</p>
+      </div>
+      <div class="cap-item rise d2">
+        <div class="n">2023 · 创作起点</div>
+        <h4>独立 AIGC 影像创作与教学</h4>
+        <p>从一个人一台电脑开始，搭建可复制的 AI 视频生产工作流，并把它打磨成普通人也能学会的课程体系。</p>
+        <p class="cap-tail">工作流起点 · 课程体系</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="teaching">
+    <div class="sec-head rise"><span class="sec-tag">03 · Teaching</span><h2 class="sec-title">教学理念</h2><span class="sec-en">Teaching</span></div>
+    <div class="teach-card rise d1">
+      <h3>教一套<span class="x">×</span>能复制的生产线</h3>
+      <p>不是教工具——把从选题到推流的完整生产链路，打磨成<b>普通人也能学会的课程体系</b>。模型会换，流程照跑，学员带走的是可复用的生产能力。</p>
+    </div>
+    <div class="flow rise d2">
+      <div class="flow-step">
+        <span class="fn">STEP · 01</span>
+        <b>选题评估</b>
+        <span>题材 × 钩子 × 受众，三角验证后再动手</span>
+      </div>
+      <div class="flow-step">
+        <span class="fn">STEP · 02</span>
+        <b>剧本拆分</b>
+        <span>把剧本拆成可生成的镜头清单与分镜表</span>
+      </div>
+      <div class="flow-step">
+        <span class="fn">STEP · 03</span>
+        <b>AI 批量生成</b>
+        <span>提示词模板驱动，300+ 镜头批量产出与筛选</span>
+      </div>
+      <div class="flow-step">
+        <span class="fn">STEP · 04</span>
+        <b>剪辑成片</b>
+        <span>节奏、配乐、字幕，按爆款标准验收</span>
+      </div>
+      <div class="flow-step">
+        <span class="fn">STEP · 05</span>
+        <b>上线推流</b>
+        <span>封面标题测试与发布策略，让算法替你推</span>
+      </div>
+    </div>
+    <div class="cap-grid tri" style="margin-top:18px">
+      <div class="cap-item rise d1">
+        <div class="n">MINDSET · M.1</div>
+        <h4>先跑通，再跑好</h4>
+        <p>第一周就产出第一条完整短片，用最小闭环建立信心，再逐环节打磨质量。</p>
+      </div>
+      <div class="cap-item rise d1">
+        <div class="n">MINDSET · M.2</div>
+        <h4>工作流大于工具</h4>
+        <p>提示词模板、分镜表、审核清单全部交付——模型换了，流程照样跑。</p>
+      </div>
+      <div class="cap-item rise d2">
+        <div class="n">MINDSET · M.3</div>
+        <h4>用爆款标准做练习</h4>
+        <p>每节课的作业都按平台真实爆款的标准验收，学完就有能拿得出手的作品集。</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="rise">
+    <div class="foot-mark">龙</div>
+    <div class="foot-name">陈家龙 · ROWAN</div>
+    <div class="foot-sub">AIGC VIDEO MENTOR · 把想象力，做成千万级播放</div>
+  </footer>
+
+</main>
+<script>
+/* ---- 静态渲染支持（?noanim=1 时跳过入场动画，用于截图/无障碍场景） ---- */
+if(location.search.includes('noanim')){
+  document.querySelectorAll('.rise').forEach(el=>el.classList.add('in'));
+}
+
+/* ---- 主题切换 ---- */
+const themeBtn = document.getElementById("themeBtn");
+const savedTheme = localStorage.getItem("theme") || "light";
+document.documentElement.dataset.theme = savedTheme;
+themeBtn.textContent = savedTheme === "dark" ? "☀" : "◐";
+themeBtn.addEventListener("click", () => {
+  const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+  document.documentElement.dataset.theme = next;
+  localStorage.setItem("theme", next);
+  themeBtn.textContent = next === "dark" ? "☀" : "◐";
+});
+
+/* ---- 吸顶导航 ---- */
+const nav = document.getElementById("nav");
+window.addEventListener("scroll", () => {
+  nav.classList.toggle("scrolled", window.scrollY > 64);
+}, {passive:true});
+
+/* ---- 跑马灯 ---- */
+const MQ = ["红果短剧 · 千万级播放","海外英语短剧市场","单部最佳 8000万+ · 累计播放 1亿+","温州广电 · AIGC 培训合作导师","马鞍山文旅 · 合作作品","AIGC 全流程制作","6 部千万级播放爆款"];
+const track = document.getElementById("mqTrack");
+const html = MQ.map(t => `<span class="mq-item"><i>◆</i>${t}</span>`).join("");
+track.innerHTML = html + html;
+
+/* ---- 数字滚动 ---- */
+function animateNum(el){
+  const target = parseInt(el.dataset.count, 10);
+  const suffix = el.dataset.suffix || "";
+  const dur = 1400, t0 = performance.now();
+  function tick(now){
+    const p = Math.min((now - t0) / dur, 1);
+    const eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.round(target * eased).toLocaleString() + suffix;
+    if(p < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+/* ---- 作品轮播：拖拽 + 按钮 + 进度 ---- */
+const rail = document.getElementById("rail");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+const progBar = document.getElementById("progBar");
+function cardStep(){ return rail.querySelector(".wcard").offsetWidth + 18; }
+nextBtn.addEventListener("click", () => rail.scrollBy({left: cardStep(), behavior:"smooth"}));
+prevBtn.addEventListener("click", () => rail.scrollBy({left: -cardStep(), behavior:"smooth"}));
+function updateProg(){
+  const max = rail.scrollWidth - rail.clientWidth;
+  progBar.style.width = (max > 0 ? 25 + (rail.scrollLeft / max) * 75 : 100) + "%";
+}
+rail.addEventListener("scroll", updateProg, {passive:true});
+window.addEventListener("resize", updateProg);
+updateProg();
+/* 拖拽 */
+let dragging = false, startX = 0, startScroll = 0, moved = false;
+rail.addEventListener("pointerdown", e => {
+  if(e.pointerType === "touch") return;
+  dragging = true; moved = false; startX = e.clientX; startScroll = rail.scrollLeft;
+  rail.classList.add("dragging");
+});
+window.addEventListener("pointermove", e => {
+  if(!dragging) return;
+  const dx = e.clientX - startX;
+  if(Math.abs(dx) > 4) moved = true;
+  rail.scrollLeft = startScroll - dx;
+});
+window.addEventListener("pointerup", () => {
+  if(!dragging) return;
+  dragging = false;
+  setTimeout(() => rail.classList.remove("dragging"), 0);
+});
+
+/* ---- 3D Tilt（作品海报跟随鼠标倾斜） ---- */
+document.querySelectorAll(".tilt").forEach(card => {
+  card.addEventListener("pointermove", e => {
+    if(dragging) return;
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - .5;
+    const y = (e.clientY - r.top) / r.height - .5;
+    card.style.transform = `rotateY(${x * 10}deg) rotateX(${-y * 8}deg) scale(1.02)`;
+  });
+  card.addEventListener("pointerleave", () => { card.style.transform = ""; });
+});
+
+/* ---- 入场动画 ---- */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if(e.isIntersecting){
+    e.target.classList.add("in");
+    e.target.querySelectorAll?.("[data-count]").forEach(animateNum);
+    io.unobserve(e.target);
+  }
+}), {threshold:.12});
+document.querySelectorAll(".rise:not(.in)").forEach(el => io.observe(el));
+</script>
+</body>
+</html>

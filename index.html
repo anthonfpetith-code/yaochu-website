@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>遥触灵境 · AIGC 内容工业化</title>
+<meta name="description" content="遥触灵境（杭州）科技有限公司 —— 以自研 Agent 与标准化 SOP，把影视内容制作变成可复用的工序。">
+<style>
+/* ==========================================================
+   Apple 玻璃动态风格
+   背景：随 Logo 高光取色的紫 / 粉 / 橙极光，缓慢流动
+   表面：毛玻璃 + 1px 高光边 + 内部柔光
+   动效：弹簧缓动、交错入场、鼠标视差、滚动驱动
+   ========================================================== */
+:root{
+  color-scheme:dark;
+  --bg:#05060A;
+  --ink:#F5F5F7;
+  --ink-2:#A8A9B4;
+  --ink-3:#6C6E7C;
+  --line:rgba(255,255,255,.10);
+  --line-2:rgba(255,255,255,.18);
+
+  --violet:#B45CFF;
+  --pink:#FF5FA2;
+  --orange:#FFB46B;
+  --cyan:#7BE0FF;
+  --grad:linear-gradient(100deg,#B45CFF,#FF5FA2 42%,#FFB46B 78%,#FFD9B0 100%);
+
+  --glass:rgba(255,255,255,.055);
+  --glass-2:rgba(255,255,255,.09);
+  --blur:blur(26px) saturate(180%);
+
+  --spring:cubic-bezier(.22,1,.36,1);
+  --out:cubic-bezier(.16,1,.3,1);
+  --r-s:14px;--r-m:20px;--r-l:28px;--r-xl:38px;--pill:999px;
+  --gutter:clamp(20px,4.6vw,58px);--max:1300px;--nav-h:66px;
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang SC","HarmonyOS Sans SC","Microsoft YaHei",sans-serif;
+  --num:"SF Pro Display","Helvetica Neue",-apple-system,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);
+  font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;border:0;background:none;cursor:pointer}
+h1,h2,h3,p,ul,ol{margin:0;padding:0}
+ul,ol{list-style:none}
+::selection{background:rgba(180,92,255,.35)}
+:focus-visible{outline:2px solid var(--violet);outline-offset:3px;border-radius:8px}
+.container{width:100%;max-width:var(--max);margin-inline:auto;padding-inline:var(--gutter)}
+
+/* ---------- 背景极光 ---------- */
+.aurora{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;filter:blur(70px)}
+.aurora i{position:absolute;border-radius:50%;mix-blend-mode:screen;opacity:.5}
+.aurora i:nth-child(1){width:48vw;height:48vw;left:-10vw;top:-14vw;
+  background:radial-gradient(circle,#7A3BFF,transparent 66%);animation:drift1 26s ease-in-out infinite}
+.aurora i:nth-child(2){width:42vw;height:42vw;right:-12vw;top:4vw;
+  background:radial-gradient(circle,#FF5FA2,transparent 66%);animation:drift2 32s ease-in-out infinite;opacity:.38}
+.aurora i:nth-child(3){width:46vw;height:46vw;left:22vw;bottom:-18vw;
+  background:radial-gradient(circle,#FF9A5B,transparent 68%);animation:drift3 38s ease-in-out infinite;opacity:.3}
+.aurora i:nth-child(4){width:30vw;height:30vw;right:8vw;bottom:8vw;
+  background:radial-gradient(circle,#5BD7FF,transparent 68%);opacity:.18;animation:drift1 30s ease-in-out infinite reverse}
+@keyframes drift1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(5vw,4vh) scale(1.12)}}
+@keyframes drift2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-5vw,5vh) scale(1.1)}}
+@keyframes drift3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(4vw,-5vh) scale(1.08)}}
+
+/* 颗粒 + 光标聚光 */
+.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+.spot{position:fixed;z-index:1;pointer-events:none;width:620px;height:620px;border-radius:50%;
+  background:radial-gradient(circle,rgba(180,92,255,.13),transparent 62%);
+  transform:translate(-50%,-50%);left:50%;top:30%;transition:opacity .4s ease}
+.wrap{position:relative;z-index:3}
+.progress{position:fixed;top:0;left:0;height:2px;width:0;z-index:99;background:var(--grad);
+  box-shadow:0 0 14px rgba(255,95,162,.6);pointer-events:none}
+
+/* ---------- 玻璃基元 ---------- */
+.glass{
+  position:relative;background:var(--glass);border:1px solid var(--line);
+  border-radius:var(--r-l);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);
+  box-shadow:0 24px 60px rgba(0,0,0,.42),inset 0 1px 0 rgba(255,255,255,.14);
+  transition:transform .6s var(--spring),background-color .45s ease,border-color .45s ease,box-shadow .55s ease;
+}
+.glass::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(140deg,rgba(255,255,255,.16),transparent 38%,transparent 70%,rgba(255,255,255,.06))}
+.glass:hover{transform:translateY(-6px);background:var(--glass-2);border-color:rgba(255,255,255,.24);
+  box-shadow:0 34px 80px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.2)}
+
+/* ---------- 导航 ---------- */
+.nav{position:fixed;inset:14px 0 auto 0;z-index:80;display:flex;justify-content:center;
+  padding-inline:var(--gutter);transition:transform .5s var(--spring)}
+.nav__bar{width:100%;max-width:1180px;height:var(--nav-h);display:flex;align-items:center;gap:26px;
+  padding:0 12px 0 16px;border-radius:var(--pill);
+  background:rgba(14,15,22,.5);border:1px solid rgba(255,255,255,.10);
+  backdrop-filter:blur(26px) saturate(190%);-webkit-backdrop-filter:blur(26px) saturate(190%);
+  box-shadow:0 12px 40px rgba(0,0,0,.42),inset 0 1px 0 rgba(255,255,255,.16);
+  transition:max-width .5s var(--spring),background-color .4s ease,height .4s var(--spring)}
+.nav.on .nav__bar{max-width:1060px;height:56px;background:rgba(12,13,19,.72)}
+.brand{display:flex;align-items:center;gap:10px;flex:none}
+.brand img{width:34px;height:auto;transition:transform .6s var(--spring);filter:drop-shadow(0 4px 12px rgba(180,92,255,.35))}
+.brand:hover img{transform:rotate(-8deg) scale(1.08)}
+.brand b{font-size:15.5px;font-weight:600;letter-spacing:.01em}
+.nav__links{display:flex;gap:2px;margin-left:auto}
+.nav__links a{padding:8px 15px;border-radius:var(--pill);font-size:13.5px;color:var(--ink-2);
+  transition:color .25s ease,background-color .3s ease}
+.nav__links a:hover{color:var(--ink);background:rgba(255,255,255,.08)}
+.nav__cta{display:inline-flex;align-items:center;gap:7px;height:40px;padding:0 18px;border-radius:var(--pill);
+  font-size:13px;font-weight:600;color:#0A0710;background:linear-gradient(100deg,#E9D8FF,#FFC9E1 55%,#FFE0C4);
+  box-shadow:0 6px 20px rgba(255,95,162,.28);transition:transform .3s var(--spring),box-shadow .35s ease}
+.nav__cta:hover{transform:translateY(-1px) scale(1.02);box-shadow:0 10px 28px rgba(255,95,162,.4)}
+.nav__cta:active{transform:scale(.96)}
+
+/* ---------- 按钮 ---------- */
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  height:50px;padding:0 26px;border-radius:var(--pill);font-size:14.5px;font-weight:600;overflow:hidden;
+  transition:transform .3s var(--spring),box-shadow .4s ease,background-color .3s ease,border-color .3s ease}
+.btn svg{width:16px;height:16px;transition:transform .35s var(--spring)}
+.btn:hover svg{transform:translateX(3px)}
+.btn:active{transform:scale(.965)}
+.btn--pri{color:#0A0710;background:linear-gradient(100deg,#F0E4FF,#FFD1E4 48%,#FFE3C9);
+  box-shadow:0 10px 34px rgba(255,95,162,.3),inset 0 1px 0 rgba(255,255,255,.7)}
+.btn--pri::before{content:"";position:absolute;inset:0;
+  background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.55) 48%,transparent 62%);
+  transform:translateX(-120%);transition:transform .9s var(--out)}
+.btn--pri:hover::before{transform:translateX(120%)}
+.btn--pri:hover{box-shadow:0 14px 44px rgba(255,95,162,.42),inset 0 1px 0 rgba(255,255,255,.8)}
+.btn--glass{color:var(--ink);background:rgba(255,255,255,.07);border:1px solid var(--line-2);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.btn--glass:hover{background:rgba(255,255,255,.13);border-color:rgba(255,255,255,.34)}
+.btn--sm{height:40px;padding:0 18px;font-size:13px}
+
+/* ---------- Hero ---------- */
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;
+  padding-top:calc(var(--nav-h) + 56px);padding-bottom:44px;position:relative}
+.hero__eyebrow{display:inline-flex;align-items:center;gap:10px;padding:7px 15px;border-radius:var(--pill);
+  background:rgba(255,255,255,.06);border:1px solid var(--line);font-size:12px;font-weight:600;
+  letter-spacing:.14em;color:var(--ink-2);text-transform:uppercase;backdrop-filter:blur(14px)}
+.hero__eyebrow i{width:6px;height:6px;border-radius:50%;background:var(--pink);box-shadow:0 0 12px var(--pink)}
+.hero__grid{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(20px,4vw,56px);align-items:center;
+  min-height:min(64vh,590px);margin-top:26px}
+h1{font-size:clamp(40px,5.9vw,76px);font-weight:700;line-height:1.04;letter-spacing:-.04em;text-wrap:balance}
+h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;
+  background-size:220% 100%;animation:shift 9s ease infinite}
+@keyframes shift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.hero__sub{margin-top:26px;max-width:450px;font-size:clamp(15px,1.25vw,17px);line-height:1.85;color:var(--ink-2)}
+.hero__cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:36px}
+
+/* Logo 舞台：玻璃罩 + 悬浮 */
+.stage{position:relative;display:grid;place-items:center;min-height:440px;perspective:1000px}
+.stage__halo{position:absolute;width:74%;aspect-ratio:1;border-radius:50%;filter:blur(46px);
+  background:radial-gradient(circle,rgba(180,92,255,.34),rgba(255,95,162,.18) 46%,transparent 70%);
+  animation:breathe 9s ease-in-out infinite}
+.stage__ring{position:absolute;border-radius:50%;border:1px solid rgba(255,255,255,.08)}
+.stage__ring.a{width:86%;aspect-ratio:1;border-style:dashed;border-color:rgba(255,255,255,.13);
+  animation:spin 70s linear infinite}
+.stage__ring.b{width:62%;aspect-ratio:1;border-color:rgba(255,255,255,.10)}
+.stage__mark{position:relative;width:min(450px,88%);transform-style:preserve-3d;
+  filter:drop-shadow(0 34px 60px rgba(0,0,0,.6)) drop-shadow(0 0 60px rgba(180,92,255,.28));
+  transition:transform .5s var(--out),filter .5s ease}
+.stage__floor{position:absolute;bottom:4%;width:60%;height:34px;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(180,92,255,.28),transparent 70%);filter:blur(16px)}
+@keyframes breathe{0%,100%{opacity:.75;transform:scale(1)}50%{opacity:1;transform:scale(1.06)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* 浮动玻璃指标 */
+.chip{position:absolute;display:flex;align-items:center;gap:10px;padding:11px 16px;border-radius:16px;
+  background:rgba(20,21,30,.55);border:1px solid rgba(255,255,255,.14);
+  backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);
+  box-shadow:0 16px 40px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.16);
+  font-size:12px;color:var(--ink-2);white-space:nowrap;animation:chipFloat 7s ease-in-out infinite}
+.chip b{font-family:var(--num);font-size:19px;font-weight:700;letter-spacing:-.03em;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.chip--1{left:-9%;top:10%;animation-delay:-1.2s}
+.chip--2{right:-9%;top:42%;animation-delay:-3.4s}
+.chip--3{left:-5%;bottom:12%;animation-delay:-5s}
+@keyframes chipFloat{0%,100%{transform:translateY(-7px)}50%{transform:translateY(7px)}}
+
+/* 指标条 */
+.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:clamp(24px,4vh,44px)}
+.metric{padding:20px;border-radius:var(--r-m);background:rgba(255,255,255,.045);border:1px solid var(--line);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  transition:transform .45s var(--spring),background-color .3s ease}
+.metric:hover{transform:translateY(-4px);background:rgba(255,255,255,.08)}
+.metric b{display:flex;align-items:baseline;gap:2px;font-family:var(--num);font-size:clamp(26px,2.8vw,36px);
+  font-weight:700;letter-spacing:-.035em;line-height:1;font-variant-numeric:tabular-nums}
+.metric b i{font-style:normal;font-size:.58em;background:var(--grad);-webkit-background-clip:text;
+  background-clip:text;color:transparent}
+.metric span{display:block;margin-top:8px;font-size:12.5px;font-weight:500;color:var(--ink)}
+.metric em{display:block;margin-top:2px;font-size:10.5px;font-style:normal;color:var(--ink-3)}
+
+/* ---------- 分区 ---------- */
+.sec{padding-block:clamp(72px,10vw,132px);position:relative}
+.sec__head{max-width:680px;margin-bottom:clamp(32px,4.5vw,56px)}
+.eyebrow{display:inline-block;margin-bottom:16px;font-size:11.5px;font-weight:600;letter-spacing:.18em;
+  color:var(--pink);text-transform:uppercase}
+.sec__head h2{font-size:clamp(29px,4vw,52px);font-weight:700;line-height:1.07;letter-spacing:-.04em}
+.sec__desc{margin-top:16px;max-width:520px;font-size:15.5px;line-height:1.85;color:var(--ink-2)}
+
+/* 关于 */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,56px);align-items:start}
+.about__card{padding:clamp(24px,3vw,38px);border-radius:var(--r-l)}
+.about__lead{font-size:clamp(19px,2.1vw,27px);font-weight:300;line-height:1.55;letter-spacing:-.02em}
+.about__lead b{font-weight:600}
+.about__p{margin-top:20px;font-size:14.5px;line-height:1.9;color:var(--ink-2)}
+.strategy{display:grid;gap:10px}
+.strategy li{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:baseline;
+  padding:16px 18px;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid var(--line);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  transition:transform .4s var(--spring),background-color .3s ease,border-color .3s ease}
+.strategy li:hover{transform:translateX(6px);background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.22)}
+.strategy span{font-family:var(--num);font-size:11px;font-weight:600;letter-spacing:.1em;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.strategy p{font-size:14.5px;line-height:1.7}
+
+/* 业务 */
+.biz{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.bcard{padding:clamp(24px,2.4vw,32px);display:flex;flex-direction:column}
+.bcard__top{display:flex;align-items:center;justify-content:space-between;margin-bottom:30px}
+.bcard__no{font-family:var(--num);font-size:11.5px;font-weight:600;letter-spacing:.16em;color:var(--ink-3)}
+.bcard__ico{width:46px;height:46px;border-radius:15px;display:grid;place-items:center;
+  background:rgba(255,255,255,.07);border:1px solid var(--line);
+  transition:transform .5s var(--spring),background-color .4s ease}
+.bcard__ico svg{width:21px;height:21px;color:#E9D8FF}
+.bcard:hover .bcard__ico{transform:scale(1.1) rotate(-6deg);background:rgba(180,92,255,.24)}
+.bcard h3{font-size:clamp(18px,1.6vw,22px);font-weight:600;letter-spacing:-.015em;margin-bottom:10px}
+.bcard p{flex:1;font-size:13.5px;line-height:1.8;color:var(--ink-2)}
+.bcard ul{display:flex;flex-wrap:wrap;gap:6px;margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
+.bcard li{padding:5px 11px;border-radius:var(--pill);background:rgba(255,255,255,.06);font-size:11.5px;color:var(--ink-2);
+  transition:background-color .3s ease,color .3s ease}
+.bcard:hover li{background:rgba(255,95,162,.2);color:#fff}
+
+/* 流水线 */
+.flow{display:grid;grid-template-columns:.84fr 1.16fr;gap:clamp(26px,5vw,72px);align-items:start}
+.steps{display:grid;gap:10px}
+.step{display:grid;grid-template-columns:76px 1fr auto;gap:16px;align-items:center;padding:18px 20px;
+  border-radius:16px;background:rgba(255,255,255,.04);border:1px solid var(--line);
+  transition:transform .45s var(--spring),background-color .3s ease,border-color .3s ease}
+.step:hover{transform:translateX(8px);background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.24)}
+.step__no{font-family:var(--num);font-size:11px;font-weight:600;letter-spacing:.08em;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap}
+.step__t{font-size:clamp(15.5px,1.4vw,18.5px);font-weight:600;letter-spacing:-.012em}
+.step__d{font-size:11.5px;color:var(--ink-3);text-align:right}
+
+/* 案例 */
+.cases{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.case{position:relative;display:flex;flex-direction:column;justify-content:flex-end;min-height:400px;
+  border-radius:var(--r-l);overflow:hidden;border:1px solid var(--line);
+  transition:transform .6s var(--spring),border-color .4s ease,box-shadow .55s ease}
+.case:hover{transform:translateY(-7px);border-color:rgba(255,255,255,.26);box-shadow:0 40px 90px rgba(0,0,0,.56)}
+.case img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;
+  transition:transform 1s var(--spring);opacity:.92}
+.case:hover img{transform:scale(1.06)}
+.case::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,6,10,.1) 32%,rgba(5,6,10,.94))}
+.case__b{position:relative;z-index:2;padding:clamp(20px,2.2vw,28px)}
+.case__m{display:flex;align-items:baseline;gap:8px;font-family:var(--num);font-size:clamp(26px,2.8vw,36px);
+  font-weight:700;letter-spacing:-.03em;line-height:1}
+.case__m span{font-size:11px;font-weight:500;color:rgba(255,255,255,.64)}
+.case__t{margin-top:10px;font-size:16px;font-weight:600}
+.case__x{margin-top:4px;font-size:11.5px;color:rgba(255,255,255,.56)}
+.case--type{background:linear-gradient(155deg,#20112E 0%,#120A1C 55%,#05060A)}
+.case--type::after{display:none}
+.case--type .big{position:absolute;top:16px;right:20px;font-family:var(--num);font-size:clamp(68px,7.2vw,100px);
+  font-weight:700;line-height:.8;letter-spacing:-.06em;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;opacity:.3}
+
+/* 师资 */
+.faces{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px}
+.face{position:relative;border-radius:16px;overflow:hidden;background:rgba(255,255,255,.05);
+  border:1px solid var(--line);
+  transition:transform .5s var(--spring),border-color .35s ease,box-shadow .45s ease}
+.face img{width:100%;aspect-ratio:4/5;height:auto;object-fit:cover;object-position:center top;
+  transition:transform .7s var(--spring),filter .5s ease;filter:saturate(.9)}
+.face span{position:absolute;inset:auto 0 0 0;padding:28px 6px 9px;display:flex;flex-direction:column;gap:1px;
+  text-align:center;background:linear-gradient(180deg,transparent,rgba(5,6,10,.9))}
+.face b{font-size:11.5px;font-weight:600}
+.face i{font-style:normal;font-size:10px;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.face:hover{transform:translateY(-5px);border-color:rgba(255,255,255,.3);box-shadow:0 24px 50px rgba(0,0,0,.5)}
+.face:hover img{transform:scale(1.05);filter:none}
+
+/* Demo */
+.demo{position:relative;overflow:hidden;padding:clamp(30px,4.2vw,58px);border-radius:var(--r-xl);
+  border:1px solid rgba(255,255,255,.16);
+  background:linear-gradient(140deg,rgba(180,92,255,.16),rgba(255,95,162,.12) 46%,rgba(255,180,107,.10));
+  backdrop-filter:blur(30px) saturate(170%);-webkit-backdrop-filter:blur(30px) saturate(170%);
+  box-shadow:0 34px 80px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.2)}
+.demo__in{display:flex;align-items:center;justify-content:space-between;gap:34px;flex-wrap:wrap}
+.demo__n{display:flex;align-items:baseline;gap:10px}
+.demo__n b{font-family:var(--num);font-size:clamp(56px,6.4vw,86px);font-weight:700;letter-spacing:-.05em;line-height:1;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.demo__n span{font-size:13.5px;color:var(--ink-2)}
+.demo__g{display:flex;gap:8px;margin-top:14px}
+.pill{display:inline-flex;align-items:center;gap:7px;padding:5px 13px;border-radius:var(--pill);
+  border:1px solid var(--line-2);font-size:11.5px;font-weight:600;background:rgba(255,255,255,.05)}
+.pill i{width:6px;height:6px;border-radius:50%;background:var(--pink);font-style:normal;box-shadow:0 0 10px var(--pink)}
+.pill--a i{background:var(--violet)}
+.demo__r{margin-left:auto;max-width:420px;display:flex;flex-direction:column;align-items:flex-end;text-align:right;gap:18px}
+.demo__r p{font-size:13.5px;line-height:1.8;color:var(--ink-2)}
+
+/* 联系 */
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:clamp(26px,5vw,76px);align-items:start}
+.clist{display:grid;gap:8px}
+.crow{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 18px;border-radius:14px;
+  background:rgba(255,255,255,.04);border:1px solid var(--line);
+  transition:background-color .3s ease,border-color .3s ease,transform .4s var(--spring)}
+.crow:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.22);transform:translateX(5px)}
+.ckey{font-size:11.5px;color:var(--ink-3);letter-spacing:.06em}
+.cval{font-size:14.5px;font-weight:500}
+
+/* 页脚 */
+.footer{margin-top:clamp(40px,6vw,70px);border-top:1px solid var(--line);padding-block:46px 30px;
+  background:linear-gradient(180deg,rgba(255,255,255,.02),transparent)}
+.footer__g{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:30px}
+.footer__b img{width:120px;height:auto;margin-bottom:16px;opacity:.9}
+.footer__b p{max-width:280px;font-size:12px;line-height:1.85;color:var(--ink-3)}
+.footer h4{margin:0 0 12px;font-size:10.5px;font-weight:600;letter-spacing:.16em;color:var(--ink-3);text-transform:uppercase}
+.footer__c a{display:block;padding:5px 0;font-size:13px;color:var(--ink-2);
+  transition:color .25s ease,transform .3s var(--spring)}
+.footer__c a:hover{color:#fff;transform:translateX(3px)}
+.footer__bt{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:38px;padding-top:20px;
+  border-top:1px solid var(--line);font-size:11.5px;color:var(--ink-3)}
+
+/* ---------- 进场 ---------- */
+@media (prefers-reduced-motion:no-preference){
+  .js [data-r]{opacity:0;transform:translateY(26px);filter:blur(6px);
+    transition:opacity .95s var(--out),transform .95s var(--out),filter .95s var(--out);
+    transition-delay:calc(var(--i,0) * 70ms)}
+  .js [data-r].in{opacity:1;transform:none;filter:blur(0)}
+  .js .hero [data-r]{transform:translateY(34px)}
+}
+
+/* 自适应 */
+@media (max-width:1080px){
+  .nav__links{display:none}
+  .hero__grid{grid-template-columns:1fr;gap:24px}
+  .stage{order:-1;min-height:340px}
+  .stage__mark{width:min(320px,68%)}
+  .chip{display:none}
+  .about,.flow,.contact{grid-template-columns:1fr}
+  .biz,.cases{grid-template-columns:1fr 1fr}
+  .biz>*:last-child,.cases>*:last-child{grid-column:1/-1}
+  .faces{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .footer__g{grid-template-columns:1fr 1fr}
+  .demo__r{margin-left:0;align-items:flex-start;text-align:left}
+}
+@media (max-width:720px){
+  .nav{inset:10px 0 auto 0}
+  .nav__bar{height:58px;padding-right:8px}
+  .brand b{font-size:14px}
+  .nav__cta{height:36px;padding:0 14px;font-size:12px}
+  .hero{padding-top:calc(var(--nav-h) + 40px)}
+  .metrics{grid-template-columns:1fr 1fr}
+  .biz,.cases{grid-template-columns:1fr}
+  .biz>*:last-child,.cases>*:last-child{grid-column:auto}
+  .faces{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+  .step{grid-template-columns:54px 1fr}
+  .step__d{grid-column:2;text-align:left}
+  .footer__g{grid-template-columns:1fr}
+  .crow{flex-direction:column;align-items:flex-start;gap:3px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
+  html{scroll-behavior:auto}
+  .spot{display:none}
+}
+</style>
+</head>
+<body>
+<div class="aurora" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<div class="spot" id="spot" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<div class="wrap">
+<header class="nav" id="nav">
+  <div class="nav__bar">
+    <a class="brand" href="#top"><img src="assets/logo/yclj/mark-512.png" alt=""><b>遥触灵境</b></a>
+    <nav class="nav__links">
+      <a href="#about">关于</a><a href="#biz">业务</a><a href="#case">案例</a><a href="#team">师资</a><a href="#demo">Demo</a>
+    </nav>
+    <a class="nav__cta" href="#contact">联系我们</a>
+  </div>
+</header>
+
+<main id="top">
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <p class="hero__eyebrow" data-r><i></i>YAOCHU · AIGC 内容工业化</p>
+      <div class="hero__grid">
+        <div>
+          <h1 data-r style="--i:1">让内容生产<br><em>成为一条流水线</em></h1>
+          <p class="hero__sub" data-r style="--i:2">以自研 Agent 与标准化 SOP，把影视内容制作压缩成可复用的工序。从一句脚本，到一部能上线的作品。</p>
+          <div class="hero__cta" data-r style="--i:3">
+            <a class="btn btn--pri" href="#demo">看 Demo 作品
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+            <a class="btn btn--glass" href="#biz">三大业务</a>
+          </div>
+        </div>
+
+        <div class="stage" data-r style="--i:2" aria-hidden="true">
+          <span class="stage__halo"></span>
+          <span class="stage__ring a"></span><span class="stage__ring b"></span>
+          <img class="stage__mark" id="mark" src="assets/logo/yclj/mark.png" alt="">
+          <span class="stage__floor"></span>
+          <div class="chip chip--1"><b>2×</b>内容产出效率</div>
+          <div class="chip chip--2"><b>−50%</b>制作成本</div>
+          <div class="chip chip--3"><b>14</b>部 Demo 作品</div>
+        </div>
+      </div>
+
+      <ul class="metrics" data-r style="--i:4">
+        <li class="metric"><b><span data-count="2">0</span><i>×</i></b><span>内容产出效率</span><em>相对同行</em></li>
+        <li class="metric"><b><span data-count="50">0</span><i>%</i></b><span>制作成本下降</span><em>相对传统制片</em></li>
+        <li class="metric"><b><span data-count="5">0</span><i>×</i></b><span>SOP 流程提速</span><em>标准化交付</em></li>
+        <li class="metric"><b><span data-count="4">0</span><i>类</i></b><span>内容品类覆盖</span><em>仿真人 / 3D / 2D / 动态漫</em></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 关于 -->
+  <section class="sec" id="about">
+    <div class="container">
+      <div class="about">
+        <div class="glass about__card" data-r>
+          <p class="eyebrow">关于我们</p>
+          <p class="about__lead">创意不该被产能限制。<br>把制作拆成工序，<b>让每一帧都能稳定交付</b>。</p>
+          <p class="about__p">遥触灵境（杭州）科技有限公司，中泽集团全资子公司，2024 年成立。深耕 AIGC 领域的创新型科技文化企业，依托自研 Sub-field Agent 与标准化生产 SOP，在 AI 内容生成领域持续实现技术突破。</p>
+        </div>
+        <ol class="strategy" data-r style="--i:1">
+          <li><span>01</span><p>AI 驱动生产力革命，实现内容生产工业化自动化转型</p></li>
+          <li><span>02</span><p>构建产教融合人才引擎，培养数字创意实操人才</p></li>
+          <li><span>03</span><p>布局数字人元宇宙生态</p></li>
+          <li><span>04</span><p>赋能文旅产业升级及电商 AI 转型</p></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 业务 -->
+  <section class="sec" id="biz">
+    <div class="container">
+      <div class="sec__head" data-r>
+        <p class="eyebrow">三大核心业务</p>
+        <h2>从生产，到人才<br>再到产业落地</h2>
+      </div>
+      <div class="biz">
+        <article class="glass bcard" data-r style="--i:0">
+          <div class="bcard__top"><span class="bcard__no">01</span>
+            <span class="bcard__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 4v16M17 4v16M3 9h4M3 15h4M17 9h4M17 15h4"/></svg></span></div>
+          <h3>AIGC 内容工业化生产</h3>
+          <p>依托自研 Sub-field Agent 与全链路技术，为品牌与平台提供从创意生成到成品交付的完整方案。</p>
+          <ul><li>AI 商业广告片</li><li>AI 动漫与动态漫</li><li>AI 短剧与漫剧</li><li>AI 大电影</li></ul>
+        </article>
+        <article class="glass bcard" data-r style="--i:1">
+          <div class="bcard__top"><span class="bcard__no">02</span>
+            <span class="bcard__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.4 2.7 3 6 3s6-1.6 6-3v-5"/></svg></span></div>
+          <h3>产教融合人才引擎</h3>
+          <p>面向社会公众、就业重点群体与高等院校开设课程，以 OPC 一人公司模式孵化创作者。</p>
+          <ul><li>高校课程共建</li><li>企业 AI 培训</li><li>OPC 一人公司孵化</li><li>商业订单对接</li></ul>
+        </article>
+        <article class="glass bcard" data-r style="--i:2">
+          <div class="bcard__top"><span class="bcard__no">03</span>
+            <span class="bcard__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5 5-2Z"/></svg></span></div>
+          <h3>AI + 文旅数字化</h3>
+          <p>以 AI 结合 AR / VR 复原历史场景，打造数字人导游与沉浸式文旅短剧，形成线上线下的闭环。</p>
+          <ul><li>历史场景复原</li><li>数字人 IP 与导游</li><li>沉浸式文旅短剧</li><li>新媒体传播放大</li></ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 流水线 -->
+  <section class="sec">
+    <div class="container flow">
+      <div data-r>
+        <p class="eyebrow">内容工业化</p>
+        <h2 style="font-size:clamp(28px,3.7vw,48px);font-weight:700;letter-spacing:-.04em;line-height:1.08;margin-top:10px">一条流水线<br>四个环节</h2>
+        <p class="sec__desc">把创作拆成可标准化、可复用的工序。模型换了，流程照样跑 —— 这才是内容能规模化交付的前提。</p>
+      </div>
+      <ol class="steps">
+        <li class="step" data-r style="--i:0"><span class="step__no">STEP 01</span><span class="step__t">选题与脚本</span><span class="step__d">题材、钩子、受众三角验证</span></li>
+        <li class="step" data-r style="--i:1"><span class="step__no">STEP 02</span><span class="step__t">分镜与资产</span><span class="step__d">角色、场景前置资产标准化</span></li>
+        <li class="step" data-r style="--i:2"><span class="step__no">STEP 03</span><span class="step__t">批量生成</span><span class="step__d">提示词模板驱动的镜头产出</span></li>
+        <li class="step" data-r style="--i:3"><span class="step__no">STEP 04</span><span class="step__t">剪辑与交付</span><span class="step__d">按爆款标准验收上线</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 案例 -->
+  <section class="sec" id="case">
+    <div class="container">
+      <div class="sec__head" data-r>
+        <p class="eyebrow">案例与数据</p>
+        <h2>用播放量说话</h2>
+        <p class="sec__desc">截至 2026 年 6 月，团队参与的漫剧与短剧在各平台累计播放达数十亿。</p>
+      </div>
+      <div class="cases">
+        <article class="case case--type" data-r style="--i:0">
+          <span class="big" aria-hidden="true">1987</span>
+          <div class="case__b">
+            <div class="case__m"><b>5.3 亿</b><span>抖音播放</span></div>
+            <h3 class="case__t">1987，砖瓦厂食堂散伙</h3>
+            <p class="case__x">红果热度 5693w · 漫剧 TOP2</p>
+          </div>
+        </article>
+        <article class="case" data-r style="--i:1">
+          <img src="assets/img/posters/xiaomengsun.jpg" alt="《小萌孙驾到》海报" loading="lazy">
+          <div class="case__b"><div class="case__m"><b>1.4 亿</b><span>抖音播放</span></div>
+            <h3 class="case__t">小萌孙驾到</h3><p class="case__x">红果热度 4607w</p></div>
+        </article>
+        <article class="case" data-r style="--i:2">
+          <img src="assets/img/posters/jiange.jpg" alt="《捡个家人是大佬》海报" loading="lazy">
+          <div class="case__b"><div class="case__m"><b>4368 万</b><span>红果热度</span></div>
+            <h3 class="case__t">捡个家人是大佬</h3><p class="case__x">平台爆款 · AIGC 全流程</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 师资 -->
+  <section class="sec" id="team">
+    <div class="container">
+      <div class="sec__head" data-r>
+        <p class="eyebrow">师资团队</p>
+        <h2>14 位一线实战导师</h2>
+        <p class="sec__desc">覆盖平台操盘、工作流开发、短剧创作、企业培训与教学设计。课上的每个方法，都来自真实项目。</p>
+      </div>
+      <div class="faces">
+        <a class="face" href="faculty/wangyage/index.html" data-r style="--i:0"><img src="assets/img/faculty/wangyage.jpg" alt="王雅各" loading="lazy"><span><b>王雅各</b><i>CEO</i></span></a>
+        <a class="face" href="faculty/wangliangzheng/index.html" data-r style="--i:1"><img src="assets/img/faculty/wangliangzheng.jpg" alt="王梁正" loading="lazy"><span><b>王梁正</b><i>联合创始人</i></span></a>
+        <a class="face" href="faculty/chenqichang/index.html" data-r style="--i:2"><img src="assets/img/faculty/chenqichang.jpg" alt="陈琪昌" loading="lazy"><span><b>陈琪昌</b><i>视频训练师</i></span></a>
+        <a class="face" href="faculty/geweibin/index.html" data-r style="--i:3"><img src="assets/img/faculty/geweibin.jpg" alt="葛蔚斌" loading="lazy"><span><b>葛蔚斌</b><i>视频创作</i></span></a>
+        <a class="face" href="faculty/chenhaonan/index.html" data-r style="--i:4"><img src="assets/img/faculty/chenhaonan.jpg" alt="陈昊男" loading="lazy"><span><b>陈昊男</b><i>短视频导师</i></span></a>
+        <a class="face" href="faculty/zhouyukai/index.html" data-r style="--i:5"><img src="assets/img/faculty/zhouyukai.jpg" alt="周于凯" loading="lazy"><span><b>周于凯</b><i>视频创作</i></span></a>
+        <a class="face" href="faculty/chenjialong/index.html" data-r style="--i:6"><img src="assets/img/faculty/chenjialong.jpg" alt="陈家龙" loading="lazy"><span><b>陈家龙</b><i>视频导师</i></span></a>
+        <a class="face" href="faculty/shirunyu/index.html" data-r style="--i:7"><img src="assets/img/faculty/shirunyu.jpg" alt="施润宇" loading="lazy"><span><b>施润宇</b><i>实战应用</i></span></a>
+        <a class="face" href="faculty/zhouzhenghong/index.html" data-r style="--i:8"><img src="assets/img/faculty/zhouzhenghong.jpg" alt="周正鸿" loading="lazy"><span><b>周正鸿</b><i>AI 教育</i></span></a>
+        <a class="face" href="faculty/xieqianxing/index.html" data-r style="--i:9"><img src="assets/img/faculty/xieqianxing.jpg" alt="谢千星" loading="lazy"><span><b>谢千星</b><i>编程教学</i></span></a>
+        <a class="face" href="faculty/daisiyang/index.html" data-r style="--i:10"><img src="assets/img/faculty/daisiyang.jpg" alt="戴思阳" loading="lazy"><span><b>戴思阳</b><i>AI 商业</i></span></a>
+        <a class="face" href="faculty/lizizhang/index.html" data-r style="--i:11"><img src="assets/img/faculty/lizizhang.jpg" alt="李自长" loading="lazy"><span><b>李自长</b><i>编导编剧</i></span></a>
+        <a class="face" href="faculty/zhangqiwei/index.html" data-r style="--i:12"><img src="assets/img/faculty/zhangqiwei.jpg" alt="张启伟" loading="lazy"><span><b>张启伟</b><i>抽卡助教</i></span></a>
+        <a class="face" href="faculty/zhujiangjiang/index.html" data-r style="--i:13"><img src="assets/img/faculty/zhujiangjiang.jpg" alt="朱江江" loading="lazy"><span><b>朱江江</b><i>视频创作</i></span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Demo -->
+  <section class="sec" id="demo">
+    <div class="container">
+      <div class="demo" data-r>
+        <div class="demo__in">
+          <div>
+            <p class="eyebrow" style="margin-bottom:10px">Demo Library</p>
+            <div class="demo__n"><b>14</b><span>部作品</span></div>
+            <div class="demo__g"><span class="pill"><i></i>S 级 · 5 部</span><span class="pill pill--a"><i></i>A 级 · 9 部</span></div>
+          </div>
+          <div class="demo__r">
+            <p>覆盖游戏 CG、仿真人、3D 漫、海外剧与国内短剧，按分级归档，支持在线播放与下载。</p>
+            <a class="btn btn--pri" href="demos/index.html">进入 Demo 库
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 5 11 7-11 7Z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 联系 -->
+  <section class="sec" id="contact">
+    <div class="container contact">
+      <div data-r>
+        <p class="eyebrow">联系我们</p>
+        <h2 style="font-size:clamp(28px,3.7vw,46px);font-weight:700;letter-spacing:-.04em;line-height:1.1;margin-top:8px">聊聊你要做的内容</h2>
+        <p class="sec__desc">短剧、漫剧、广告片，或者想把 AI 引进团队，都可以直接联系我们。</p>
+      </div>
+      <ul class="clist" data-r style="--i:1">
+        <li class="crow"><span class="ckey">联系人</span><span class="cval">王先生</span></li>
+        <li class="crow"><span class="ckey">电话</span><a class="cval" href="tel:18545257058">185 4525 7058</a></li>
+        <li class="crow"><span class="ckey">邮箱</span><a class="cval" href="mailto:15900805001@163.com">15900805001@163.com</a></li>
+        <li class="crow"><span class="ckey">地址</span><span class="cval">杭州市萧山区金城路紫城国际 2 号楼 25 楼</span></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__g">
+      <div class="footer__b"><img src="assets/logo/yclj/lockup.png" alt="遥触灵境"><p>AIGC 全链路 · 数字内容 · 产教融合<br>中泽集团全资子公司</p></div>
+      <div class="footer__c"><h4>了解</h4><a href="#about">关于我们</a><a href="#biz">三大业务</a><a href="#case">案例与数据</a></div>
+      <div class="footer__c"><h4>内容</h4><a href="#team">师资团队</a><a href="demos/index.html">Demo 作品库</a></div>
+      <div class="footer__c"><h4>联系</h4><a href="tel:18545257058">185 4525 7058</a><a href="mailto:15900805001@163.com">15900805001@163.com</a></div>
+    </div>
+    <div class="footer__bt"><span>© 2026 遥触灵境（杭州）科技有限公司</span><span>Apple Glass · 动态版</span></div>
+  </div>
+</footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  document.documentElement.classList.add("js");
+  var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* 滚动进度 + 导航收缩 */
+  var bar = document.getElementById("progress"), nav = document.getElementById("nav");
+  function sync(){
+    var max = document.documentElement.scrollHeight - innerHeight;
+    if (bar) bar.style.width = (max > 0 ? scrollY / max * 100 : 0) + "%";
+    if (nav) nav.classList.toggle("on", scrollY > 40);
+  }
+  addEventListener("scroll", sync, {passive:true}); sync();
+
+  /* 交错入场 */
+  var els = document.querySelectorAll("[data-r]");
+  if (reduce || !("IntersectionObserver" in window)) {
+    els.forEach(function(e){ e.classList.add("in"); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+      });
+    }, {threshold:.12, rootMargin:"0px 0px -8% 0px"});
+    els.forEach(function(e){ io.observe(e); });
+  }
+
+  /* 数字滚动 */
+  function count(el){
+    var target = parseInt(el.getAttribute("data-count"), 10) || 0;
+    if (reduce) { el.textContent = target; return; }
+    var start = performance.now(), dur = 1400;
+    (function tick(now){
+      var p = Math.min((now - start) / dur, 1);
+      el.textContent = Math.round((1 - Math.pow(1 - p, 3)) * target);
+      if (p < 1) requestAnimationFrame(tick);
+    })(performance.now());
+  }
+  var metrics = document.querySelector(".metrics");
+  if (metrics) {
+    if (!("IntersectionObserver" in window)) {
+      metrics.querySelectorAll("[data-count]").forEach(count);
+    } else {
+      var nio = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if (en.isIntersecting) {
+            en.target.querySelectorAll("[data-count]").forEach(count);
+            nio.unobserve(en.target);
+          }
+        });
+      }, {threshold:.4});
+      nio.observe(metrics);
+    }
+  }
+
+  /* 鼠标：Logo 3D 视差 + 全局聚光 */
+  var stage = document.querySelector(".stage"), mark = document.getElementById("mark");
+  var spot = document.getElementById("spot");
+  var fine = matchMedia("(pointer:fine)").matches && !reduce;
+
+  if (fine) {
+    var tx = 0, ty = 0, cx = 0, cy = 0, raf = null;
+    var loop = function(){
+      cx += (tx - cx) * .08;
+      cy += (ty - cy) * .08;
+      if (mark) {
+        mark.style.transform = "rotateX(" + (-cy * .16).toFixed(2) + "deg) rotateY(" + (cx * .16).toFixed(2) +
+          "deg) translate3d(" + (cx * .5).toFixed(2) + "px," + (cy * .5).toFixed(2) + "px,0)";
+      }
+      if (spot) {
+        spot.style.transform = "translate(" + (cx * 6 + innerWidth / 2 - 310).toFixed(1) + "px," +
+          (cy * 6 + innerHeight * .3 - 310).toFixed(1) + "px)";
+      }
+      if (Math.abs(tx - cx) > .1 || Math.abs(ty - cy) > .1) raf = requestAnimationFrame(loop);
+      else raf = null;
+    };
+    addEventListener("mousemove", function(e){
+      var nx = (e.clientX / innerWidth - .5), ny = (e.clientY / innerHeight - .5);
+      tx = nx * 100; ty = ny * 100;
+      if (!raf) raf = requestAnimationFrame(loop);
+    }, {passive:true});
+  }
+
+  /* 滚动：Logo 缩放 + 视差 */
+  if (mark && !reduce) {
+    addEventListener("scroll", function(){
+      var p = Math.min(1, scrollY / 700);
+      mark.style.scale = (1 - p * .12).toFixed(3);
+      mark.style.opacity = (1 - p * .55).toFixed(3);
+    }, {passive:true});
+  }
+
+  /* 卡片轻微跟随指针倾斜 */
+  if (fine) {
+    document.querySelectorAll(".glass, .face, .case").forEach(function(card){
+      card.addEventListener("mousemove", function(e){
+        var r = card.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width - .5, py = (e.clientY - r.top) / r.height - .5;
+        card.style.transform = "perspective(900px) rotateX(" + (-py * 4).toFixed(2) +
+          "deg) rotateY(" + (px * 5).toFixed(2) + "deg) translateY(-6px)";
+      }, {passive:true});
+      card.addEventListener("mouseleave", function(){ card.style.transform = ""; });
+    });
+  }
+
+  /* 图片淡入 */
+  document.querySelectorAll("img[loading='lazy']").forEach(function(img){
+    if (img.complete) return;
+    img.style.opacity = "0";
+    img.style.transition = "opacity .7s ease";
+    img.addEventListener("load", function(){ img.style.opacity = "1"; }, {once:true});
+    img.addEventListener("error", function(){ img.style.opacity = "1"; }, {once:true});
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>三套方案 · 铬金 Logo · 遥触灵境</title>
+<style>
+:root{
+  color-scheme:light;
+  --bg:#F4F2ED;--bg-2:#FFFFFF;--ink:#141310;--ink-2:#4B4741;--ink-3:#8A8377;
+  --line:rgba(20,19,16,.10);--line-2:rgba(20,19,16,.18);
+  --gold:#A4804A;--gold-2:#C8A96E;--graphite:#141419;
+  --grad-gold:linear-gradient(100deg,#8C6F3E,#C8A96E 40%,#A4804A 70%,#E4CFA6);
+  --spring:cubic-bezier(.22,1,.36,1);
+  --gutter:clamp(20px,5vw,64px);--max:1180px;
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang SC","HarmonyOS Sans SC","Microsoft YaHei",sans-serif;
+  --num:"SF Pro Display","Helvetica Neue",-apple-system,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.7;
+  -webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,p,ul,li{margin:0;padding:0}
+ul{list-style:none}
+.container{width:100%;max-width:var(--max);margin-inline:auto;padding-inline:var(--gutter)}
+header{padding-top:clamp(58px,10vh,104px);text-align:center}
+.plate{width:clamp(104px,13vw,148px);height:auto;margin:0 auto 30px;border-radius:26%;
+  box-shadow:0 26px 56px rgba(20,19,16,.26);animation:float 8s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(-7px)}50%{transform:translateY(7px)}}
+h1{font-size:clamp(32px,5.2vw,60px);font-weight:700;line-height:1.05;letter-spacing:-.045em}
+h1 em{font-style:normal;color:var(--gold)}
+.lead{margin:20px auto 0;max-width:620px;font-size:clamp(15px,1.3vw,17px);line-height:1.85;color:var(--ink-2)}
+.note{margin:26px auto 0;max-width:700px;padding:16px 22px;border-radius:14px;background:var(--bg-2);
+  font-size:13px;line-height:1.8;color:var(--ink-2);text-align:left;border-left:3px solid var(--gold)}
+.note b{color:var(--ink)}
+.grid{margin-top:clamp(40px,6vw,72px);display:grid;gap:20px;padding-bottom:80px}
+.card{display:grid;grid-template-columns:1fr 380px;gap:clamp(22px,4vw,46px);align-items:center;
+  padding:clamp(24px,3vw,38px);background:var(--bg-2);border:1px solid var(--line);border-radius:24px;
+  transition:transform .5s var(--spring),box-shadow .5s ease,border-color .4s ease}
+.card:hover{transform:translateY(-5px);box-shadow:0 26px 56px rgba(20,19,16,.10);border-color:var(--line-2)}
+.no{font-family:var(--num);font-size:11.5px;font-weight:700;letter-spacing:.2em;color:var(--gold)}
+.card h2{margin:10px 0 12px;font-size:clamp(23px,2.9vw,34px);font-weight:700;letter-spacing:-.035em;line-height:1.12}
+.card p{font-size:14.5px;line-height:1.85;color:var(--ink-2);max-width:460px}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}
+.tags li{padding:5px 11px;border-radius:999px;background:var(--bg);border:1px solid var(--line);font-size:11.5px;color:var(--ink-2)}
+.swatch{display:flex;gap:6px;margin-top:20px}
+.swatch i{width:24px;height:24px;border-radius:7px;border:1px solid var(--line)}
+.go{display:inline-flex;align-items:center;gap:7px;margin-top:22px;font-size:13.5px;font-weight:600;color:var(--gold)}
+.go svg{width:14px;height:14px;transition:transform .3s var(--spring)}
+.card:hover .go svg{transform:translateX(4px)}
+.preview{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:4/3;display:grid;place-items:center;padding:26px;
+  border:1px solid var(--line)}
+.preview img{width:72%;height:auto;border-radius:20%}
+.preview--a{background:radial-gradient(circle at 50% 40%,#16161C,#08080A 72%)}
+.preview--b{background:linear-gradient(160deg,#F7F4EE,#EDE6DA)}
+.preview--c{background:linear-gradient(150deg,#E9EBEF,#F7F8FA 60%,#DDE0E6)}
+footer{border-top:1px solid var(--line);padding-block:28px 56px;font-size:12px;color:var(--ink-3)}
+footer .container{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+@media (max-width:900px){.card{grid-template-columns:1fr}.preview{order:-1;aspect-ratio:16/9}}
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <img class="plate" src="../assets/logo/chrome/plate-512.png" alt="遥触灵境 Logo">
+    <h1>三套<em>铬金方案</em></h1>
+    <p class="lead">改用这版铬金 Logo 后，品牌材质从绿变成了「银色镜面 + 香槟金」。三套方案围绕这个材质重做，交互与动效都已实现。</p>
+    <p class="note">
+      <b>一个物理约束：</b>Logo 主体是银色金属，亮度约 224，在白底上对比度只有 <b>1.25:1</b>，会直接消失；在深底上是 <b>13:1</b>。
+      所以三套方案都不敢把 Logo 裸放在浅色上：A 用深色页面，B 用石墨托盘，C 用镜面展台。
+    </p>
+    <p class="note" style="border-left-color:#8C6F3E">
+      <b>色彩说明：</b>这版 Logo 自带香槟金边，所以三套都采用「石墨黑 + 香槟金 + 银」体系，不再使用原来的品牌绿。
+      如果你希望保留绿色，我只能把金色弱化——但那样会丢掉 Logo 的材质特征。
+    </p>
+  </header>
+
+  <div class="grid">
+    <article class="card">
+      <div>
+        <span class="no">方案 A</span>
+        <h2>暗夜铬金</h2>
+        <p>整页近黑，唯一光源打在 Logo 上，四周有金色聚光。气质最贵、最适合把作品与师资当主角，也最贴近这块 Logo 原生的暗场布光。</p>
+        <ul class="tags"><li>深色主调</li><li>聚光灯</li><li>镜面展台</li><li>倒影</li><li>鼠标 3D 视差</li></ul>
+        <div class="swatch"><i style="background:#08080A"></i><i style="background:#1A1810"></i><i style="background:#A4804A"></i><i style="background:#C8A96E"></i><i style="background:#D9DBE0"></i></div>
+        <a class="go" href="./v1/index.html">打开方案 A
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="preview preview--a"><img src="../assets/logo/chrome/plate-512.png" alt=""></div>
+    </article>
+
+    <article class="card">
+      <div>
+        <span class="no">方案 B</span>
+        <h2>象牙</h2>
+        <p>暖白纸感底色，Logo 收进石墨托盘里，金色只出现在细线与数字上。整体像一本制作精良的画册，适合给政府与高校看。</p>
+        <ul class="tags"><li>暖白主调</li><li>石墨托盘</li><li>金色细线</li><li>画册节奏</li><li>滚动抬升</li></ul>
+        <div class="swatch"><i style="background:#F7F4EE"></i><i style="background:#EFEAE1"></i><i style="background:#14141A"></i><i style="background:#A4804A"></i></div>
+        <a class="go" href="./v2/index.html">打开方案 B
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="preview preview--b"><img src="../assets/logo/chrome/plate-512.png" alt=""></div>
+    </article>
+
+    <article class="card">
+      <div>
+        <span class="no">方案 C</span>
+        <h2>镜面</h2>
+        <p>冷银拉丝底，Logo 站在一块深色镜面上，下面有真实倒影。科技感最强，节奏最克制，适合强调「工业化」这件事。</p>
+        <ul class="tags"><li>冷银底</li><li>镜面展台</li><li>镜面倒影</li><li>拉丝纹理</li><li>横向业务行</li></ul>
+        <div class="swatch"><i style="background:#E9EBEF"></i><i style="background:#DDE0E6"></i><i style="background:#101116"></i><i style="background:#B08D55"></i></div>
+        <a class="go" href="./v3/index.html">打开方案 C
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="preview preview--c"><img src="../assets/logo/chrome/plate-512.png" alt=""></div>
+    </article>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <span>遥触灵境 · 基于铬金 Logo 的三套方案</span>
+    <span>正式站未改动，确认后再全站替换</span>
+  </div>
+</footer>
+</body>
+</html>
