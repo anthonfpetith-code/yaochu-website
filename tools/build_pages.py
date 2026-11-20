@@ -34,9 +34,9 @@ def e(x):
 def nav(prefix, dark=False, current=""):
     cls = "nav nav--solid" if not dark else "nav nav--dark"
     mark = f"{prefix}assets/logo/mark-dark.png" if dark else f"{prefix}assets/logo/mark.png"
-    links = [("关于", "index.html#about"), ("业务", "index.html#business"),
-             ("案例", "index.html#cases"), ("师资", "faculty/index.html"),
-             ("Demo", "demos/index.html"), ("合作", "index.html#partners")]
+    links = [("关于", "index.html#about"), ("业务", "index.html#biz"),
+             ("案例", "index.html#case"), ("师资", "faculty/index.html"),
+             ("Demo", "demos/index.html"), ("合作", "index.html#contact")]
     items = "".join(
         f'<a href="{prefix}{href}"{" aria-current=\"page\"" if label == current else ""}>{label}</a>'
         for label, href in links
